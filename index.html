@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WG-Link – Rechtliche Informationen</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0f1115;
+      --card: #1a1d24;
+      --text: #e8eaed;
+      --muted: #9aa0a6;
+      --accent: #5865f2;
+      --border: #2a2f3a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem;
+    }
+    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+    p.lead { color: var(--muted); margin: 0 0 2rem; }
+    .cards { display: grid; gap: 1rem; }
+    a.card {
+      display: block;
+      padding: 1.25rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: inherit;
+      text-decoration: none;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    a.card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    a.card strong { display: block; font-size: 1.1rem; margin-bottom: 0.35rem; }
+    a.card span { color: var(--muted); font-size: 0.95rem; }
+    footer {
+      margin-top: 2.5rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>WG-Link</h1>
+    <p class="lead">
+      Discord-Bot zur Verknüpfung mit World of Warships / Wargaming.
+      Rechtliche Dokumente für Nutzer und Discord App-Verifizierung.
+    </p>
+    <div class="cards">
+      <a class="card" href="terms-of-service.html">
+        <strong>Nutzungsbedingungen</strong>
+        <span>Terms of Service – Regeln zur Nutzung des Bots</span>
+      </a>
+      <a class="card" href="privacy-policy.html">
+        <strong>Datenschutzerklärung</strong>
+        <span>Privacy Policy – welche Daten gespeichert werden</span>
+      </a>
+    </div>
+    <footer>
+      Betreiber: motti_tv · Stand: 8. August 2026
+    </footer>
+  </main>
+</body>
+</html>

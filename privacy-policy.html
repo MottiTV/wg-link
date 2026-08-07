@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Datenschutzerklärung – WG-Link</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0f1115;
+      --text: #e8eaed;
+      --muted: #9aa0a6;
+      --accent: #5865f2;
+      --border: #2a2f3a;
+      --card: #1a1d24;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    main { max-width: 800px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    nav { margin-bottom: 1.5rem; font-size: 0.9rem; }
+    nav a { color: var(--accent); text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    h1 { font-size: 1.75rem; margin: 0 0 0.75rem; }
+    h2 { font-size: 1.2rem; margin: 2rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
+    h3 { font-size: 1.05rem; margin: 1.25rem 0 0.5rem; }
+    p, li { color: var(--text); }
+    .meta { color: var(--muted); margin-bottom: 1.5rem; }
+    .meta strong { color: var(--text); }
+    ul { padding-left: 1.25rem; }
+    li { margin: 0.35rem 0; }
+    a { color: var(--accent); }
+    hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+    .note { color: var(--muted); font-size: 0.9rem; font-style: italic; }
+    code { background: var(--card); padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.9em; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--card); }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <a href="index.html">← Übersicht</a> ·
+      <a href="terms-of-service.html">Nutzungsbedingungen</a>
+    </nav>
+
+    <h1>Datenschutzerklärung (Privacy Policy)</h1>
+    <p class="meta">
+      <strong>Dienst:</strong> WG-Link (Discord-Bot / Discord-Anwendung)<br />
+      <strong>Verantwortlicher:</strong> motti_tv<br />
+      <strong>Stand:</strong> 8. August 2026
+    </p>
+
+    <p>
+      Diese Datenschutzerklärung informiert darüber, welche personenbezogenen Daten bei der Nutzung von
+      <strong>WG-Link</strong> verarbeitet werden, zu welchem Zweck und welche Rechte du hast.
+    </p>
+
+    <hr />
+
+    <h2>1. Verantwortlicher</h2>
+    <p>Verantwortlich für die Datenverarbeitung im Zusammenhang mit dem Bot WG-Link ist:</p>
+    <ul>
+      <li><strong>Discord-Nutzername:</strong> motti_tv</li>
+      <li><strong>Anwendung:</strong> WG-Link</li>
+    </ul>
+    <p>
+      Kontakt für Datenschutzanfragen: über Discord an <strong>motti_tv</strong>
+      (oder den auf dem jeweiligen Server angegebenen Admin-Kanal, falls der Bot nur dort betrieben wird).
+    </p>
+
+    <h2>2. Was ist WG-Link?</h2>
+    <p>
+      WG-Link ist ein Discord-Bot, der Discord-Nutzer mit ihrem
+      <strong>Wargaming- / World of Warships-Account</strong> verknüpfen kann.
+      Nach erfolgreicher Verknüpfung können u. a. gesetzt werden:
+    </p>
+    <ul>
+      <li>Server-Nickname (z. B. <code>Spielername (EU)</code>),</li>
+      <li>eine Verifizierungs-Rolle auf dem Discord-Server.</li>
+    </ul>
+    <p>
+      Der Login erfolgt über den <strong>offiziellen Wargaming-OpenID-Login</strong>.
+      Der Bot erhält und speichert <strong>keine Passwörter</strong>.
+    </p>
+
+    <h2>3. Welche Daten werden verarbeitet?</h2>
+    <h3>3.1 Bei der Verknüpfung (Verifizierung)</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Daten</th>
+          <th>Beispiel / Herkunft</th>
+          <th>Zweck</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Discord-Benutzer-ID</td>
+          <td>von Discord</td>
+          <td>Zuordnung der Verknüpfung</td>
+        </tr>
+        <tr>
+          <td>Discord-Tag / Anzeigename</td>
+          <td>z. B. motti_tv</td>
+          <td>Nachvollziehbarkeit, Admin-Tools, Support</td>
+        </tr>
+        <tr>
+          <td>Wargaming Account-ID</td>
+          <td>von Wargaming nach Login</td>
+          <td>eindeutige Account-Zuordnung</td>
+        </tr>
+        <tr>
+          <td>Wargaming- / WoWS-Nickname</td>
+          <td>von Wargaming / WoWS-API</td>
+          <td>Nick setzen, Anzeige</td>
+        </tr>
+        <tr>
+          <td>Region</td>
+          <td>EU / NA / ASIA (von dir gewählt)</td>
+          <td>korrekter Login &amp; API-Host</td>
+        </tr>
+        <tr>
+          <td>Server-Nickname (gesetzt)</td>
+          <td>z. B. Name (EU)</td>
+          <td>Dokumentation der gesetzten Form</td>
+        </tr>
+        <tr>
+          <td>Zeitstempel der Verifizierung</td>
+          <td>ISO-Datum</td>
+          <td>Nachvollziehbarkeit</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 Temporäre Daten (Login-Vorgang)</h3>
+    <p>
+      Während des Logins wird ein kurzlebiger <strong>State-Token</strong> gespeichert
+      (typisch <strong>max. ca. 15 Minuten</strong>), der Discord-Nutzer, Region und Locale dem Callback zuordnet.
+      Danach entfällt der Token bzw. er wird verbraucht/gelöscht.
+    </p>
+
+    <h3>3.3 Technisch notwendige Daten</h3>
+    <p>
+      Beim Aufruf der Login-/Callback-Webseite des Bots können übliche Server-Logs anfallen
+      (z. B. Zeitpunkt, IP-Adresse, User-Agent – abhängig von Hosting/ngrok/Proxy).
+      Diese dienen der Sicherheit und Fehleranalyse und werden nicht für Marketing genutzt.
+    </p>
+
+    <h3>3.4 Was wird <strong>nicht</strong> gespeichert</h3>
+    <ul>
+      <li><strong>Keine</strong> Wargaming- oder Discord-Passwörter</li>
+      <li><strong>Keine</strong> Zahlungsmitteldaten</li>
+      <li><strong>Keine</strong> privaten Nachrichten-Inhalte zum Zweck der Verknüpfung</li>
+      <li><strong>Kein</strong> dauerhafter Wargaming-Access-Token in der Verknüpfungsdatenbank</li>
+    </ul>
+
+    <h2>4. Rechtsgrundlagen und Zwecke (DSGVO-Orientierung)</h2>
+    <p>Soweit die DSGVO anwendbar ist, erfolgt die Verarbeitung insbesondere auf Grundlage von:</p>
+    <ul>
+      <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Durchführung der von dir angeforderten Verknüpfung,</li>
+      <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> – berechtigtes Interesse an sicherem Betrieb und Missbrauchsprävention,</li>
+      <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung, soweit du den Verknüpfungsvorgang aktiv startest und abschließt.</li>
+    </ul>
+    <p><strong>Zwecke im Überblick:</strong></p>
+    <ol>
+      <li>Durchführen der Account-Verknüpfung</li>
+      <li>Setzen von Nickname und Verifizierungs-Rolle</li>
+      <li>Anzeige des Verknüpfungsstatus</li>
+      <li>Admin-Funktionen (prüfen, listen, entfernen)</li>
+      <li>Sicherheit und Missbrauchserkennung</li>
+    </ol>
+
+    <h2>5. Speicherung und Speicherort</h2>
+    <ul>
+      <li>Verknüpfungsdaten werden in einer <strong>Bot-seitigen Datenhaltung</strong> gespeichert (z. B. auf dem Rechner/Server, auf dem der Bot läuft).</li>
+      <li>Speicherdauer: <strong>solange die Verknüpfung aktiv ist</strong> bzw. bis zur Löschung.</li>
+      <li>Temporäre Login-States: in der Regel <strong>wenige Minuten</strong>.</li>
+    </ul>
+    <p>Es erfolgt <strong>kein Verkauf</strong> personenbezogener Daten an Dritte.</p>
+
+    <h2>6. Empfänger und Drittdienste</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Empfänger</th>
+          <th>Rolle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Discord</strong></td>
+          <td>Plattform; Bot-API, Interaktionen, Rollen, Nicknames</td>
+        </tr>
+        <tr>
+          <td><strong>Wargaming</strong></td>
+          <td>OpenID-Login und ggf. Abruf öffentlicher Account-Infos</td>
+        </tr>
+        <tr>
+          <td><strong>Hosting / Tunnel</strong></td>
+          <td>Betrieb des Callback-Webservers (z. B. PC, VPS, ngrok)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>7. Weitergabe</h2>
+    <p>Eine Weitergabe an Dritte erfolgt nur:</p>
+    <ul>
+      <li>wenn du einwilligst oder die Funktion es erfordert (Discord/Wargaming),</li>
+      <li>wenn eine gesetzliche Pflicht besteht,</li>
+      <li>an Hosting, soweit technisch für den Betrieb nötig.</li>
+    </ul>
+    <p><strong>Keine</strong> Weitergabe zu Werbezwecken.</p>
+
+    <h2>8. Deine Rechte</h2>
+    <p>Soweit anwendbares Datenschutzrecht (z. B. DSGVO) greift, hast du insbesondere das Recht auf:</p>
+    <ul>
+      <li><strong>Auskunft</strong> über gespeicherte Daten zu deiner Person,</li>
+      <li><strong>Berichtigung</strong> unrichtiger Daten,</li>
+      <li><strong>Löschung</strong>,</li>
+      <li><strong>Einschränkung</strong> der Verarbeitung,</li>
+      <li><strong>Widerspruch</strong> gegen Verarbeitung auf Basis berechtigter Interessen,</li>
+      <li><strong>Datenübertragbarkeit</strong>, soweit anwendbar,</li>
+      <li><strong>Beschwerde</strong> bei einer Datenschutz-Aufsichtsbehörde.</li>
+    </ul>
+
+    <h3>Verknüpfung löschen lassen</h3>
+    <ol>
+      <li>Server-Admin: Entfernen der Verknüpfung (z. B. <code>/link-check remove</code>),</li>
+      <li>Anfrage an den Betreiber (<strong>motti_tv</strong> auf Discord),</li>
+      <li>Bot vom Server entfernen (beendet die Nutzung auf diesem Server).</li>
+    </ol>
+
+    <h2>9. Minderjährige</h2>
+    <p>
+      Der Bot richtet sich an Nutzer, die Discord und die jeweiligen Spieldienste nutzen dürfen.
+      Personen unter dem jeweils geltenden Mindestalter sollen den Bot nicht nutzen.
+    </p>
+
+    <h2>10. Sicherheit</h2>
+    <p>Der Betreiber trifft angemessene Maßnahmen, u. a.:</p>
+    <ul>
+      <li>kein Speichern von Passwörtern,</li>
+      <li>Nutzung des offiziellen Wargaming-Login-Flows,</li>
+      <li>kurzlebige State-Parameter für den Callback,</li>
+      <li>Zugriff auf gespeicherte Verknüpfungen nur für Betrieb und berechtigte Admins.</li>
+    </ul>
+    <p>Eine absolute Sicherheit im Internet kann nicht garantiert werden.</p>
+
+    <h2>11. Automatisierte Entscheidungen</h2>
+    <p>
+      Es findet <strong>keine</strong> automatisierte Entscheidungsfindung im Sinne von Profiling mit Rechtswirkung
+      außerhalb der reinen Verifizierungs-Logik (verknüpft / nicht verknüpft, Rolle setzen) statt.
+    </p>
+
+    <h2>12. Änderungen dieser Erklärung</h2>
+    <p>
+      Diese Datenschutzerklärung kann angepasst werden, wenn sich Funktionen, Rechtslage oder Technik ändern.
+      Es gilt die jeweils unter „Stand“ genannte Version.
+    </p>
+
+    <h2>13. Nutzungsbedingungen</h2>
+    <p>
+      Ergänzend gelten die
+      <a href="terms-of-service.html"><strong>Nutzungsbedingungen</strong></a>.
+    </p>
+
+    <h2>14. Kontakt</h2>
+    <ul>
+      <li><strong>Discord:</strong> motti_tv</li>
+      <li><strong>Bot / App:</strong> WG-Link</li>
+    </ul>
+    <p>
+      Für Auskunft oder Löschung genügt in der Regel eine Discord-Nachricht mit deiner Discord-ID
+      und dem Wunsch (Auskunft / Löschung der Verknüpfung).
+    </p>
+
+    <hr />
+    <p class="note">
+      Dieses Dokument stellt keine Rechtsberatung dar. Es beschreibt den tatsächlichen Datenumfang von WG-Link
+      transparent für Nutzer und für die Discord-App-Verifizierung.
+    </p>
+  </main>
+</body>
+</html>
