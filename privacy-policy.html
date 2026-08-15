@@ -64,7 +64,7 @@
     <p class="meta">
       <strong>Dienst:</strong> WG-Link (Discord-Bot / Discord-Anwendung)<br />
       <strong>Verantwortlicher:</strong> motti_tv<br />
-      <strong>Stand:</strong> 15. August 2026
+      <strong>Stand:</strong> 16. August 2026
     </p>
 
     <p>
@@ -87,23 +87,29 @@
 
     <h2>2. Was ist WG-Link?</h2>
     <p>
-      WG-Link ist ein Discord-Bot, der Discord-Nutzer mit ihrem
-      <strong>Wargaming- / World of Warships-Account</strong> verknüpfen kann.
-      Nach erfolgreicher Verknüpfung können u. a. gesetzt werden:
+      WG-Link ist ein Discord-Bot, der auf <strong>einem oder mehreren Discord-Servern</strong>
+      genutzt werden kann. Er verknüpft Discord-Nutzer mit ihrem
+      <strong>Wargaming- / World of Warships-Account</strong>.
+      Nach erfolgreicher Verknüpfung <strong>auf einem bestimmten Server</strong> können u. a. gesetzt werden:
     </p>
     <ul>
-      <li>Server-Nickname im Format z. B. <code>[KLAN] Spielername (EU)</code> (Klan-Tag nur, wenn vorhanden),</li>
-      <li>eine Verifizierungs-Rolle auf dem Discord-Server (z. B. <strong>WG-Link</strong>).</li>
+      <li>Server-Nickname (Stil wählbar, z. B. <code>[KLAN] Spielername (EU)</code> oder nur <code>Spielername (EU)</code>),</li>
+      <li>eine Verifizierungs-Rolle auf <strong>diesem</strong> Discord-Server.</li>
     </ul>
+    <p>
+      Die Verknüpfung gilt <strong>pro Discord-Server</strong>.
+      Wer den Bot auf einem weiteren Server nutzt, muss sich dort <strong>erneut</strong> verknüpfen.
+      Ein Wargaming-Account darf trotzdem nur <strong>einem</strong> Discord-Konto zugeordnet sein.
+    </p>
     <p>
       Der Login erfolgt über den <strong>offiziellen Wargaming-OpenID-Login</strong>.
       Der Bot erhält und speichert <strong>keine Passwörter</strong>.
     </p>
     <p>
-      Nach der ersten Verknüpfung kann der Bot <strong>öffentliche</strong> WoWS-Profildaten
-      (Spielername und Klan) später erneut abrufen, damit Nickname und Klan-Tag aktuell bleiben.
-      Das kann der Nutzer selbst (<code>/link refresh</code>) oder ein Admin/Moderator für alle
-      verknüpften Mitglieder mit der Rolle WG-Link auslösen (<code>/link-check resync</code>).
+      Nach der Verknüpfung kann der Bot <strong>öffentliche</strong> WoWS-Profildaten
+      (Spielername und Klan) später erneut abrufen, damit Nickname und Klan-Tag
+      <strong>auf diesem Server</strong> aktuell bleiben
+      (<code>/link refresh</code> bzw. Admin/Mod <code>/link-check resync</code>).
     </p>
 
     <h2>3. Welche Daten werden verarbeitet?</h2>
@@ -121,6 +127,11 @@
           <td>Discord-Benutzer-ID</td>
           <td>von Discord</td>
           <td>Zuordnung der Verknüpfung</td>
+        </tr>
+        <tr>
+          <td>Discord-Server-ID (Guild-ID)</td>
+          <td>von Discord</td>
+          <td>Verknüpfung <strong>pro Server</strong></td>
         </tr>
         <tr>
           <td>Discord-Tag / Anzeigename</td>
@@ -211,18 +222,33 @@
       (von Zeit zu Zeit durch Staff), nicht dauerhaft im Hintergrund.
     </p>
     <p>
-      Mitglieder ohne gespeicherte Verknüpfung oder ohne die Rolle WG-Link werden beim Resync nicht aktualisiert.
+      Mitglieder ohne gespeicherte Verknüpfung <strong>auf diesem Server</strong> oder ohne die Rolle WG-Link werden beim Resync nicht aktualisiert.
       Nicht mehr auf dem Server befindliche Accounts werden übersprungen.
     </p>
 
-    <h3>3.3 Temporäre Daten (Login-Vorgang)</h3>
+    <h3>3.3 Server-Einstellungen (durch den einladenden Admin)</h3>
+    <p>Pro Discord-Server, auf dem der Bot eingerichtet ist (<code>/link-setup</code>), speichert der Bot:</p>
+    <table>
+      <thead>
+        <tr><th>Daten</th><th>Zweck</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Discord-Server-ID</td><td>Zuordnung der Einstellungen</td></tr>
+        <tr><td>ID der Verified-/WG-Link-Rolle</td><td>Rolle nach erfolgreicher Verknüpfung</td></tr>
+        <tr><td>Nick-Stil / Nick-Format</td><td>z. B. nur Region hinter dem Namen</td></tr>
+        <tr><td>Willkommens-DM an/aus</td><td>Join-Nachricht</td></tr>
+        <tr><td>optionale Fallback-Kanal-ID</td><td>falls DMs blockiert sind</td></tr>
+      </tbody>
+    </table>
+
+    <h3>3.4 Temporäre Daten (Login-Vorgang)</h3>
     <p>
       Während des Logins wird ein kurzlebiger <strong>State-Token</strong> gespeichert
-      (typisch <strong>max. ca. 15 Minuten</strong>), der Discord-Nutzer, Region und Locale dem Callback zuordnet.
+      (typisch <strong>max. ca. 15 Minuten</strong>), der Discord-Nutzer, <strong>Server</strong>, Region und Locale dem Callback zuordnet.
       Danach entfällt der Token bzw. er wird verbraucht/gelöscht.
     </p>
 
-    <h3>3.4 Technisch notwendige Daten</h3>
+    <h3>3.5 Technisch notwendige Daten</h3>
     <p>
       Beim Aufruf der Login-/Callback-Webseite des Bots können übliche Server-Logs anfallen
       (z. B. Zeitpunkt, IP-Adresse, User-Agent – abhängig von Hosting/ngrok/Proxy).
@@ -233,7 +259,7 @@
       Sie dienen dem Betrieb, nicht dem Marketing.
     </p>
 
-    <h3>3.5 Was wird <strong>nicht</strong> gespeichert</h3>
+    <h3>3.6 Was wird <strong>nicht</strong> gespeichert</h3>
     <ul>
       <li><strong>Keine</strong> Wargaming- oder Discord-Passwörter</li>
       <li><strong>Keine</strong> Zahlungsmitteldaten</li>
@@ -256,14 +282,15 @@
       <li>Setzen und aktuell halten von Nickname (inkl. Klan-Tag) und Verifizierungs-Rolle</li>
       <li>Anzeige des Verknüpfungsstatus (<code>/link status</code> u. ä.)</li>
       <li>Nutzer-Aktualisierung (<code>/link refresh</code>) und Trennen (<code>/link unlink</code>)</li>
-      <li>Admin-/Mod-Funktionen: prüfen, listen, Server scannen, Nick/Klan resyncen, Verknüpfung entfernen, Rollen abgleichen</li>
-      <li>Sicherheit und Missbrauchserkennung (z. B. doppelte Zuordnung desselben WG-Accounts)</li>
+      <li>Admin-/Mod-Funktionen: Server einrichten, prüfen, listen, scannen, Nick-Stil setzen, Nick/Klan resyncen, Verknüpfung entfernen, Rollen abgleichen</li>
+      <li>Betrieb auf mehreren Discord-Servern (Einstellungen und Links jeweils getrennt)</li>
+      <li>Sicherheit und Missbrauchserkennung (z. B. doppelte Zuordnung desselben WG-Accounts an ein anderes Discord-Konto)</li>
     </ol>
 
     <h2>5. Speicherung und Speicherort</h2>
     <ul>
-      <li>Verknüpfungsdaten werden in einer <strong>Bot-seitigen Datenhaltung</strong> gespeichert (z. B. lokale JSON-/Datei-Datenbank auf dem Rechner oder Server, auf dem der Bot läuft).</li>
-      <li>Speicherdauer: <strong>solange die Verknüpfung aktiv ist</strong> bzw. bis zur Löschung (durch <code>/link unlink</code>, Admin-Befehl, manuelle Löschung oder Einstellung des Dienstes).</li>
+      <li>Verknüpfungsdaten und Server-Einstellungen werden in einer <strong>Bot-seitigen Datenhaltung</strong> gespeichert (aktuell auf dem Hosting des Bots, z. B. Railway-Volume).</li>
+      <li>Speicherdauer: <strong>solange die Verknüpfung auf dem jeweiligen Server aktiv ist</strong> bzw. bis zur Löschung (durch <code>/link unlink</code> <strong>auf diesem Server</strong>, Admin-Befehl, manuelle Löschung oder Einstellung des Dienstes). Eine Löschung auf Server A entfernt nicht automatisch die Verknüpfung auf Server B.</li>
       <li>Temporäre Login-States: in der Regel <strong>wenige Minuten</strong>, danach unbrauchbar/entfernt.</li>
     </ul>
     <p>Es erfolgt <strong>kein Verkauf</strong> personenbezogener Daten an Dritte.</p>
@@ -287,7 +314,7 @@
         </tr>
         <tr>
           <td><strong>Hosting / Tunnel</strong></td>
-          <td>Betrieb des Callback-Webservers (z. B. PC, VPS, ngrok)</td>
+          <td>Betrieb von Bot, Callback-Webserver und persistenter Datenhaltung (z. B. Railway)</td>
         </tr>
         <tr>
           <td><strong>GitHub Pages</strong></td>
@@ -323,8 +350,8 @@
 
     <h3>Verknüpfung löschen lassen</h3>
     <ol>
-      <li>Selbst: <code>/link unlink</code> (bestätigen),</li>
-      <li>Server-Admin: <code>/link-check remove</code>,</li>
+      <li>Selbst <strong>auf diesem Server</strong>: <code>/link unlink</code> (bestätigen),</li>
+      <li>Server-Admin <strong>dieses Servers</strong>: <code>/link-check remove</code>,</li>
       <li>Anfrage an den Betreiber (<strong>motti_tv</strong> auf Discord),</li>
       <li>Bot vom Server entfernen (beendet die Nutzung auf diesem Server; gespeicherte Verknüpfungsdaten können separat gelöscht werden müssen).</li>
     </ol>

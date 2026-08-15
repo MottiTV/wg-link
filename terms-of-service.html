@@ -50,7 +50,7 @@
     <p class="meta">
       <strong>Dienst:</strong> WG-Link (Discord-Bot / Discord-Anwendung)<br />
       <strong>Betreiber:</strong> motti_tv<br />
-      <strong>Stand:</strong> 8. August 2026
+      <strong>Stand:</strong> 16. August 2026
     </p>
 
     <p>
@@ -64,15 +64,20 @@
     <h2>1. Leistungsbeschreibung</h2>
     <p>
       WG-Link ist ein Discord-Bot zur <strong>Verknüpfung von Discord-Konten mit Wargaming- / World of Warships-Konten</strong>.
-      Der Bot kann insbesondere:
+      Er kann auf <strong>mehreren Discord-Servern</strong> genutzt werden. Der Bot kann insbesondere:
     </p>
     <ul>
-      <li>einen Verifizierungsvorgang starten (Region wählen, Wargaming-Login),</li>
-      <li>die erfolgreiche Verknüpfung speichern,</li>
-      <li>den Server-Nicknamen anpassen (z. B. <code>Spielername (EU)</code>),</li>
-      <li>eine Verifizierungs-Rolle vergeben,</li>
-      <li>Admins Status- und Verwaltungsfunktionen bereitstellen (<code>/link</code>, <code>/link-panel</code>, <code>/link-check</code> u. a.).</li>
+      <li>einen Verifizierungsvorgang <strong>pro Server</strong> starten (Region wählen, Wargaming-Login),</li>
+      <li>die erfolgreiche Verknüpfung <strong>für diesen Server</strong> speichern,</li>
+      <li>den Server-Nicknamen anpassen (Stil wählbar, z. B. <code>[KLAN] Name (EU)</code> oder <code>Name (EU)</code>),</li>
+      <li>eine Verifizierungs-Rolle <strong>auf diesem Server</strong> vergeben,</li>
+      <li>Admins/Mods Verwaltungsfunktionen bereitstellen (<code>/link-setup</code>, <code>/link-panel</code>, <code>/link-check</code>, <code>/role-admin</code>, <code>/help</code> u. a.).</li>
     </ul>
+    <p>
+      Eine Verknüpfung auf Server A gilt <strong>nicht</strong> automatisch auf Server B.
+      Mitglieder müssen sich auf jedem Server erneut verknüpfen.
+      Ein Wargaming-Account darf nur <strong>einem</strong> Discord-Konto gehören.
+    </p>
     <p>
       Der Login erfolgt über den <strong>offiziellen Wargaming-OpenID-Flow</strong>.
       Der Bot speichert <strong>keine</strong> Wargaming-Passwörter.
@@ -92,8 +97,9 @@
     <h3>2.2 Server-Betreiber (Admins)</h3>
     <p>Wenn du den Bot auf einem Discord-Server einlädst, bist du dafür verantwortlich:</p>
     <ul>
-      <li>Mitglieder über die Verknüpfung und die Datennutzung zu informieren (ggf. Verweis auf die Datenschutzerklärung),</li>
-      <li>Bot-Berechtigungen und Rollen sinnvoll zu setzen,</li>
+      <li>den Bot mit <code>/link-setup role</code> einzurichten,</li>
+      <li>Mitglieder über die Verknüpfung und die Datennutzung zu informieren (Verweis auf die Datenschutzerklärung),</li>
+      <li>Bot-Berechtigungen und Rollen sinnvoll zu setzen (Bot-Rolle über der Verified-Rolle),</li>
       <li>den Bot nicht missbräuchlich einzusetzen (z. B. erzwungene Verknüpfung ohne erkennbare Information).</li>
     </ul>
 
@@ -164,7 +170,7 @@
 
     <h2>8. Beendigung</h2>
     <ul>
-      <li>Du kannst die Nutzung jederzeit beenden und die Verknüpfung entfernen lassen (siehe Datenschutzerklärung).</li>
+      <li>Du kannst die Nutzung auf einem Server jederzeit beenden (<code>/link unlink</code> auf diesem Server; siehe Datenschutzerklärung). Andere Server bleiben davon unberührt.</li>
       <li>Server-Admins können den Bot jederzeit vom Server entfernen.</li>
       <li>Der Betreiber kann die Bereitstellung einstellen oder einzelne Verknüpfungen löschen, insbesondere bei Missbrauch oder technischen Gründen.</li>
     </ul>
