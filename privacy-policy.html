@@ -64,7 +64,7 @@
     <p class="meta">
       <strong>Dienst:</strong> WG-Link (Discord-Bot / Discord-Anwendung)<br />
       <strong>Verantwortlicher:</strong> motti_tv<br />
-      <strong>Stand:</strong> 8. August 2026
+      <strong>Stand:</strong> 15. August 2026
     </p>
 
     <p>
@@ -92,12 +92,18 @@
       Nach erfolgreicher Verknüpfung können u. a. gesetzt werden:
     </p>
     <ul>
-      <li>Server-Nickname (z. B. <code>Spielername (EU)</code>),</li>
-      <li>eine Verifizierungs-Rolle auf dem Discord-Server.</li>
+      <li>Server-Nickname im Format z. B. <code>[KLAN] Spielername (EU)</code> (Klan-Tag nur, wenn vorhanden),</li>
+      <li>eine Verifizierungs-Rolle auf dem Discord-Server (z. B. <strong>WG-Link</strong>).</li>
     </ul>
     <p>
       Der Login erfolgt über den <strong>offiziellen Wargaming-OpenID-Login</strong>.
       Der Bot erhält und speichert <strong>keine Passwörter</strong>.
+    </p>
+    <p>
+      Nach der ersten Verknüpfung kann der Bot <strong>öffentliche</strong> WoWS-Profildaten
+      (Spielername und Klan) später erneut abrufen, damit Nickname und Klan-Tag aktuell bleiben.
+      Das kann der Nutzer selbst (<code>/link refresh</code>) oder ein Admin/Moderator für alle
+      verknüpften Mitglieder mit der Rolle WG-Link auslösen (<code>/link-check resync</code>).
     </p>
 
     <h2>3. Welche Daten werden verarbeitet?</h2>
@@ -128,8 +134,8 @@
         </tr>
         <tr>
           <td>Wargaming- / WoWS-Nickname</td>
-          <td>von Wargaming / WoWS-API</td>
-          <td>Nick setzen, Anzeige</td>
+          <td>von Wargaming / öffentlicher WoWS-API</td>
+          <td>Nick setzen, Anzeige, Abgleich</td>
         </tr>
         <tr>
           <td>Region</td>
@@ -137,8 +143,18 @@
           <td>korrekter Login &amp; API-Host</td>
         </tr>
         <tr>
+          <td>Klan-Tag</td>
+          <td>z. B. NAT (öffentliche WoWS-API, falls Mitglied)</td>
+          <td>Nick-Format <code>[TAG] Name (Region)</code></td>
+        </tr>
+        <tr>
+          <td>Klan-ID</td>
+          <td>interne WoWS-Klan-ID, falls Mitglied</td>
+          <td>Zuordnung des Klans beim späteren Abgleich</td>
+        </tr>
+        <tr>
           <td>Server-Nickname (gesetzt)</td>
-          <td>z. B. Name (EU)</td>
+          <td>z. B. [NAT] Name (EU)</td>
           <td>Dokumentation der gesetzten Form</td>
         </tr>
         <tr>
@@ -146,52 +162,109 @@
           <td>ISO-Datum</td>
           <td>Nachvollziehbarkeit</td>
         </tr>
+        <tr>
+          <td>Zeitstempel der letzten Aktualisierung</td>
+          <td>ISO-Datum (<code>refreshed_at</code>)</td>
+          <td>Nachvollziehbarkeit von Refresh/Resync</td>
+        </tr>
       </tbody>
     </table>
+    <p>
+      Ohne Klan-Mitgliedschaft werden Klan-Tag und Klan-ID nicht gesetzt bzw. beim nächsten Abgleich wieder entfernt.
+    </p>
 
-    <h3>3.2 Temporäre Daten (Login-Vorgang)</h3>
+    <h3>3.2 Aktualisierung nach der Verknüpfung (Refresh / Resync)</h3>
+    <p>
+      Ein <strong>erneuter Wargaming-Login ist dafür nicht nötig</strong>.
+      Der Bot fragt nur <strong>öffentlich</strong> über die WoWS-API ab (Spielername, Klan-Mitgliedschaft / Klan-Tag)
+      und aktualisiert bei Bedarf die gespeicherte Verknüpfung sowie den Discord-Server-Nick.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Vorgang</th>
+          <th>Wer</th>
+          <th>Was passiert</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>/link refresh</code></td>
+          <td>der verknüpfte Nutzer selbst</td>
+          <td>eigenes Profil von WoWS neu laden, Nick/Klan setzen</td>
+        </tr>
+        <tr>
+          <td><code>/link-check resync</code></td>
+          <td>nur Admin/Moderator</td>
+          <td>alle gespeicherten Links der Mitglieder <strong>mit der Rolle WG-Link</strong> auf dem Server prüfen und bei Änderung automatisch anpassen</td>
+        </tr>
+        <tr>
+          <td><code>/link-check resync</code> mit <code>dry_run</code></td>
+          <td>nur Admin/Moderator</td>
+          <td>nur Vorschau, keine Änderung</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Beim Resync werden <strong>keine neuen Datenarten</strong> erhoben. Es werden dieselben öffentlichen Profildaten
+      erneut gelesen, die schon bei der Verknüpfung genutzt werden. Der Vorgang ist <strong>manuell</strong>
+      (von Zeit zu Zeit durch Staff), nicht dauerhaft im Hintergrund.
+    </p>
+    <p>
+      Mitglieder ohne gespeicherte Verknüpfung oder ohne die Rolle WG-Link werden beim Resync nicht aktualisiert.
+      Nicht mehr auf dem Server befindliche Accounts werden übersprungen.
+    </p>
+
+    <h3>3.3 Temporäre Daten (Login-Vorgang)</h3>
     <p>
       Während des Logins wird ein kurzlebiger <strong>State-Token</strong> gespeichert
       (typisch <strong>max. ca. 15 Minuten</strong>), der Discord-Nutzer, Region und Locale dem Callback zuordnet.
       Danach entfällt der Token bzw. er wird verbraucht/gelöscht.
     </p>
 
-    <h3>3.3 Technisch notwendige Daten</h3>
+    <h3>3.4 Technisch notwendige Daten</h3>
     <p>
       Beim Aufruf der Login-/Callback-Webseite des Bots können übliche Server-Logs anfallen
       (z. B. Zeitpunkt, IP-Adresse, User-Agent – abhängig von Hosting/ngrok/Proxy).
       Diese dienen der Sicherheit und Fehleranalyse und werden nicht für Marketing genutzt.
     </p>
+    <p>
+      Zusätzlich können Bot-Logs technische Hinweise enthalten (z. B. dass ein Refresh/Resync ausgeführt wurde).
+      Sie dienen dem Betrieb, nicht dem Marketing.
+    </p>
 
-    <h3>3.4 Was wird <strong>nicht</strong> gespeichert</h3>
+    <h3>3.5 Was wird <strong>nicht</strong> gespeichert</h3>
     <ul>
       <li><strong>Keine</strong> Wargaming- oder Discord-Passwörter</li>
       <li><strong>Keine</strong> Zahlungsmitteldaten</li>
-      <li><strong>Keine</strong> privaten Nachrichten-Inhalte zum Zweck der Verknüpfung</li>
-      <li><strong>Kein</strong> dauerhafter Wargaming-Access-Token in der Verknüpfungsdatenbank</li>
+      <li><strong>Keine</strong> privaten Nachrichten-Inhalte zum Zweck der Verknüpfung (außer den für Befehle nötigen Interaktionen)</li>
+      <li><strong>Kein</strong> dauerhafter Wargaming-Access-Token in der Verknüpfungsdatenbank (ein Login-Token dient nur dem Callback und wird nicht dauerhaft gespeichert)</li>
+      <li><strong>Keine</strong> Kampagnen-, Schiffs- oder Kampfstatistiken über das öffentliche Profil (Name + Klan) hinaus</li>
+      <li><strong>Kein</strong> Profiling zu Werbezwecken</li>
     </ul>
 
     <h2>4. Rechtsgrundlagen und Zwecke (DSGVO-Orientierung)</h2>
     <p>Soweit die DSGVO anwendbar ist, erfolgt die Verarbeitung insbesondere auf Grundlage von:</p>
     <ul>
-      <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Durchführung der von dir angeforderten Verknüpfung,</li>
-      <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> – berechtigtes Interesse an sicherem Betrieb und Missbrauchsprävention,</li>
+      <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Durchführung der von dir angeforderten Verknüpfung (inkl. aktuell gehaltenem Nick/Klan als Teil dieser Funktion),</li>
+      <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> – berechtigtes Interesse an sicherem Betrieb, Missbrauchsprävention und Server-Verwaltung (Admins/Mods: Status prüfen, Nick/Klan abgleichen),</li>
       <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung, soweit du den Verknüpfungsvorgang aktiv startest und abschließt.</li>
     </ul>
     <p><strong>Zwecke im Überblick:</strong></p>
     <ol>
       <li>Durchführen der Account-Verknüpfung</li>
-      <li>Setzen von Nickname und Verifizierungs-Rolle</li>
-      <li>Anzeige des Verknüpfungsstatus</li>
-      <li>Admin-Funktionen (prüfen, listen, entfernen)</li>
-      <li>Sicherheit und Missbrauchserkennung</li>
+      <li>Setzen und aktuell halten von Nickname (inkl. Klan-Tag) und Verifizierungs-Rolle</li>
+      <li>Anzeige des Verknüpfungsstatus (<code>/link status</code> u. ä.)</li>
+      <li>Nutzer-Aktualisierung (<code>/link refresh</code>) und Trennen (<code>/link unlink</code>)</li>
+      <li>Admin-/Mod-Funktionen: prüfen, listen, Server scannen, Nick/Klan resyncen, Verknüpfung entfernen, Rollen abgleichen</li>
+      <li>Sicherheit und Missbrauchserkennung (z. B. doppelte Zuordnung desselben WG-Accounts)</li>
     </ol>
 
     <h2>5. Speicherung und Speicherort</h2>
     <ul>
-      <li>Verknüpfungsdaten werden in einer <strong>Bot-seitigen Datenhaltung</strong> gespeichert (z. B. auf dem Rechner/Server, auf dem der Bot läuft).</li>
-      <li>Speicherdauer: <strong>solange die Verknüpfung aktiv ist</strong> bzw. bis zur Löschung.</li>
-      <li>Temporäre Login-States: in der Regel <strong>wenige Minuten</strong>.</li>
+      <li>Verknüpfungsdaten werden in einer <strong>Bot-seitigen Datenhaltung</strong> gespeichert (z. B. lokale JSON-/Datei-Datenbank auf dem Rechner oder Server, auf dem der Bot läuft).</li>
+      <li>Speicherdauer: <strong>solange die Verknüpfung aktiv ist</strong> bzw. bis zur Löschung (durch <code>/link unlink</code>, Admin-Befehl, manuelle Löschung oder Einstellung des Dienstes).</li>
+      <li>Temporäre Login-States: in der Regel <strong>wenige Minuten</strong>, danach unbrauchbar/entfernt.</li>
     </ul>
     <p>Es erfolgt <strong>kein Verkauf</strong> personenbezogener Daten an Dritte.</p>
 
@@ -210,14 +283,22 @@
         </tr>
         <tr>
           <td><strong>Wargaming</strong></td>
-          <td>OpenID-Login und ggf. Abruf öffentlicher Account-Infos</td>
+          <td>OpenID-Login und Abruf <strong>öffentlicher</strong> Account-Infos (Nickname, Klan-Tag/Klan-ID) – beim ersten Login <strong>und</strong> später bei Refresh/Resync</td>
         </tr>
         <tr>
           <td><strong>Hosting / Tunnel</strong></td>
           <td>Betrieb des Callback-Webservers (z. B. PC, VPS, ngrok)</td>
         </tr>
+        <tr>
+          <td><strong>GitHub Pages</strong></td>
+          <td>öffentliche Bereitstellung dieser rechtlichen Seiten (kein Bot-Nutzerkonto)</td>
+        </tr>
       </tbody>
     </table>
+    <p>
+      Diese Anbieter verarbeiten Daten nach eigenen Datenschutzbestimmungen.
+      Der Bot-Betreiber steuert den Datenfluss nur im Rahmen der Bot-Funktionen.
+    </p>
 
     <h2>7. Weitergabe</h2>
     <p>Eine Weitergabe an Dritte erfolgt nur:</p>
@@ -233,46 +314,58 @@
     <ul>
       <li><strong>Auskunft</strong> über gespeicherte Daten zu deiner Person,</li>
       <li><strong>Berichtigung</strong> unrichtiger Daten,</li>
-      <li><strong>Löschung</strong>,</li>
+      <li><strong>Löschung</strong> („Recht auf Vergessenwerden“),</li>
       <li><strong>Einschränkung</strong> der Verarbeitung,</li>
       <li><strong>Widerspruch</strong> gegen Verarbeitung auf Basis berechtigter Interessen,</li>
-      <li><strong>Datenübertragbarkeit</strong>, soweit anwendbar,</li>
+      <li><strong>Datenübertragbarkeit</strong>, soweit technisch und rechtlich anwendbar,</li>
       <li><strong>Beschwerde</strong> bei einer Datenschutz-Aufsichtsbehörde.</li>
     </ul>
 
     <h3>Verknüpfung löschen lassen</h3>
     <ol>
-      <li>Server-Admin: Entfernen der Verknüpfung (z. B. <code>/link-check remove</code>),</li>
+      <li>Selbst: <code>/link unlink</code> (bestätigen),</li>
+      <li>Server-Admin: <code>/link-check remove</code>,</li>
       <li>Anfrage an den Betreiber (<strong>motti_tv</strong> auf Discord),</li>
-      <li>Bot vom Server entfernen (beendet die Nutzung auf diesem Server).</li>
+      <li>Bot vom Server entfernen (beendet die Nutzung auf diesem Server; gespeicherte Verknüpfungsdaten können separat gelöscht werden müssen).</li>
     </ol>
+    <p>
+      Nach Löschung der Verknüpfung entfallen die bot-seitigen Verknüpfungsdaten;
+      Discord-seitige Rollen/Nicknames können ggf. manuell angepasst werden müssen.
+    </p>
 
     <h2>9. Minderjährige</h2>
     <p>
       Der Bot richtet sich an Nutzer, die Discord und die jeweiligen Spieldienste nutzen dürfen.
       Personen unter dem jeweils geltenden Mindestalter sollen den Bot nicht nutzen.
+      Es werden wissentlich keine Daten von Kindern zur gezielten Profilbildung erhoben.
     </p>
 
     <h2>10. Sicherheit</h2>
-    <p>Der Betreiber trifft angemessene Maßnahmen, u. a.:</p>
+    <p>Der Betreiber trifft angemessene technische und organisatorische Maßnahmen, u. a.:</p>
     <ul>
       <li>kein Speichern von Passwörtern,</li>
       <li>Nutzung des offiziellen Wargaming-Login-Flows,</li>
       <li>kurzlebige State-Parameter für den Callback,</li>
-      <li>Zugriff auf gespeicherte Verknüpfungen nur für Betrieb und berechtigte Admins.</li>
+      <li>Zugriff auf gespeicherte Verknüpfungen nur für den Betrieb und berechtigte Admins/Moderatoren (über Bot-Befehle),</li>
+      <li>Resync nur manuell und mit Cooldown, damit die öffentlichen APIs nicht unnötig belastet werden.</li>
     </ul>
     <p>Eine absolute Sicherheit im Internet kann nicht garantiert werden.</p>
 
     <h2>11. Automatisierte Entscheidungen</h2>
     <p>
-      Es findet <strong>keine</strong> automatisierte Entscheidungsfindung im Sinne von Profiling mit Rechtswirkung
-      außerhalb der reinen Verifizierungs-Logik (verknüpft / nicht verknüpft, Rolle setzen) statt.
+      Es findet <strong>keine</strong> automatisierte Entscheidungsfindung im Sinne von Profiling mit Rechtswirkung statt.
+    </p>
+    <p>
+      Der Bot setzt im Rahmen der Verknüpfung Rolle und Nickname. Ein späterer Refresh/Resync ändert nur den
+      gespeicherten Stand und den Server-Nick, wenn sich der <strong>öffentliche</strong> WoWS-Name oder Klan geändert hat.
+      Es gibt keine Bewertung, Scoring oder werbliche Auswertung.
     </p>
 
     <h2>12. Änderungen dieser Erklärung</h2>
     <p>
       Diese Datenschutzerklärung kann angepasst werden, wenn sich Funktionen, Rechtslage oder Technik ändern.
-      Es gilt die jeweils unter „Stand“ genannte Version.
+      Es gilt die jeweils unter „Stand“ genannte Version. Bei wesentlichen Änderungen wird nach Möglichkeit der Stand
+      aktualisiert und – soweit zumutbar – über den Discord-Server oder die Anwendungsbeschreibung informiert.
     </p>
 
     <h2>13. Nutzungsbedingungen</h2>
