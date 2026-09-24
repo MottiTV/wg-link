@@ -4,67 +4,59 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Set up WG-Link</title>
-  <style>
-    :root {
-      color-scheme: dark light;
-      --bg: #0f1115;
-      --text: #e8eaed;
-      --muted: #9aa0a6;
-      --accent: #5865f2;
-      --border: #2a2f3a;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-    }
-    main { max-width: 800px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    nav { margin-bottom: 1.5rem; font-size: 0.9rem; }
-    nav a { color: var(--accent); text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-    h1 { font-size: 1.75rem; margin: 0 0 0.75rem; }
-    h2 { font-size: 1.2rem; margin: 2rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
-    p, li { color: var(--text); }
-    .meta { color: var(--muted); margin-bottom: 1.5rem; }
-    ul, ol { padding-left: 1.25rem; }
-    li { margin: 0.35rem 0; }
-    a { color: var(--accent); }
-    code { background: #1a1d24; padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.92em; }
-    pre {
-      background: #1a1d24;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1rem 1.15rem;
-      overflow-x: auto;
-      white-space: pre-wrap;
-      font-family: inherit;
-      font-size: 0.95rem;
-      line-height: 1.55;
-    }
-  </style>
+  <script>
+    (function () {
+      var titles = {
+        en: "Set up WG-Link",
+        de: "WG-Link einrichten",
+        pl: "Konfiguracja WG-Link"
+      };
+      var q = new URLSearchParams(location.search).get("lang");
+      var stored = "";
+      try { stored = localStorage.getItem("wg_lang") || ""; } catch (e) {}
+      var pick = /^(en|de|pl)$/.test(q) ? q : (/^(en|de|pl)$/.test(stored) ? stored : "");
+      if (!pick) {
+        var nav = (navigator.language || "").toLowerCase();
+        pick = nav.indexOf("pl") === 0 ? "pl" : (nav.indexOf("de") === 0 ? "de" : "en");
+      }
+      document.documentElement.setAttribute("data-lang", pick);
+      document.documentElement.lang = pick;
+      if (titles[pick]) document.title = titles[pick];
+    })();
+  </script>
+  <link rel="stylesheet" href="site.css?v=1" />
 </head>
 <body>
   <main>
-    <nav>
-      <a href="index.html">← Overview</a> ·
-      <a href="terms-of-service.html">Terms of Service</a> ·
-      <a href="privacy-policy.html">Privacy Policy</a>
-    </nav>
+    <div class="topbar">
+      <div class="lang-wrap">
+        <span class="lang-kicker" data-lang="en">Language</span>
+        <span class="lang-kicker" data-lang="de">Sprache</span>
+        <span class="lang-kicker" data-lang="pl">Język</span>
+        <select class="lang-select" id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="pl">Polski</option>
+        </select>
+      </div>
+    </div>
 
-    <h1>Set up WG-Link</h1>
-    <p class="meta">For server admins, after WG-Link has joined the Discord. 24 September 2026.</p>
+    <article class="lang-block" data-lang="en" data-title="Set up WG-Link">
+      <nav class="crumbs">
+        <a href="index.html">← Overview</a> ·
+        <a href="terms-of-service.html">Terms of Service</a> ·
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </nav>
+      <h1>Set up WG-Link</h1>
+      <p class="meta">For server admins, after WG-Link has joined the Discord. 24 September 2026.</p>
+      <p>
+        Do this once. You need <strong>Manage Server</strong> or <strong>Administrator</strong>.
+        When these steps are saved, the bot is ready. Each member still links their own Wargaming account.
+      </p>
 
-    <p>
-      Do this once. You need <strong>Manage Server</strong> or <strong>Administrator</strong>.
-      When these steps are saved, the bot is ready. Each member still links their own Wargaming account.
-    </p>
-
-    <h2>Short version for Discord</h2>
-    <p>Copy this into a channel or a pinned message. The steps below are the same guide in full.</p>
-    <pre>**Set up WG-Link** (admin, once per server)
+      <h2>Short version for Discord</h2>
+      <p>Copy this into a channel or a pinned message. The steps below are the same guide in full.</p>
+      <pre>**Set up WG-Link** (admin, once per server)
 
 1. Invite the bot and accept the permissions. It needs **Manage Roles** and **Manage Nicknames**.
 2. **Server Settings → Roles.** Drag the bot role **WG Link** up: under Admin, and above members whose nicknames should change.
@@ -75,131 +67,424 @@
 
 WG-Link is ready. Each member still links with `/link start` or the panel button.
 
-Full guide: https://mottitv.github.io/wg-link/setup.html</pre>
+Full guide: https://mottitv.github.io/wg-link/setup.html?lang=en</pre>
 
-    <h2>1. Allow the bot to work</h2>
-    <p>
-      When you invite WG-Link, Discord asks you to grant access. Accept that screen.
-    </p>
-    <p>
-      The bot needs permission to view channels, send messages, embed links, read message history,
-      manage roles, and manage nicknames. Without <strong>Manage Roles</strong> and
-      <strong>Manage Nicknames</strong> it cannot give the linked role or set server nicknames.
-    </p>
+      <h2>1. Allow the bot to work</h2>
+      <p>When you invite WG-Link, Discord asks you to grant access. Accept that screen.</p>
+      <p>
+        The bot needs permission to view channels, send messages, embed links, read message history,
+        manage roles, and manage nicknames. Without <strong>Manage Roles</strong> and
+        <strong>Manage Nicknames</strong> it cannot give the linked role or set server nicknames.
+      </p>
 
-    <h2>2. Move the bot’s own role up</h2>
-    <p>Open <strong>Server Settings</strong>, then <strong>Roles</strong>.</p>
-    <p>
-      Discord creates a role for the bot, usually named <strong>WG Link</strong>.
-      Drag that role well up the list. Roles higher in the list are stronger.
-    </p>
-    <p>
-      Put it above the verified role from the next step, and above the members whose nicknames should change.
-      A normal place is under the server owner and your Admin role, and above Mods, VIP, and everyone else.
-    </p>
-    <p>
-      The bot can rename members only when their highest role sits below the bot role.
-      It can never rename the server owner.
-    </p>
+      <h2>2. Move the bot’s own role up</h2>
+      <p>Open <strong>Server Settings</strong>, then <strong>Roles</strong>.</p>
+      <p>
+        Discord creates a role for the bot, usually named <strong>WG Link</strong>.
+        Drag that role well up the list. Roles higher in the list are stronger.
+      </p>
+      <p>
+        Put it above the verified role from the next step, and above the members whose nicknames should change.
+        A normal place is under the server owner and your Admin role, and above Mods, VIP, and everyone else.
+      </p>
+      <p>
+        The bot can rename members only when their highest role sits below the bot role.
+        It can never rename the server owner.
+      </p>
 
-    <h2>3. Create the role members will receive</h2>
-    <p>
-      Create a new role for people who link a Wargaming account.
-      The name is yours. <strong>WG-Linked</strong> is a clear example.
-    </p>
-    <p>
-      This is a normal role. It is separate from the bot’s own role.
-      Do not use the bot role as the verified role.
-    </p>
-    <p>
-      Members receive it after they finish linking, either with <code>/link start</code>
-      or with the button posted later by <code>/link-panel</code>. Both start the same link.
-    </p>
+      <h2>3. Create the role members will receive</h2>
+      <p>
+        Create a new role for people who link a Wargaming account.
+        The name is yours. <strong>WG-Linked</strong> is a clear example.
+      </p>
+      <p>
+        This is a normal role. It is separate from the bot’s own role.
+        Do not use the bot role as the verified role.
+      </p>
+      <p>
+        Members receive it after they finish linking, either with <code>/link start</code>
+        or with the button posted later by <code>/link-panel</code>. Both start the same link.
+      </p>
 
-    <h2>4. Place that role so it does not cover important colors</h2>
-    <p>
-      Drag <strong>WG-Linked</strong> below the colored roles you want to keep visible,
-      such as VIP, Mods, Supporter, or Nitro.
-    </p>
-    <p>
-      Discord colors a member’s name with their highest role that has a color.
-      If <strong>WG-Linked</strong> sits above VIP and has its own color, a linked VIP shows the
-      <strong>WG-Linked</strong> color instead of VIP.
-    </p>
-    <p>
-      Keep <strong>WG-Linked</strong> below the bot role as well.
-      If it is above the bot, the bot cannot assign it.
-    </p>
-    <p>A safe order, from top to bottom:</p>
-    <ol>
-      <li>Server owner</li>
-      <li>Admin</li>
-      <li><strong>WG Link</strong> (the bot)</li>
-      <li>Staff and colored roles you care about (Mods, VIP, and similar)</li>
-      <li><strong>WG-Linked</strong></li>
-      <li>Everyone else</li>
-    </ol>
+      <h2>4. Place that role so it does not cover important colors</h2>
+      <p>
+        Drag <strong>WG-Linked</strong> below the colored roles you want to keep visible,
+        such as VIP, Mods, Supporter, or Nitro.
+      </p>
+      <p>
+        Discord colors a member’s name with their highest role that has a color.
+        If <strong>WG-Linked</strong> sits above VIP and has its own color, a linked VIP shows the
+        <strong>WG-Linked</strong> color instead of VIP.
+      </p>
+      <p>
+        Keep <strong>WG-Linked</strong> below the bot role as well.
+        If it is above the bot, the bot cannot assign it.
+      </p>
+      <p>A safe order, from top to bottom:</p>
+      <ol>
+        <li>Server owner</li>
+        <li>Admin</li>
+        <li><strong>WG Link</strong> (the bot)</li>
+        <li>Staff and colored roles you care about (Mods, VIP, and similar)</li>
+        <li><strong>WG-Linked</strong></li>
+        <li>Everyone else</li>
+      </ol>
 
-    <h2>5. Open the Command Center and save Setup</h2>
-    <p>
-      In your server, run <code>/admin</code> or <code>/link-setup web</code>.
-      Only you can see the reply. Open the link and sign in with Discord.
-    </p>
-    <p>Go to <strong>Setup</strong>. For your server the page is:</p>
-    <p><code>https://bot-production-a210.up.railway.app/admin/&lt;your-server-id&gt;/setup</code></p>
-    <p>The command already opens the right server. You do not need to type the address yourself.</p>
-    <p>Set these, then click <strong>Save</strong>:</p>
-    <ul>
-      <li><strong>Verified role.</strong> The role from step 3, for example <strong>WG-Linked</strong>.</li>
-      <li>
-        <strong>Nickname style.</strong> How a linked name looks on your server.
-        The choices are <code>[TAG] Player (EU)</code>, <code>Player (EU)</code>,
-        <code>[TAG] Player</code>, or the name only.
-      </li>
-      <li>
-        <strong>Welcome DM.</strong> Turn it on or off.
-        When a member joins this Discord. Not the DM after <code>/link start</code>.
-      </li>
-      <li>
-        <strong>Link DM.</strong> A private message after <code>/link start</code> succeeds,
-        with the Wargaming account, the server nickname, and the verified role.
-      </li>
-      <li>
-        <strong>Unlink DM.</strong> A private message after <code>/link unlink</code>,
-        confirming that the link was removed.
-      </li>
-      <li><strong>Fallback channel.</strong> Used when that member has DMs closed.</li>
-    </ul>
-    <p>
-      <strong>Save and update nicks</strong> is for later, when you change the nickname style
-      and want existing linked members renamed right away.
-    </p>
-    <p>
-      The same settings also exist in Discord as <code>/link-setup role</code> and
-      <code>/link-setup options</code>. Check them any time with <code>/link-setup status</code>.
-    </p>
+      <h2>5. Open the Command Center and save Setup</h2>
+      <p>
+        In your server, run <code>/admin</code> or <code>/link-setup web</code>.
+        Only you can see the reply. Open the link and sign in with Discord.
+      </p>
+      <p>Go to <strong>Setup</strong>. For your server the page is:</p>
+      <p><code>https://bot-production-a210.up.railway.app/admin/&lt;your-server-id&gt;/setup</code></p>
+      <p>The command already opens the right server. You do not need to type the address yourself.</p>
+      <p>Set these, then click <strong>Save</strong>:</p>
+      <ul>
+        <li><strong>Verified role.</strong> The role from step 3, for example <strong>WG-Linked</strong>.</li>
+        <li>
+          <strong>Nickname style.</strong> How a linked name looks on your server.
+          The choices are <code>[TAG] Player (EU)</code>, <code>Player (EU)</code>,
+          <code>[TAG] Player</code>, or the name only.
+        </li>
+        <li>
+          <strong>Welcome DM.</strong> Turn it on or off.
+          When a member joins this Discord. Not the DM after <code>/link start</code>.
+        </li>
+        <li>
+          <strong>Link DM.</strong> A private message after <code>/link start</code> succeeds,
+          with the Wargaming account, the server nickname, and the verified role.
+        </li>
+        <li>
+          <strong>Unlink DM.</strong> A private message after <code>/link unlink</code>,
+          confirming that the link was removed.
+        </li>
+        <li><strong>Fallback channel.</strong> Used when that member has DMs closed.</li>
+      </ul>
+      <p>
+        <strong>Save and update nicks</strong> is for later, when you change the nickname style
+        and want existing linked members renamed right away.
+      </p>
+      <p>
+        The same settings also exist in Discord as <code>/link-setup role</code> and
+        <code>/link-setup options</code>. Check them any time with <code>/link-setup status</code>.
+      </p>
 
-    <h2>6. Post a link button for members</h2>
-    <p>
-      This step is optional. In the channel where members should find it, run <code>/link-panel</code>.
-    </p>
-    <p>
-      WG-Link posts a message with a button. That button starts the same link as <code>/link start</code>.
-    </p>
+      <h2>6. Post a link button for members</h2>
+      <p>This step is optional. In the channel where members should find it, run <code>/link-panel</code>.</p>
+      <p>WG-Link posts a message with a button. That button starts the same link as <code>/link start</code>.</p>
 
-    <h2>WG-Link is ready</h2>
-    <p>Nothing else is required for a normal setup.</p>
-    <p>
-      Each member decides whether to link. They use <code>/link start</code> or the panel button,
-      pick <strong>EU</strong>, <strong>NA</strong>, or <strong>ASIA</strong>, and sign in with Wargaming.
-      When that finishes, they receive the verified role and, when Discord allows it,
-      a server nickname such as <code>[GURKA] Player (EU)</code>.
-    </p>
-    <p>
-      The reply is private. Only that member can see it.
-      It shows the linked account, the server nickname, and <code>/link unlink</code> if they want to remove the link.
-    </p>
-    <p>Until a member does this, they stay unlinked and do not get the role.</p>
+      <h2>WG-Link is ready</h2>
+      <p>Nothing else is required for a normal setup.</p>
+      <p>
+        Each member decides whether to link. They use <code>/link start</code> or the panel button,
+        pick <strong>EU</strong>, <strong>NA</strong>, or <strong>ASIA</strong>, and sign in with Wargaming.
+        When that finishes, they receive the verified role and, when Discord allows it,
+        a server nickname such as <code>[GURKA] Player (EU)</code>.
+      </p>
+      <p>
+        The reply is private. Only that member can see it.
+        It shows the linked account, the server nickname, and <code>/link unlink</code> if they want to remove the link.
+      </p>
+      <p>Until a member does this, they stay unlinked and do not get the role.</p>
+    </article>
+
+    <article class="lang-block" data-lang="de" data-title="WG-Link einrichten">
+      <nav class="crumbs">
+        <a href="index.html">← Übersicht</a> ·
+        <a href="terms-of-service.html">Nutzungsbedingungen</a> ·
+        <a href="privacy-policy.html">Datenschutzerklärung</a>
+      </nav>
+      <h1>WG-Link einrichten</h1>
+      <p class="meta">Für Server-Admins, nachdem WG-Link dem Discord beigetreten ist. 24. September 2026.</p>
+      <p>
+        Das machst du einmal. Du brauchst <strong>Server verwalten</strong> oder <strong>Administrator</strong>.
+        Wenn diese Schritte gespeichert sind, ist der Bot bereit. Jedes Mitglied verknüpft weiterhin sein eigenes Wargaming-Konto.
+      </p>
+
+      <h2>Kurzfassung für Discord</h2>
+      <p>Kopiere das in einen Kanal oder eine angeheftete Nachricht. Die Schritte unten sind dieselbe Anleitung in voller Länge.</p>
+      <pre>**WG-Link einrichten** (Admin, einmal pro Server)
+
+1. Lade den Bot ein und akzeptiere die Berechtigungen. Er braucht **Rollen verwalten** und **Nicknames verwalten**.
+2. **Servereinstellungen → Rollen.** Ziehe die Bot-Rolle **WG Link** nach oben: unter Admin und über die Mitglieder, deren Nicknames sich ändern sollen.
+3. Lege eine eigene Rolle für verknüpfte Mitglieder an, zum Beispiel **WG-Linked**. Benutze dafür nicht die Bot-Rolle.
+4. Setze **WG-Linked** unter VIP und andere farbige Rollen, damit sie deren Namensfarbe nicht ersetzt. Sie bleibt unter der Bot-Rolle.
+5. Führe `/admin` oder `/link-setup web` aus, melde dich an und öffne **Setup**. Wähle **WG-Linked** als Verified-Rolle, einen Nick-Stil, stelle Welcome-DM, Link-DM, Unlink-DM und den Fallback-Kanal ein, dann **Speichern**.
+6. Optional: `/link-panel` in dem Kanal ausführen, in dem Mitglieder verknüpfen sollen.
+
+WG-Link ist bereit. Jedes Mitglied verknüpft weiterhin mit `/link start` oder dem Panel-Button.
+
+Vollständige Anleitung: https://mottitv.github.io/wg-link/setup.html?lang=de</pre>
+
+      <h2>1. Dem Bot die Arbeit erlauben</h2>
+      <p>Wenn du WG-Link einlädst, fragt Discord nach dem Zugriff. Diesen Bildschirm akzeptierst du.</p>
+      <p>
+        Der Bot braucht die Rechte, Kanäle zu sehen, Nachrichten zu senden, Links einzubetten,
+        den Nachrichtenverlauf zu lesen, Rollen zu verwalten und Nicknames zu verwalten.
+        Ohne <strong>Rollen verwalten</strong> und <strong>Nicknames verwalten</strong>
+        kann er die verknüpfte Rolle nicht vergeben und keine Server-Nicknames setzen.
+      </p>
+
+      <h2>2. Die eigene Rolle des Bots nach oben ziehen</h2>
+      <p>Öffne <strong>Servereinstellungen</strong>, dann <strong>Rollen</strong>.</p>
+      <p>
+        Discord legt eine Rolle für den Bot an, meist mit dem Namen <strong>WG Link</strong>.
+        Ziehe diese Rolle weit nach oben. Rollen weiter oben in der Liste sind stärker.
+      </p>
+      <p>
+        Setze sie über die Verified-Rolle aus dem nächsten Schritt und über die Mitglieder,
+        deren Nicknames sich ändern sollen. Ein normaler Platz ist unter dem Server-Inhaber
+        und deiner Admin-Rolle, und über Mods, VIP und allen anderen.
+      </p>
+      <p>
+        Der Bot kann Mitglieder nur umbenennen, wenn deren höchste Rolle unter der Bot-Rolle liegt.
+        Den Server-Inhaber kann er nie umbenennen.
+      </p>
+
+      <h2>3. Die Rolle anlegen, die Mitglieder bekommen</h2>
+      <p>
+        Lege eine neue Rolle für Leute an, die ein Wargaming-Konto verknüpfen.
+        Den Namen bestimmst du. <strong>WG-Linked</strong> ist ein klares Beispiel.
+      </p>
+      <p>
+        Das ist eine normale Rolle. Sie ist getrennt von der eigenen Rolle des Bots.
+        Benutze die Bot-Rolle nicht als Verified-Rolle.
+      </p>
+      <p>
+        Mitglieder bekommen sie, nachdem die Verknüpfung fertig ist, entweder mit <code>/link start</code>
+        oder mit dem Button, den <code>/link-panel</code> später postet. Beides startet dieselbe Verknüpfung.
+      </p>
+
+      <h2>4. Die Rolle so setzen, dass sie wichtige Farben nicht überdeckt</h2>
+      <p>
+        Ziehe <strong>WG-Linked</strong> unter die farbigen Rollen, die sichtbar bleiben sollen,
+        zum Beispiel VIP, Mods, Supporter oder Nitro.
+      </p>
+      <p>
+        Discord färbt den Namen eines Mitglieds mit der höchsten Rolle, die eine Farbe hat.
+        Wenn <strong>WG-Linked</strong> über VIP steht und eine eigene Farbe hat, zeigt ein verknüpfter VIP
+        die Farbe von <strong>WG-Linked</strong> statt VIP.
+      </p>
+      <p>
+        <strong>WG-Linked</strong> bleibt auch unter der Bot-Rolle.
+        Liegt sie über dem Bot, kann der Bot sie nicht vergeben.
+      </p>
+      <p>Eine sichere Reihenfolge, von oben nach unten:</p>
+      <ol>
+        <li>Server-Inhaber</li>
+        <li>Admin</li>
+        <li><strong>WG Link</strong> (der Bot)</li>
+        <li>Team und farbige Rollen, die dir wichtig sind (Mods, VIP und Ähnliches)</li>
+        <li><strong>WG-Linked</strong></li>
+        <li>Alle anderen</li>
+      </ol>
+
+      <h2>5. Das Command Center öffnen und Setup speichern</h2>
+      <p>
+        Auf deinem Server <code>/admin</code> oder <code>/link-setup web</code> ausführen.
+        Die Antwort siehst nur du. Öffne den Link und melde dich mit Discord an.
+      </p>
+      <p>Gehe zu <strong>Setup</strong>. Für deinen Server lautet die Seite:</p>
+      <p><code>https://bot-production-a210.up.railway.app/admin/&lt;deine-server-id&gt;/setup</code></p>
+      <p>Der Befehl öffnet bereits den richtigen Server. Die Adresse musst du nicht selbst eintippen.</p>
+      <p>Stelle das ein und klicke dann <strong>Speichern</strong>:</p>
+      <ul>
+        <li><strong>Verified-Rolle.</strong> Die Rolle aus Schritt 3, zum Beispiel <strong>WG-Linked</strong>.</li>
+        <li>
+          <strong>Nick-Stil.</strong> Wie ein verknüpfter Name auf deinem Server aussieht.
+          Die Auswahl ist <code>[TAG] Name (EU)</code>, <code>Name (EU)</code>,
+          <code>[TAG] Name</code> oder nur der Name.
+        </li>
+        <li>
+          <strong>Welcome-DM.</strong> An oder aus.
+          Wenn jemand diesem Discord beitritt. Nicht die DM nach <code>/link start</code>.
+        </li>
+        <li>
+          <strong>Link-DM.</strong> Eine private Nachricht, nachdem <code>/link start</code> geklappt hat,
+          mit dem Wargaming-Konto, dem Server-Nick und der Verified-Rolle.
+        </li>
+        <li>
+          <strong>Unlink-DM.</strong> Eine private Nachricht nach <code>/link unlink</code>,
+          die bestätigt, dass die Verknüpfung entfernt wurde.
+        </li>
+        <li><strong>Fallback-Kanal.</strong> Wird benutzt, wenn dieses Mitglied DMs geschlossen hat.</li>
+      </ul>
+      <p>
+        <strong>Speichern und Nicks aktualisieren</strong> ist für später, wenn du den Nick-Stil änderst
+        und bereits verknüpfte Mitglieder sofort umbenennen willst.
+      </p>
+      <p>
+        Dieselben Einstellungen gibt es in Discord auch als <code>/link-setup role</code> und
+        <code>/link-setup options</code>. Prüfen kannst du sie jederzeit mit <code>/link-setup status</code>.
+      </p>
+
+      <h2>6. Einen Verknüpfen-Button für Mitglieder posten</h2>
+      <p>Dieser Schritt ist optional. Im Kanal, in dem Mitglieder ihn finden sollen, <code>/link-panel</code> ausführen.</p>
+      <p>WG-Link postet eine Nachricht mit einem Button. Der Button startet dieselbe Verknüpfung wie <code>/link start</code>.</p>
+
+      <h2>WG-Link ist bereit</h2>
+      <p>Für eine normale Einrichtung ist nichts weiter nötig.</p>
+      <p>
+        Jedes Mitglied entscheidet selbst, ob es verknüpft. Es benutzt <code>/link start</code> oder den Panel-Button,
+        wählt <strong>EU</strong>, <strong>NA</strong> oder <strong>ASIA</strong> und meldet sich bei Wargaming an.
+        Wenn das fertig ist, bekommt es die Verified-Rolle und, wenn Discord es erlaubt,
+        einen Server-Nick wie <code>[GURKA] Player (EU)</code>.
+      </p>
+      <p>
+        Die Antwort ist privat. Nur dieses Mitglied sieht sie.
+        Sie zeigt das verknüpfte Konto, den Server-Nick und <code>/link unlink</code>, wenn die Verknüpfung entfernt werden soll.
+      </p>
+      <p>Bis ein Mitglied das macht, bleibt es unverknüpft und bekommt die Rolle nicht.</p>
+    </article>
+
+    <article class="lang-block" data-lang="pl" data-title="Konfiguracja WG-Link">
+      <nav class="crumbs">
+        <a href="index.html">← Przegląd</a> ·
+        <a href="terms-of-service.html">Warunki korzystania</a> ·
+        <a href="privacy-policy.html">Polityka prywatności</a>
+      </nav>
+      <h1>Konfiguracja WG-Link</h1>
+      <p class="meta">Dla administratorów serwera, gdy WG-Link jest już na Discordzie. 24 września 2026.</p>
+      <p>
+        Robisz to raz. Potrzebujesz uprawnienia <strong>Zarządzaj serwerem</strong> albo <strong>Administrator</strong>.
+        Gdy te kroki są zapisane, bot jest gotowy. Każdy członek i tak łączy własne konto Wargaming.
+      </p>
+
+      <h2>Krótka wersja na Discord</h2>
+      <p>Skopiuj to na kanał albo do przypiętej wiadomości. Kroki poniżej to ten sam poradnik w całości.</p>
+      <pre>**Konfiguracja WG-Link** (admin, raz na serwer)
+
+1. Zaproś bota i zaakceptuj uprawnienia. Potrzebuje **Zarządzaj rolami** i **Zarządzaj pseudonimami**.
+2. **Ustawienia serwera → Role.** Przeciągnij rolę bota **WG Link** w górę: pod Admin i nad członków, których pseudonimy mają się zmieniać.
+3. Utwórz osobną rolę dla połączonych członków, na przykład **WG-Linked**. Nie używaj do tego roli bota.
+4. Ustaw **WG-Linked** pod VIP i innymi kolorowymi rolami, żeby nie zastępowała ich koloru nazwy. Zostaw ją pod rolą bota.
+5. Użyj `/admin` albo `/link-setup web`, zaloguj się i otwórz **Ustawienia**. Wybierz **WG-Linked** jako rolę verified, styl nicku, DM powitalną, DM link, DM unlink i kanał zapasowy, potem **Zapisz**.
+6. Opcjonalnie: `/link-panel` na kanale, na którym członkowie mają się łączyć.
+
+WG-Link jest gotowy. Każdy członek i tak łączy się przez `/link start` albo przycisk na panelu.
+
+Pełny poradnik: https://mottitv.github.io/wg-link/setup.html?lang=pl</pre>
+
+      <h2>1. Pozwól botowi działać</h2>
+      <p>Gdy zapraszasz WG-Link, Discord pyta o dostęp. Zaakceptuj ten ekran.</p>
+      <p>
+        Bot potrzebuje uprawnień do przeglądania kanałów, wysyłania wiadomości, osadzania linków,
+        czytania historii wiadomości, zarządzania rolami i zarządzania pseudonimami.
+        Bez <strong>Zarządzaj rolami</strong> i <strong>Zarządzaj pseudonimami</strong>
+        nie nada roli połączonym członkom i nie ustawi pseudonimów na serwerze.
+      </p>
+
+      <h2>2. Przesuń własną rolę bota w górę</h2>
+      <p>Otwórz <strong>Ustawienia serwera</strong>, potem <strong>Role</strong>.</p>
+      <p>
+        Discord tworzy rolę dla bota, zwykle o nazwie <strong>WG Link</strong>.
+        Przeciągnij tę rolę wysoko na liście. Role wyżej na liście są silniejsze.
+      </p>
+      <p>
+        Ustaw ją nad rolą verified z następnego kroku i nad członkami, których pseudonimy mają się zmieniać.
+        Zwykłe miejsce jest pod właścicielem serwera i twoją rolą Admin, a nad Mods, VIP i wszystkimi innymi.
+      </p>
+      <p>
+        Bot zmienia pseudonim członka tylko wtedy, gdy jego najwyższa rola jest pod rolą bota.
+        Właściciela serwera nie zmieni nigdy.
+      </p>
+
+      <h2>3. Utwórz rolę, którą dostaną członkowie</h2>
+      <p>
+        Utwórz nową rolę dla osób, które łączą konto Wargaming.
+        Nazwę wybierasz sam. <strong>WG-Linked</strong> jest czytelnym przykładem.
+      </p>
+      <p>
+        To zwykła rola. Jest osobna od własnej roli bota.
+        Nie używaj roli bota jako roli verified.
+      </p>
+      <p>
+        Członkowie dostają ją po zakończeniu łączenia, albo przez <code>/link start</code>,
+        albo przez przycisk, który później wstawia <code>/link-panel</code>. Oba zaczynają to samo łączenie.
+      </p>
+
+      <h2>4. Ustaw tę rolę tak, żeby nie zakrywała ważnych kolorów</h2>
+      <p>
+        Przeciągnij <strong>WG-Linked</strong> pod kolorowe role, które mają zostać widoczne,
+        na przykład VIP, Mods, Supporter albo Nitro.
+      </p>
+      <p>
+        Discord koloruje nazwę członka jego najwyższą rolą, która ma kolor.
+        Jeśli <strong>WG-Linked</strong> stoi nad VIP i ma własny kolor, połączony VIP pokazuje
+        kolor <strong>WG-Linked</strong> zamiast VIP.
+      </p>
+      <p>
+        <strong>WG-Linked</strong> zostaw też pod rolą bota.
+        Jeśli jest nad botem, bot nie może jej nadać.
+      </p>
+      <p>Bezpieczna kolejność, od góry do dołu:</p>
+      <ol>
+        <li>Właściciel serwera</li>
+        <li>Admin</li>
+        <li><strong>WG Link</strong> (bot)</li>
+        <li>Ekipa i kolorowe role, na których ci zależy (Mods, VIP i podobne)</li>
+        <li><strong>WG-Linked</strong></li>
+        <li>Wszyscy inni</li>
+      </ol>
+
+      <h2>5. Otwórz Command Center i zapisz Ustawienia</h2>
+      <p>
+        Na swoim serwerze użyj <code>/admin</code> albo <code>/link-setup web</code>.
+        Odpowiedź widzisz tylko ty. Otwórz link i zaloguj się przez Discord.
+      </p>
+      <p>Wejdź w <strong>Ustawienia</strong>. Dla twojego serwera strona to:</p>
+      <p><code>https://bot-production-a210.up.railway.app/admin/&lt;id-twojego-serwera&gt;/setup</code></p>
+      <p>Komenda otwiera już właściwy serwer. Nie musisz wpisywać adresu sam.</p>
+      <p>Ustaw to, a potem kliknij <strong>Zapisz</strong>:</p>
+      <ul>
+        <li><strong>Rola verified.</strong> Rola z kroku 3, na przykład <strong>WG-Linked</strong>.</li>
+        <li>
+          <strong>Styl nicku.</strong> Jak połączona nazwa wygląda na twoim serwerze.
+          Do wyboru są <code>[TAG] Nazwa (EU)</code>, <code>Nazwa (EU)</code>,
+          <code>[TAG] Nazwa</code> albo sama nazwa.
+        </li>
+        <li>
+          <strong>DM powitalna.</strong> Włącz albo wyłącz.
+          Gdy ktoś dołącza do tego Discorda. To nie DM po <code>/link start</code>.
+        </li>
+        <li>
+          <strong>DM link.</strong> Prywatna wiadomość po udanym <code>/link start</code>,
+          z kontem Wargaming, nickiem na serwerze i rolą verified.
+        </li>
+        <li>
+          <strong>DM unlink.</strong> Prywatna wiadomość po <code>/link unlink</code>,
+          z potwierdzeniem, że połączenie zostało usunięte.
+        </li>
+        <li><strong>Kanał zapasowy.</strong> Używany, gdy ten członek ma zamknięte DM.</li>
+      </ul>
+      <p>
+        <strong>Zapisz i zaktualizuj nicki</strong> jest na później, gdy zmieniasz styl nicku
+        i chcesz od razu zmienić nazwy już połączonych członków.
+      </p>
+      <p>
+        Te same ustawienia są na Discordzie jako <code>/link-setup role</code> i
+        <code>/link-setup options</code>. Sprawdzisz je w każdej chwili przez <code>/link-setup status</code>.
+      </p>
+
+      <h2>6. Wstaw przycisk łączenia dla członków</h2>
+      <p>Ten krok jest opcjonalny. Na kanale, na którym członkowie mają go znaleźć, użyj <code>/link-panel</code>.</p>
+      <p>WG-Link wstawia wiadomość z przyciskiem. Ten przycisk zaczyna to samo łączenie co <code>/link start</code>.</p>
+
+      <h2>WG-Link jest gotowy</h2>
+      <p>Do zwykłej konfiguracji nic więcej nie trzeba.</p>
+      <p>
+        Każdy członek sam decyduje, czy się łączy. Używa <code>/link start</code> albo przycisku na panelu,
+        wybiera <strong>EU</strong>, <strong>NA</strong> albo <strong>ASIA</strong> i loguje się w Wargaming.
+        Gdy to się skończy, dostaje rolę verified i, jeśli Discord na to pozwala,
+        nick na serwerze taki jak <code>[GURKA] Player (EU)</code>.
+      </p>
+      <p>
+        Odpowiedź jest prywatna. Widzi ją tylko ten członek.
+        Pokazuje połączone konto, nick na serwerze i <code>/link unlink</code>, jeśli chce usunąć połączenie.
+      </p>
+      <p>Dopóki członek tego nie zrobi, zostaje niepołączony i nie dostaje roli.</p>
+    </article>
   </main>
+  <script src="lang.js?v=1"></script>
 </body>
 </html>

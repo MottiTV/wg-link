@@ -1,222 +1,571 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nutzungsbedingungen – WG-Link</title>
-  <style>
-    :root {
-      color-scheme: dark light;
-      --bg: #0f1115;
-      --text: #e8eaed;
-      --muted: #9aa0a6;
-      --accent: #5865f2;
-      --border: #2a2f3a;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-    }
-    main { max-width: 800px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    nav { margin-bottom: 1.5rem; font-size: 0.9rem; }
-    nav a { color: var(--accent); text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-    h1 { font-size: 1.75rem; margin: 0 0 0.75rem; }
-    h2 { font-size: 1.2rem; margin: 2rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.35rem; }
-    h3 { font-size: 1.05rem; margin: 1.25rem 0 0.5rem; }
-    p, li { color: var(--text); }
-    .meta { color: var(--muted); margin-bottom: 1.5rem; }
-    .meta strong { color: var(--text); }
-    ul { padding-left: 1.25rem; }
-    li { margin: 0.35rem 0; }
-    a { color: var(--accent); }
-    hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
-    .note { color: var(--muted); font-size: 0.9rem; font-style: italic; }
-    code { background: #1a1d24; padding: 0.1em 0.35em; border-radius: 4px; font-size: 0.9em; }
-  </style>
+  <title>Terms of Service – WG-Link</title>
+  <script>
+    (function () {
+      var titles = {
+        en: "Terms of Service – WG-Link",
+        de: "Nutzungsbedingungen – WG-Link",
+        pl: "Warunki korzystania – WG-Link"
+      };
+      var q = new URLSearchParams(location.search).get("lang");
+      var stored = "";
+      try { stored = localStorage.getItem("wg_lang") || ""; } catch (e) {}
+      var pick = /^(en|de|pl)$/.test(q) ? q : (/^(en|de|pl)$/.test(stored) ? stored : "");
+      if (!pick) {
+        var nav = (navigator.language || "").toLowerCase();
+        pick = nav.indexOf("pl") === 0 ? "pl" : (nav.indexOf("de") === 0 ? "de" : "en");
+      }
+      document.documentElement.setAttribute("data-lang", pick);
+      document.documentElement.lang = pick;
+      if (titles[pick]) document.title = titles[pick];
+    })();
+  </script>
+  <link rel="stylesheet" href="site.css?v=1" />
 </head>
 <body>
   <main>
-    <nav>
-      <a href="index.html">← Übersicht</a> ·
-      <a href="privacy-policy.html">Datenschutzerklärung</a>
-    </nav>
+    <div class="topbar">
+      <div class="lang-wrap">
+        <span class="lang-kicker" data-lang="en">Language</span>
+        <span class="lang-kicker" data-lang="de">Sprache</span>
+        <span class="lang-kicker" data-lang="pl">Język</span>
+        <select class="lang-select" id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="pl">Polski</option>
+        </select>
+      </div>
+    </div>
 
-    <h1>Nutzungsbedingungen (Terms of Service)</h1>
-    <p class="meta">
-      <strong>Dienst:</strong> WG-Link (Discord-Bot / Discord-Anwendung)<br />
-      <strong>Betreiber:</strong> motti_tv<br />
-      <strong>Stand:</strong> 16. August 2026
-    </p>
+    <article class="lang-block" data-lang="en" data-title="Terms of Service – WG-Link">
+      <nav class="crumbs">
+        <a href="index.html">← Overview</a> ·
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </nav>
+      <h1>Terms of Service</h1>
+      <p class="meta">
+        <strong>Service:</strong> WG-Link (Discord bot / Discord application)<br />
+        <strong>Operator:</strong> motti_tv<br />
+        <strong>Updated:</strong> 16 August 2026
+      </p>
+      <p>
+        These Terms of Service govern use of the Discord bot <strong>WG-Link</strong> (“bot”, “service”).
+        By using the bot (for example through slash commands, buttons, linking, or inviting it to a server)
+        you accept these terms.
+      </p>
+      <hr />
 
-    <p>
-      Diese Nutzungsbedingungen regeln die Nutzung des Discord-Bots <strong>WG-Link</strong> („Bot“, „Dienst“).
-      Mit der Nutzung des Bots (z. B. durch Slash-Befehle, Buttons, Verknüpfung oder Einladung auf einen Server)
-      akzeptierst du diese Bedingungen.
-    </p>
+      <h2>1. What the service does</h2>
+      <p>
+        WG-Link is a Discord bot for <strong>linking Discord accounts with Wargaming / World of Warships accounts</strong>.
+        It can be used on <strong>more than one Discord server</strong>. In particular, the bot can:
+      </p>
+      <ul>
+        <li>start a verification <strong>on each server</strong> (choose a region, Wargaming login),</li>
+        <li>store a successful link <strong>for that server</strong>,</li>
+        <li>change the server nickname (the style is selectable, for example <code>[CLAN] Name (EU)</code> or <code>Name (EU)</code>),</li>
+        <li>assign a verified role <strong>on that server</strong>,</li>
+        <li>give admins and mods management tools (<code>/link-setup</code>, <code>/link-panel</code>, <code>/link-check</code>, <code>/role-admin</code>, <code>/help</code>, and others).</li>
+      </ul>
+      <p>
+        A link on server A does <strong>not</strong> apply automatically on server B.
+        Members have to link again on each server.
+        One Wargaming account may belong to only <strong>one</strong> Discord account.
+      </p>
+      <p>
+        Login uses the <strong>official Wargaming OpenID flow</strong>.
+        The bot does <strong>not</strong> store Wargaming passwords.
+      </p>
 
-    <hr />
+      <h2>2. Requirements and responsibilities</h2>
+      <h3>2.1 Users</h3>
+      <p>You may use the bot only if you:</p>
+      <ul>
+        <li>follow the <a href="https://discord.com/terms" rel="noopener">Discord Terms of Service</a> and the
+          <a href="https://discord.com/guidelines" rel="noopener">Discord Community Guidelines</a>,</li>
+        <li>follow the applicable Wargaming / World of Warships terms,</li>
+        <li>link only <strong>your own</strong> accounts (not someone else’s Wargaming account without permission),</li>
+        <li>are at least 13 years old, or meet the minimum age required in your country for Discord and online services.</li>
+      </ul>
 
-    <h2>1. Leistungsbeschreibung</h2>
-    <p>
-      WG-Link ist ein Discord-Bot zur <strong>Verknüpfung von Discord-Konten mit Wargaming- / World of Warships-Konten</strong>.
-      Er kann auf <strong>mehreren Discord-Servern</strong> genutzt werden. Der Bot kann insbesondere:
-    </p>
-    <ul>
-      <li>einen Verifizierungsvorgang <strong>pro Server</strong> starten (Region wählen, Wargaming-Login),</li>
-      <li>die erfolgreiche Verknüpfung <strong>für diesen Server</strong> speichern,</li>
-      <li>den Server-Nicknamen anpassen (Stil wählbar, z. B. <code>[KLAN] Name (EU)</code> oder <code>Name (EU)</code>),</li>
-      <li>eine Verifizierungs-Rolle <strong>auf diesem Server</strong> vergeben,</li>
-      <li>Admins/Mods Verwaltungsfunktionen bereitstellen (<code>/link-setup</code>, <code>/link-panel</code>, <code>/link-check</code>, <code>/role-admin</code>, <code>/help</code> u. a.).</li>
-    </ul>
-    <p>
-      Eine Verknüpfung auf Server A gilt <strong>nicht</strong> automatisch auf Server B.
-      Mitglieder müssen sich auf jedem Server erneut verknüpfen.
-      Ein Wargaming-Account darf nur <strong>einem</strong> Discord-Konto gehören.
-    </p>
-    <p>
-      Der Login erfolgt über den <strong>offiziellen Wargaming-OpenID-Flow</strong>.
-      Der Bot speichert <strong>keine</strong> Wargaming-Passwörter.
-    </p>
+      <h3>2.2 Server operators (admins)</h3>
+      <p>If you invite the bot to a Discord server, you are responsible for:</p>
+      <ul>
+        <li>setting the bot up with <code>/link-setup role</code>,</li>
+        <li>telling members about linking and about data use (with a link to the Privacy Policy),</li>
+        <li>setting bot permissions and roles sensibly (bot role above the verified role),</li>
+        <li>not misusing the bot (for example forcing a link without clear information),</li>
+        <li><strong>not</strong> making the verified role the only way into important channels, without a fallback (for example admin roles, or a second way in),</li>
+        <li>accepting, for your members and for yourself, that the bot can <strong>go down or be discontinued at any time</strong>.</li>
+      </ul>
+      <p>
+        By <strong>inviting</strong> the bot to a server you accept these terms
+        <strong>as the server operator as well</strong>. You do <strong>not</strong> receive a right to use it for an unlimited time,
+        and you have <strong>no</strong> claim to support, compensation, or restoration if the service ends.
+      </p>
 
-    <h2>2. Voraussetzungen und Verantwortlichkeiten</h2>
-    <h3>2.1 Nutzer</h3>
-    <p>Du darfst den Bot nur nutzen, wenn du:</p>
-    <ul>
-      <li>die <a href="https://discord.com/terms" rel="noopener">Discord-Nutzungsbedingungen</a> und
-        <a href="https://discord.com/guidelines" rel="noopener">Discord Community Guidelines</a> einhältst,</li>
-      <li>die jeweiligen Bedingungen von Wargaming / World of Warships beachtest,</li>
-      <li>nur <strong>eigene</strong> Konten verknüpfst (kein fremdes Wargaming-Konto ohne Berechtigung),</li>
-      <li>mindestens 13 Jahre alt bist bzw. das in deinem Land erforderliche Mindestalter für Discord und Online-Dienste erfüllst.</li>
-    </ul>
+      <h3>2.3 Operator of the bot</h3>
+      <p>
+        The operator provides the bot <strong>to the best of their knowledge and as available</strong>.
+        There is <strong>no claim</strong> to uninterrupted availability, a particular set of features, or support.
+      </p>
 
-    <h3>2.2 Server-Betreiber (Admins)</h3>
-    <p>Wenn du den Bot auf einem Discord-Server einlädst, bist du dafür verantwortlich:</p>
-    <ul>
-      <li>den Bot mit <code>/link-setup role</code> einzurichten,</li>
-      <li>Mitglieder über die Verknüpfung und die Datennutzung zu informieren (Verweis auf die Datenschutzerklärung),</li>
-      <li>Bot-Berechtigungen und Rollen sinnvoll zu setzen (Bot-Rolle über der Verified-Rolle),</li>
-      <li>den Bot nicht missbräuchlich einzusetzen (z. B. erzwungene Verknüpfung ohne erkennbare Information),</li>
-      <li><strong>keinen</strong> alleinigen Zugang zu wichtigen Kanälen nur über die Verified-Rolle zu sperren, ohne einen Notfall-Zugang (z. B. Admin-Rollen, zweiter Weg),</li>
-      <li>Mitglieder und dich selbst darauf einzustellen, dass der Bot <strong>jederzeit ausfallen oder eingestellt</strong> werden kann.</li>
-    </ul>
-    <p>
-      Mit dem <strong>Einladen</strong> des Bots auf einen Server akzeptierst du diese Nutzungsbedingungen
-      <strong>auch als Server-Betreiber</strong>. Du erhältst <strong>kein</strong> Nutzungsrecht auf unbegrenzte Zeit
-      und <strong>keinen</strong> Anspruch auf Support, Entschädigung oder Wiederherstellung, wenn der Dienst endet.
-    </p>
+      <h2>3. Allowed and prohibited use</h2>
+      <p><strong>Allowed</strong> use is the intended use for account linking and server verification.</p>
+      <p><strong>Prohibited</strong> in particular:</p>
+      <ul>
+        <li>abuse, spam, or automation against the API limits of Discord or Wargaming,</li>
+        <li>bypassing security or verification mechanisms,</li>
+        <li>use for fraud, harassment, doxxing, or other unlawful purposes,</li>
+        <li>reverse engineering in order to disrupt or damage the service,</li>
+        <li>use in a way that breaks Discord or Wargaming rules.</li>
+      </ul>
+      <p>
+        If these rules are broken, access to the bot can be limited or removed
+        (for example removing a link, or removing the bot from the server).
+      </p>
 
-    <h3>2.3 Betreiber des Bots</h3>
-    <p>
-      Der Betreiber stellt den Bot <strong>nach bestem Wissen und nach Verfügbarkeit</strong> bereit.
-      Es besteht <strong>kein Anspruch</strong> auf ununterbrochene Verfügbarkeit, bestimmten Funktionsumfang oder Support.
-    </p>
+      <h2>4. Third parties</h2>
+      <p>The bot uses third-party services, including:</p>
+      <ul>
+        <li><strong>Discord</strong> (API, OAuth / bot access),</li>
+        <li><strong>Wargaming</strong> (OpenID login, and where applicable public World of Warships account information).</li>
+      </ul>
+      <p>
+        Those services have their own terms and privacy policies.
+        The operator is not responsible for outages or changes at Discord or Wargaming.
+      </p>
 
-    <h2>3. Erlaubte und verbotene Nutzung</h2>
-    <p><strong>Erlaubt</strong> ist die bestimmungsgemäße Nutzung zur Account-Verknüpfung und Server-Verifizierung.</p>
-    <p><strong>Untersagt</strong> ist insbesondere:</p>
-    <ul>
-      <li>Missbrauch, Spam, Automatisierung gegen die API-Limits von Discord oder Wargaming,</li>
-      <li>Umgehung von Sicherheits- oder Verifizierungsmechanismen,</li>
-      <li>Nutzung für Betrug, Belästigung, Doxxing oder sonstige rechtswidrige Zwecke,</li>
-      <li>Reverse Engineering mit dem Ziel, den Dienst zu stören oder zu schädigen,</li>
-      <li>Nutzung in einer Weise, die gegen Discord- oder Wargaming-Regeln verstößt.</li>
-    </ul>
-    <p>
-      Bei Verstößen kann der Zugang zum Bot eingeschränkt oder entzogen werden
-      (z. B. Verknüpfung entfernen, Bot vom Server entfernen).
-    </p>
+      <h2>5. No official affiliation</h2>
+      <p>
+        WG-Link is an <strong>independent, unofficial</strong> project.
+        There is <strong>no</strong> official partnership with:
+      </p>
+      <ul>
+        <li>Discord Inc.,</li>
+        <li>Wargaming Group Limited,</li>
+        <li>World of Warships / Lesta (depending on region and trademark status).</li>
+      </ul>
+      <p>All third-party marks and names belong to their respective owners.</p>
 
-    <h2>4. Drittanbieter</h2>
-    <p>Der Bot nutzt Dienste Dritter, u. a.:</p>
-    <ul>
-      <li><strong>Discord</strong> (API, OAuth/Bot-Zugang),</li>
-      <li><strong>Wargaming</strong> (OpenID-Login, ggf. öffentliche Account-Informationen zu World of Warships).</li>
-    </ul>
-    <p>
-      Für diese Dienste gelten deren eigene Nutzungsbedingungen und Datenschutzbestimmungen.
-      Der Betreiber ist nicht für Ausfälle oder Änderungen bei Discord oder Wargaming verantwortlich.
-    </p>
+      <h2>6. Liability and warranty</h2>
+      <p>The bot is provided <strong>“as is”</strong>.</p>
+      <p>To the extent permitted by law:</p>
+      <ul>
+        <li>the operator gives <strong>no warranty</strong> of freedom from errors, completeness, or fitness for a particular purpose,</li>
+        <li>the operator is <strong>not</strong> liable for indirect damage, loss of data, lost profit, or damage from server configuration (roles, nicknames, channel permissions),</li>
+        <li>liability for intent, gross negligence, and injury to life, body, or health remains where applicable law requires it.</li>
+      </ul>
+      <p>
+        You use the bot at your own risk. Keep an alternative way into server channels
+        in case verification fails.
+      </p>
 
-    <h2>5. Keine offizielle Verbindung</h2>
-    <p>
-      WG-Link ist ein <strong>unabhängiges, inoffizielles</strong> Projekt.
-      Es besteht <strong>keine</strong> offizielle Partnerschaft mit:
-    </p>
-    <ul>
-      <li>Discord Inc.,</li>
-      <li>Wargaming Group Limited,</li>
-      <li>World of Warships / Lesta (je nach Region und Markenlage).</li>
-    </ul>
-    <p>Alle Marken und Namen Dritter gehören den jeweiligen Rechteinhabern.</p>
+      <h3>6.1 Outage, shutdown, other people’s servers</h3>
+      <p>The bot is a <strong>free community service with no service-level agreement (no SLA)</strong>.</p>
+      <p>To the extent permitted by law, in particular:</p>
+      <ul>
+        <li>The operator <strong>may</strong> pause, limit, or discontinue the bot in whole or in part <strong>at any time</strong> (for example because of cost, technology, Discord or Wargaming rules, or lack of time), <strong>without</strong> notice and <strong>without</strong> damages.</li>
+        <li>There is <strong>no</strong> claim to continued operation, data export, restoration of roles or nicknames, or a replacement way into channels.</li>
+        <li>Outages of <strong>Discord</strong>, <strong>Wargaming</strong>, hosting (for example Railway), or the internet are <strong>not</strong> the operator’s responsibility.</li>
+        <li>Server admins who invite the bot do so <strong>at their own risk</strong>. Claims by third parties (members of your server) about locked channels, lost roles, or nicknames are <strong>your</strong> matter, not the bot operator’s.</li>
+        <li>Where mandatory law does not allow liability to be excluded, it is limited to intent and gross negligence.</li>
+      </ul>
 
-    <h2>6. Haftung und Gewährleistung</h2>
-    <p>Der Bot wird <strong>„wie besehen“ (as is)</strong> bereitgestellt.</p>
-    <p>Soweit gesetzlich zulässig:</p>
-    <ul>
-      <li>übernimmt der Betreiber <strong>keine Gewähr</strong> für Fehlerfreiheit, Vollständigkeit oder Eignung für einen bestimmten Zweck,</li>
-      <li>haftet der Betreiber <strong>nicht</strong> für indirekte Schäden, Datenverlust, entgangenen Nutzen oder Schäden aus Server-Konfiguration (Rollen, Nicknames, Kanalrechte),</li>
-      <li>bleibt die Haftung für Vorsatz, grobe Fahrlässigkeit sowie für Verletzung von Leben, Körper oder Gesundheit unberührt (soweit anwendbares Recht dies vorschreibt).</li>
-    </ul>
-    <p>
-      Du nutzt den Bot auf eigenes Risiko. Sichere dir ggf. alternative Zugänge zu Server-Kanälen,
-      falls die Verifizierung fehlschlägt.
-    </p>
+      <h2>7. Changes to the service</h2>
+      <p>
+        The operator may change, extend, or limit features, or discontinue the bot entirely.
+        Material changes to these terms will, where possible, be announced by updating this document
+        (a new “Updated” date). Continued use after publication counts as acceptance
+        of the changed terms, where the law allows that.
+      </p>
 
-    <h3>6.1 Ausfall, Einstellung, fremde Server</h3>
-    <p>Der Bot ist ein <strong>unentgeltlicher Community-Dienst ohne Service-Level-Vereinbarung (kein SLA)</strong>.</p>
-    <p>Soweit gesetzlich zulässig gilt insbesondere:</p>
-    <ul>
-      <li>Der Betreiber <strong>darf</strong> den Bot jederzeit ganz oder teilweise <strong>anhalten, einschränken oder einstellen</strong> (z. B. Kosten, Technik, Discord-/Wargaming-Regeln, Zeitmangel), <strong>ohne</strong> Vorankündigung und <strong>ohne</strong> Schadensersatz.</li>
-      <li>Es besteht <strong>kein</strong> Anspruch auf Weiterbetrieb, Datenexport, Wiederherstellung von Rollen/Nicks oder Ersatzzugang zu Kanälen.</li>
-      <li>Ausfälle von <strong>Discord</strong>, <strong>Wargaming</strong>, Hosting (z. B. Railway) oder Internet liegen <strong>nicht</strong> in der Verantwortung des Betreibers.</li>
-      <li>Server-Admins, die den Bot einladen, tun das <strong>auf eigenes Risiko</strong>. Ansprüche Dritter (Mitglieder eures Servers) wegen gesperrter Kanäle, verlorener Rollen oder Nicks sind <strong>eure</strong> Sache, nicht die des Bot-Betreibers.</li>
-      <li>Soweit zwingendes Recht Haftung nicht ausschließt, ist sie auf Vorsatz und grobe Fahrlässigkeit beschränkt.</li>
-    </ul>
+      <h2>8. Ending use</h2>
+      <ul>
+        <li>You can stop using it on a server at any time (<code>/link unlink</code> on that server; see the Privacy Policy). Other servers are not affected.</li>
+        <li>Server admins can remove the bot from the server at any time.</li>
+        <li>The operator may stop providing the service <strong>at any time</strong>, or delete individual links or servers, in particular in cases of abuse, cost, technical reasons, or the end of the project. There is no claim to advance notice.</li>
+      </ul>
 
-    <h2>7. Änderungen am Dienst</h2>
-    <p>
-      Der Betreiber kann Funktionen ändern, erweitern, einschränken oder den Bot ganz einstellen.
-      Wesentliche Änderungen der Nutzungsbedingungen werden nach Möglichkeit durch Aktualisierung dieses Dokuments
-      (neues „Stand“-Datum) bekannt gegeben. Die fortgesetzte Nutzung nach Veröffentlichung gilt als Zustimmung
-      zu den geänderten Bedingungen, soweit gesetzlich zulässig.
-    </p>
+      <h2>9. Privacy</h2>
+      <p>
+        Information on the processing of personal data is in the
+        <a href="privacy-policy.html"><strong>Privacy Policy</strong></a>.
+      </p>
 
-    <h2>8. Beendigung</h2>
-    <ul>
-      <li>Du kannst die Nutzung auf einem Server jederzeit beenden (<code>/link unlink</code> auf diesem Server; siehe Datenschutzerklärung). Andere Server bleiben davon unberührt.</li>
-      <li>Server-Admins können den Bot jederzeit vom Server entfernen.</li>
-      <li>Der Betreiber kann die Bereitstellung <strong>jederzeit</strong> einstellen oder einzelne Verknüpfungen/Server löschen, insbesondere bei Missbrauch, Kosten, technischen Gründen oder Einstellung des Projekts. Ein Anspruch auf Vorankündigung besteht nicht.</li>
-    </ul>
+      <h2>10. Contact</h2>
+      <p>Questions about these terms:</p>
+      <ul>
+        <li><strong>Discord:</strong> motti_tv</li>
+        <li><strong>Application:</strong> WG-Link (Discord Developer Application)</li>
+      </ul>
 
-    <h2>9. Datenschutz</h2>
-    <p>
-      Informationen zur Verarbeitung personenbezogener Daten findest du in der
-      <a href="privacy-policy.html"><strong>Datenschutzerklärung</strong></a>.
-    </p>
+      <h2>11. Severability</h2>
+      <p>
+        If individual provisions are invalid, the remaining provisions stay in effect.
+        An invalid provision is replaced by a valid one that comes as close as possible to the economic and legal purpose.
+      </p>
+      <hr />
+      <p class="note">
+        This document is not legal advice. For Discord app verification and private or semi-professional
+        operation of the bot, it is meant as a transparent basis for use.
+      </p>
+    </article>
 
-    <h2>10. Kontakt</h2>
-    <p>Bei Fragen zu diesen Nutzungsbedingungen:</p>
-    <ul>
-      <li><strong>Discord:</strong> motti_tv</li>
-      <li><strong>Anwendung:</strong> WG-Link (Discord Developer Application)</li>
-    </ul>
+    <article class="lang-block" data-lang="de" data-title="Nutzungsbedingungen – WG-Link">
+      <nav class="crumbs">
+        <a href="index.html">← Übersicht</a> ·
+        <a href="privacy-policy.html">Datenschutzerklärung</a>
+      </nav>
+      <h1>Nutzungsbedingungen</h1>
+      <p class="meta">
+        <strong>Dienst:</strong> WG-Link (Discord-Bot / Discord-Anwendung)<br />
+        <strong>Betreiber:</strong> motti_tv<br />
+        <strong>Stand:</strong> 16. August 2026
+      </p>
+      <p>
+        Diese Nutzungsbedingungen regeln die Nutzung des Discord-Bots <strong>WG-Link</strong> („Bot“, „Dienst“).
+        Mit der Nutzung des Bots (z. B. durch Slash-Befehle, Buttons, Verknüpfung oder Einladung auf einen Server)
+        akzeptierst du diese Bedingungen.
+      </p>
+      <hr />
 
-    <h2>11. Salvatorische Klausel</h2>
-    <p>
-      Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
-      An die Stelle der unwirksamen Regelung tritt eine wirksame, die dem wirtschaftlichen und rechtlichen Zweck am nächsten kommt.
-    </p>
+      <h2>1. Leistungsbeschreibung</h2>
+      <p>
+        WG-Link ist ein Discord-Bot zur <strong>Verknüpfung von Discord-Konten mit Wargaming- / World of Warships-Konten</strong>.
+        Er kann auf <strong>mehreren Discord-Servern</strong> genutzt werden. Der Bot kann insbesondere:
+      </p>
+      <ul>
+        <li>einen Verifizierungsvorgang <strong>pro Server</strong> starten (Region wählen, Wargaming-Login),</li>
+        <li>die erfolgreiche Verknüpfung <strong>für diesen Server</strong> speichern,</li>
+        <li>den Server-Nicknamen anpassen (Stil wählbar, z. B. <code>[KLAN] Name (EU)</code> oder <code>Name (EU)</code>),</li>
+        <li>eine Verifizierungs-Rolle <strong>auf diesem Server</strong> vergeben,</li>
+        <li>Admins/Mods Verwaltungsfunktionen bereitstellen (<code>/link-setup</code>, <code>/link-panel</code>, <code>/link-check</code>, <code>/role-admin</code>, <code>/help</code> u. a.).</li>
+      </ul>
+      <p>
+        Eine Verknüpfung auf Server A gilt <strong>nicht</strong> automatisch auf Server B.
+        Mitglieder müssen sich auf jedem Server erneut verknüpfen.
+        Ein Wargaming-Account darf nur <strong>einem</strong> Discord-Konto gehören.
+      </p>
+      <p>
+        Der Login erfolgt über den <strong>offiziellen Wargaming-OpenID-Flow</strong>.
+        Der Bot speichert <strong>keine</strong> Wargaming-Passwörter.
+      </p>
 
-    <hr />
-    <p class="note">
-      Dieses Dokument stellt keine Rechtsberatung dar. Für die Discord-App-Verifizierung und den
-      privaten/semiprofessionellen Betrieb des Bots ist es als transparente Nutzungsgrundlage gedacht.
-    </p>
+      <h2>2. Voraussetzungen und Verantwortlichkeiten</h2>
+      <h3>2.1 Nutzer</h3>
+      <p>Du darfst den Bot nur nutzen, wenn du:</p>
+      <ul>
+        <li>die <a href="https://discord.com/terms" rel="noopener">Discord-Nutzungsbedingungen</a> und
+          <a href="https://discord.com/guidelines" rel="noopener">Discord Community Guidelines</a> einhältst,</li>
+        <li>die jeweiligen Bedingungen von Wargaming / World of Warships beachtest,</li>
+        <li>nur <strong>eigene</strong> Konten verknüpfst (kein fremdes Wargaming-Konto ohne Berechtigung),</li>
+        <li>mindestens 13 Jahre alt bist bzw. das in deinem Land erforderliche Mindestalter für Discord und Online-Dienste erfüllst.</li>
+      </ul>
+
+      <h3>2.2 Server-Betreiber (Admins)</h3>
+      <p>Wenn du den Bot auf einem Discord-Server einlädst, bist du dafür verantwortlich:</p>
+      <ul>
+        <li>den Bot mit <code>/link-setup role</code> einzurichten,</li>
+        <li>Mitglieder über die Verknüpfung und die Datennutzung zu informieren (Verweis auf die Datenschutzerklärung),</li>
+        <li>Bot-Berechtigungen und Rollen sinnvoll zu setzen (Bot-Rolle über der Verified-Rolle),</li>
+        <li>den Bot nicht missbräuchlich einzusetzen (z. B. erzwungene Verknüpfung ohne erkennbare Information),</li>
+        <li><strong>keinen</strong> alleinigen Zugang zu wichtigen Kanälen nur über die Verified-Rolle zu sperren, ohne einen Notfall-Zugang (z. B. Admin-Rollen, zweiter Weg),</li>
+        <li>Mitglieder und dich selbst darauf einzustellen, dass der Bot <strong>jederzeit ausfallen oder eingestellt</strong> werden kann.</li>
+      </ul>
+      <p>
+        Mit dem <strong>Einladen</strong> des Bots auf einen Server akzeptierst du diese Nutzungsbedingungen
+        <strong>auch als Server-Betreiber</strong>. Du erhältst <strong>kein</strong> Nutzungsrecht auf unbegrenzte Zeit
+        und <strong>keinen</strong> Anspruch auf Support, Entschädigung oder Wiederherstellung, wenn der Dienst endet.
+      </p>
+
+      <h3>2.3 Betreiber des Bots</h3>
+      <p>
+        Der Betreiber stellt den Bot <strong>nach bestem Wissen und nach Verfügbarkeit</strong> bereit.
+        Es besteht <strong>kein Anspruch</strong> auf ununterbrochene Verfügbarkeit, bestimmten Funktionsumfang oder Support.
+      </p>
+
+      <h2>3. Erlaubte und verbotene Nutzung</h2>
+      <p><strong>Erlaubt</strong> ist die bestimmungsgemäße Nutzung zur Account-Verknüpfung und Server-Verifizierung.</p>
+      <p><strong>Untersagt</strong> ist insbesondere:</p>
+      <ul>
+        <li>Missbrauch, Spam, Automatisierung gegen die API-Limits von Discord oder Wargaming,</li>
+        <li>Umgehung von Sicherheits- oder Verifizierungsmechanismen,</li>
+        <li>Nutzung für Betrug, Belästigung, Doxxing oder sonstige rechtswidrige Zwecke,</li>
+        <li>Reverse Engineering mit dem Ziel, den Dienst zu stören oder zu schädigen,</li>
+        <li>Nutzung in einer Weise, die gegen Discord- oder Wargaming-Regeln verstößt.</li>
+      </ul>
+      <p>
+        Bei Verstößen kann der Zugang zum Bot eingeschränkt oder entzogen werden
+        (z. B. Verknüpfung entfernen, Bot vom Server entfernen).
+      </p>
+
+      <h2>4. Drittanbieter</h2>
+      <p>Der Bot nutzt Dienste Dritter, u. a.:</p>
+      <ul>
+        <li><strong>Discord</strong> (API, OAuth/Bot-Zugang),</li>
+        <li><strong>Wargaming</strong> (OpenID-Login, ggf. öffentliche Account-Informationen zu World of Warships).</li>
+      </ul>
+      <p>
+        Für diese Dienste gelten deren eigene Nutzungsbedingungen und Datenschutzbestimmungen.
+        Der Betreiber ist nicht für Ausfälle oder Änderungen bei Discord oder Wargaming verantwortlich.
+      </p>
+
+      <h2>5. Keine offizielle Verbindung</h2>
+      <p>
+        WG-Link ist ein <strong>unabhängiges, inoffizielles</strong> Projekt.
+        Es besteht <strong>keine</strong> offizielle Partnerschaft mit:
+      </p>
+      <ul>
+        <li>Discord Inc.,</li>
+        <li>Wargaming Group Limited,</li>
+        <li>World of Warships / Lesta (je nach Region und Markenlage).</li>
+      </ul>
+      <p>Alle Marken und Namen Dritter gehören den jeweiligen Rechteinhabern.</p>
+
+      <h2>6. Haftung und Gewährleistung</h2>
+      <p>Der Bot wird <strong>„wie besehen“ (as is)</strong> bereitgestellt.</p>
+      <p>Soweit gesetzlich zulässig:</p>
+      <ul>
+        <li>übernimmt der Betreiber <strong>keine Gewähr</strong> für Fehlerfreiheit, Vollständigkeit oder Eignung für einen bestimmten Zweck,</li>
+        <li>haftet der Betreiber <strong>nicht</strong> für indirekte Schäden, Datenverlust, entgangenen Nutzen oder Schäden aus Server-Konfiguration (Rollen, Nicknames, Kanalrechte),</li>
+        <li>bleibt die Haftung für Vorsatz, grobe Fahrlässigkeit sowie für Verletzung von Leben, Körper oder Gesundheit unberührt (soweit anwendbares Recht dies vorschreibt).</li>
+      </ul>
+      <p>
+        Du nutzt den Bot auf eigenes Risiko. Sichere dir ggf. alternative Zugänge zu Server-Kanälen,
+        falls die Verifizierung fehlschlägt.
+      </p>
+
+      <h3>6.1 Ausfall, Einstellung, fremde Server</h3>
+      <p>Der Bot ist ein <strong>unentgeltlicher Community-Dienst ohne Service-Level-Vereinbarung (kein SLA)</strong>.</p>
+      <p>Soweit gesetzlich zulässig gilt insbesondere:</p>
+      <ul>
+        <li>Der Betreiber <strong>darf</strong> den Bot jederzeit ganz oder teilweise <strong>anhalten, einschränken oder einstellen</strong> (z. B. Kosten, Technik, Discord-/Wargaming-Regeln, Zeitmangel), <strong>ohne</strong> Vorankündigung und <strong>ohne</strong> Schadensersatz.</li>
+        <li>Es besteht <strong>kein</strong> Anspruch auf Weiterbetrieb, Datenexport, Wiederherstellung von Rollen/Nicks oder Ersatzzugang zu Kanälen.</li>
+        <li>Ausfälle von <strong>Discord</strong>, <strong>Wargaming</strong>, Hosting (z. B. Railway) oder Internet liegen <strong>nicht</strong> in der Verantwortung des Betreibers.</li>
+        <li>Server-Admins, die den Bot einladen, tun das <strong>auf eigenes Risiko</strong>. Ansprüche Dritter (Mitglieder eures Servers) wegen gesperrter Kanäle, verlorener Rollen oder Nicks sind <strong>eure</strong> Sache, nicht die des Bot-Betreibers.</li>
+        <li>Soweit zwingendes Recht Haftung nicht ausschließt, ist sie auf Vorsatz und grobe Fahrlässigkeit beschränkt.</li>
+      </ul>
+
+      <h2>7. Änderungen am Dienst</h2>
+      <p>
+        Der Betreiber kann Funktionen ändern, erweitern, einschränken oder den Bot ganz einstellen.
+        Wesentliche Änderungen der Nutzungsbedingungen werden nach Möglichkeit durch Aktualisierung dieses Dokuments
+        (neues „Stand“-Datum) bekannt gegeben. Die fortgesetzte Nutzung nach Veröffentlichung gilt als Zustimmung
+        zu den geänderten Bedingungen, soweit gesetzlich zulässig.
+      </p>
+
+      <h2>8. Beendigung</h2>
+      <ul>
+        <li>Du kannst die Nutzung auf einem Server jederzeit beenden (<code>/link unlink</code> auf diesem Server; siehe Datenschutzerklärung). Andere Server bleiben davon unberührt.</li>
+        <li>Server-Admins können den Bot jederzeit vom Server entfernen.</li>
+        <li>Der Betreiber kann die Bereitstellung <strong>jederzeit</strong> einstellen oder einzelne Verknüpfungen/Server löschen, insbesondere bei Missbrauch, Kosten, technischen Gründen oder Einstellung des Projekts. Ein Anspruch auf Vorankündigung besteht nicht.</li>
+      </ul>
+
+      <h2>9. Datenschutz</h2>
+      <p>
+        Informationen zur Verarbeitung personenbezogener Daten findest du in der
+        <a href="privacy-policy.html"><strong>Datenschutzerklärung</strong></a>.
+      </p>
+
+      <h2>10. Kontakt</h2>
+      <p>Bei Fragen zu diesen Nutzungsbedingungen:</p>
+      <ul>
+        <li><strong>Discord:</strong> motti_tv</li>
+        <li><strong>Anwendung:</strong> WG-Link (Discord Developer Application)</li>
+      </ul>
+
+      <h2>11. Salvatorische Klausel</h2>
+      <p>
+        Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
+        An die Stelle der unwirksamen Regelung tritt eine wirksame, die dem wirtschaftlichen und rechtlichen Zweck am nächsten kommt.
+      </p>
+      <hr />
+      <p class="note">
+        Dieses Dokument stellt keine Rechtsberatung dar. Für die Discord-App-Verifizierung und den
+        privaten/semiprofessionellen Betrieb des Bots ist es als transparente Nutzungsgrundlage gedacht.
+      </p>
+    </article>
+
+    <article class="lang-block" data-lang="pl" data-title="Warunki korzystania – WG-Link">
+      <nav class="crumbs">
+        <a href="index.html">← Przegląd</a> ·
+        <a href="privacy-policy.html">Polityka prywatności</a>
+      </nav>
+      <h1>Warunki korzystania</h1>
+      <p class="meta">
+        <strong>Usługa:</strong> WG-Link (bot Discord / aplikacja Discord)<br />
+        <strong>Prowadzący:</strong> motti_tv<br />
+        <strong>Stan:</strong> 16 sierpnia 2026
+      </p>
+      <p>
+        Niniejsze warunki korzystania regulują używanie bota Discord <strong>WG-Link</strong> („bot”, „usługa”).
+        Korzystając z bota (na przykład przez komendy slash, przyciski, połączenie konta albo zaproszenie na serwer),
+        akceptujesz te warunki.
+      </p>
+      <hr />
+
+      <h2>1. Opis usługi</h2>
+      <p>
+        WG-Link to bot Discord do <strong>łączenia kont Discord z kontami Wargaming / World of Warships</strong>.
+        Może działać na <strong>wielu serwerach Discord</strong>. Bot może w szczególności:
+      </p>
+      <ul>
+        <li>uruchomić weryfikację <strong>na danym serwerze</strong> (wybór regionu, logowanie Wargaming),</li>
+        <li>zapisać udane połączenie <strong>dla tego serwera</strong>,</li>
+        <li>zmienić nick na serwerze (styl do wyboru, na przykład <code>[KLAN] Nazwa (EU)</code> albo <code>Nazwa (EU)</code>),</li>
+        <li>nadać rolę weryfikacji <strong>na tym serwerze</strong>,</li>
+        <li>udostępnić adminom i moderatorom narzędzia (<code>/link-setup</code>, <code>/link-panel</code>, <code>/link-check</code>, <code>/role-admin</code>, <code>/help</code> i inne).</li>
+      </ul>
+      <p>
+        Połączenie na serwerze A <strong>nie</strong> działa automatycznie na serwerze B.
+        Członkowie muszą połączyć się ponownie na każdym serwerze.
+        Jedno konto Wargaming może należeć tylko do <strong>jednego</strong> konta Discord.
+      </p>
+      <p>
+        Logowanie odbywa się przez <strong>oficjalny przepływ OpenID Wargaming</strong>.
+        Bot <strong>nie</strong> zapisuje haseł Wargaming.
+      </p>
+
+      <h2>2. Warunki i odpowiedzialność</h2>
+      <h3>2.1 Użytkownicy</h3>
+      <p>Możesz korzystać z bota tylko wtedy, gdy:</p>
+      <ul>
+        <li>przestrzegasz <a href="https://discord.com/terms" rel="noopener">Warunków korzystania z Discord</a> i
+          <a href="https://discord.com/guidelines" rel="noopener">Zasad społeczności Discord</a>,</li>
+        <li>przestrzegasz właściwych warunków Wargaming / World of Warships,</li>
+        <li>łączysz tylko <strong>własne</strong> konta (cudze konto Wargaming bez uprawnienia jest niedozwolone),</li>
+        <li>masz co najmniej 13 lat albo spełniasz minimalny wiek wymagany w twoim kraju dla Discorda i usług online.</li>
+      </ul>
+
+      <h3>2.2 Prowadzący serwer (admini)</h3>
+      <p>Jeśli zapraszasz bota na serwer Discord, odpowiadasz za to, aby:</p>
+      <ul>
+        <li>skonfigurować bota przez <code>/link-setup role</code>,</li>
+        <li>poinformować członków o łączeniu kont i o przetwarzaniu danych (odesłanie do polityki prywatności),</li>
+        <li>sensownie ustawić uprawnienia i role bota (rola bota nad rolą verified),</li>
+        <li>nie nadużywać bota (na przykład wymuszone połączenie bez wyraźnej informacji),</li>
+        <li><strong>nie</strong> zamykać ważnych kanałów wyłącznie rolą verified, bez dostępu awaryjnego (na przykład role admina, druga droga),</li>
+        <li>liczyć się z tym — ty i członkowie — że bot może <strong>w każdej chwili przestać działać albo zostać wyłączony</strong>.</li>
+      </ul>
+      <p>
+        <strong>Zapraszając</strong> bota na serwer, akceptujesz te warunki
+        <strong>także jako prowadzący serwer</strong>. <strong>Nie</strong> dostajesz prawa do korzystania przez czas nieograniczony
+        i <strong>nie</strong> masz roszczenia o wsparcie, odszkodowanie ani przywrócenie, gdy usługa się kończy.
+      </p>
+
+      <h3>2.3 Prowadzący bota</h3>
+      <p>
+        Prowadzący udostępnia bota <strong>według najlepszej wiedzy i w miarę dostępności</strong>.
+        <strong>Nie ma roszczenia</strong> o nieprzerwaną dostępność, określony zakres funkcji ani wsparcie.
+      </p>
+
+      <h2>3. Dozwolone i zabronione użycie</h2>
+      <p><strong>Dozwolone</strong> jest używanie zgodnie z przeznaczeniem: łączenie kont i weryfikacja na serwerze.</p>
+      <p><strong>Zabronione</strong> jest w szczególności:</p>
+      <ul>
+        <li>nadużycia, spam, automatyzacja wbrew limitom API Discord albo Wargaming,</li>
+        <li>obchodzenie zabezpieczeń albo mechanizmów weryfikacji,</li>
+        <li>użycie do oszustwa, nękania, doxxingu albo innych celów sprzecznych z prawem,</li>
+        <li>reverse engineering w celu zakłócenia albo uszkodzenia usługi,</li>
+        <li>użycie w sposób sprzeczny z zasadami Discord albo Wargaming.</li>
+      </ul>
+      <p>
+        Przy naruszeniach dostęp do bota może zostać ograniczony albo odebrany
+        (na przykład usunięcie połączenia, usunięcie bota z serwera).
+      </p>
+
+      <h2>4. Podmioty trzecie</h2>
+      <p>Bot korzysta z usług osób trzecich, w tym:</p>
+      <ul>
+        <li><strong>Discord</strong> (API, OAuth / dostęp bota),</li>
+        <li><strong>Wargaming</strong> (logowanie OpenID, ewentualnie publiczne informacje o koncie World of Warships).</li>
+      </ul>
+      <p>
+        Dla tych usług obowiązują ich własne warunki i zasady prywatności.
+        Prowadzący nie odpowiada za awarie ani zmiany po stronie Discord albo Wargaming.
+      </p>
+
+      <h2>5. Brak oficjalnego powiązania</h2>
+      <p>
+        WG-Link jest <strong>niezależnym, nieoficjalnym</strong> projektem.
+        <strong>Nie ma</strong> oficjalnego partnerstwa z:
+      </p>
+      <ul>
+        <li>Discord Inc.,</li>
+        <li>Wargaming Group Limited,</li>
+        <li>World of Warships / Lesta (zależnie od regionu i sytuacji znaków towarowych).</li>
+      </ul>
+      <p>Wszystkie znaki i nazwy osób trzecich należą do odpowiednich właścicieli.</p>
+
+      <h2>6. Odpowiedzialność i rękojmia</h2>
+      <p>Bot jest udostępniany <strong>„tak jak jest” (as is)</strong>.</p>
+      <p>W zakresie dozwolonym przez prawo:</p>
+      <ul>
+        <li>prowadzący <strong>nie gwarantuje</strong> braku błędów, kompletności ani przydatności do określonego celu,</li>
+        <li>prowadzący <strong>nie odpowiada</strong> za szkody pośrednie, utratę danych, utracone korzyści ani szkody z konfiguracji serwera (role, nicki, uprawnienia kanałów),</li>
+        <li>odpowiedzialność za winę umyślną, rażące niedbalstwo oraz za naruszenie życia, ciała albo zdrowia pozostaje, o ile wymaga tego właściwe prawo.</li>
+      </ul>
+      <p>
+        Korzystasz z bota na własne ryzyko. Zabezpiecz sobie w razie potrzeby inny dostęp do kanałów serwera,
+        gdy weryfikacja się nie uda.
+      </p>
+
+      <h3>6.1 Awaria, zakończenie, cudze serwery</h3>
+      <p>Bot jest <strong>nieodpłatną usługą społecznościową bez umowy o poziomie usług (brak SLA)</strong>.</p>
+      <p>W zakresie dozwolonym przez prawo w szczególności:</p>
+      <ul>
+        <li>Prowadzący <strong>może</strong> w każdej chwili w całości albo w części <strong>wstrzymać, ograniczyć albo zakończyć</strong> bota (na przykład koszty, technika, zasady Discord/Wargaming, brak czasu), <strong>bez</strong> uprzedzenia i <strong>bez</strong> odszkodowania.</li>
+        <li><strong>Nie ma</strong> roszczenia o dalsze działanie, eksport danych, przywrócenie ról/nicków ani zastępczy dostęp do kanałów.</li>
+        <li>Awarie <strong>Discord</strong>, <strong>Wargaming</strong>, hostingu (na przykład Railway) albo internetu <strong>nie są</strong> odpowiedzialnością prowadzącego.</li>
+        <li>Admini serwera, którzy zapraszają bota, robią to <strong>na własne ryzyko</strong>. Roszczenia osób trzecich (członków waszego serwera) z powodu zablokowanych kanałów, utraconych ról albo nicków są <strong>waszą</strong> sprawą, nie sprawą prowadzącego bota.</li>
+        <li>Tam, gdzie bezwzględnie obowiązujące prawo nie pozwala wyłączyć odpowiedzialności, jest ona ograniczona do winy umyślnej i rażącego niedbalstwa.</li>
+      </ul>
+
+      <h2>7. Zmiany usługi</h2>
+      <p>
+        Prowadzący może zmieniać, rozszerzać albo ograniczać funkcje, albo całkowicie wyłączyć bota.
+        Istotne zmiany warunków będą w miarę możliwości ogłaszane przez aktualizację tego dokumentu
+        (nowa data „Stan”). Dalsze korzystanie po publikacji oznacza zgodę
+        na zmienione warunki, o ile prawo na to pozwala.
+      </p>
+
+      <h2>8. Zakończenie</h2>
+      <ul>
+        <li>Możesz zakończyć korzystanie na serwerze w każdej chwili (<code>/link unlink</code> na tym serwerze; zobacz politykę prywatności). Inne serwery pozostają bez zmian.</li>
+        <li>Admini serwera mogą w każdej chwili usunąć bota z serwera.</li>
+        <li>Prowadzący może <strong>w każdej chwili</strong> zakończyć świadczenie albo usunąć pojedyncze połączenia lub serwery, w szczególności przy nadużyciu, kosztach, powodach technicznych albo zakończeniu projektu. Nie ma roszczenia o uprzedzenie.</li>
+      </ul>
+
+      <h2>9. Prywatność</h2>
+      <p>
+        Informacje o przetwarzaniu danych osobowych są w
+        <a href="privacy-policy.html"><strong>Polityce prywatności</strong></a>.
+      </p>
+
+      <h2>10. Kontakt</h2>
+      <p>Pytania o te warunki:</p>
+      <ul>
+        <li><strong>Discord:</strong> motti_tv</li>
+        <li><strong>Aplikacja:</strong> WG-Link (Discord Developer Application)</li>
+      </ul>
+
+      <h2>11. Klauzula salwatoryjna</h2>
+      <p>
+        Jeśli pojedyncze postanowienia są nieważne, pozostałe pozostają w mocy.
+        W miejsce nieważnego postanowienia wchodzi ważne, które jest najbliższe celowi gospodarczemu i prawnemu.
+      </p>
+      <hr />
+      <p class="note">
+        Ten dokument nie jest poradą prawną. Dla weryfikacji aplikacji Discord oraz prywatnego
+        albo półprofesjonalnego prowadzenia bota ma być przejrzystą podstawą korzystania.
+      </p>
+    </article>
   </main>
+  <script src="lang.js?v=1"></script>
 </body>
 </html>

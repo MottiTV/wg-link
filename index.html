@@ -1,82 +1,111 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WG-Link</title>
-  <style>
-    :root {
-      color-scheme: dark light;
-      --bg: #0f1115;
-      --card: #1a1d24;
-      --text: #e8eaed;
-      --muted: #9aa0a6;
-      --accent: #5865f2;
-      --border: #2a2f3a;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-    main {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 3rem 1.25rem;
-    }
-    h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
-    p.lead { color: var(--muted); margin: 0 0 2rem; }
-    .cards { display: grid; gap: 1rem; }
-    a.card {
-      display: block;
-      padding: 1.25rem 1.5rem;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: inherit;
-      text-decoration: none;
-      transition: border-color 0.15s, transform 0.15s;
-    }
-    a.card:hover {
-      border-color: var(--accent);
-      transform: translateY(-1px);
-    }
-    a.card strong { display: block; font-size: 1.1rem; margin-bottom: 0.35rem; }
-    a.card span { color: var(--muted); font-size: 0.95rem; }
-    footer {
-      margin-top: 2.5rem;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-  </style>
+  <script>
+    (function () {
+      var titles = { en: "WG-Link", de: "WG-Link", pl: "WG-Link" };
+      var q = new URLSearchParams(location.search).get("lang");
+      var stored = "";
+      try { stored = localStorage.getItem("wg_lang") || ""; } catch (e) {}
+      var pick = /^(en|de|pl)$/.test(q) ? q : (/^(en|de|pl)$/.test(stored) ? stored : "");
+      if (!pick) {
+        var nav = (navigator.language || "").toLowerCase();
+        pick = nav.indexOf("pl") === 0 ? "pl" : (nav.indexOf("de") === 0 ? "de" : "en");
+      }
+      document.documentElement.setAttribute("data-lang", pick);
+      document.documentElement.lang = pick;
+      if (titles[pick]) document.title = titles[pick];
+    })();
+  </script>
+  <link rel="stylesheet" href="site.css?v=1" />
 </head>
-<body>
+<body class="home">
   <main>
-    <h1>WG-Link</h1>
-    <p class="lead">
-      Discord-Bot zur Verknüpfung mit World of Warships / Wargaming.
-      Einrichtung für Server-Admins, plus rechtliche Dokumente.
-    </p>
-    <div class="cards">
-      <a class="card" href="setup.html">
-        <strong>Setup</strong>
-        <span>Set up WG-Link after you invite the bot</span>
-      </a>
-      <a class="card" href="terms-of-service.html">
-        <strong>Nutzungsbedingungen</strong>
-        <span>Terms of Service – Regeln zur Nutzung des Bots</span>
-      </a>
-      <a class="card" href="privacy-policy.html">
-        <strong>Datenschutzerklärung</strong>
-        <span>Privacy Policy – welche Daten gespeichert werden</span>
-      </a>
+    <div class="topbar">
+      <div class="lang-wrap">
+        <span class="lang-kicker" data-lang="en">Language</span>
+        <span class="lang-kicker" data-lang="de">Sprache</span>
+        <span class="lang-kicker" data-lang="pl">Język</span>
+        <select class="lang-select" id="lang" aria-label="Language">
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="pl">Polski</option>
+        </select>
+      </div>
     </div>
-    <footer>
-      Betreiber: motti_tv · Stand: 16. August 2026
-    </footer>
+
+    <article class="lang-block" data-lang="en" data-title="WG-Link">
+      <h1>WG-Link</h1>
+      <p class="lead">
+        Discord bot that links World of Warships / Wargaming accounts.
+        Setup for server admins, plus the legal documents.
+      </p>
+      <div class="cards">
+        <a class="card" href="setup.html">
+          <strong>Setup</strong>
+          <span>Set up WG-Link after you invite the bot</span>
+        </a>
+        <a class="card" href="terms-of-service.html">
+          <strong>Terms of Service</strong>
+          <span>Rules for using the bot</span>
+        </a>
+        <a class="card" href="privacy-policy.html">
+          <strong>Privacy Policy</strong>
+          <span>Which data is stored</span>
+        </a>
+      </div>
+      <footer>Operator: motti_tv · Updated: 16 August 2026</footer>
+    </article>
+
+    <article class="lang-block" data-lang="de" data-title="WG-Link">
+      <h1>WG-Link</h1>
+      <p class="lead">
+        Discord-Bot zur Verknüpfung mit World of Warships / Wargaming.
+        Einrichtung für Server-Admins, plus rechtliche Dokumente.
+      </p>
+      <div class="cards">
+        <a class="card" href="setup.html">
+          <strong>Einrichtung</strong>
+          <span>WG-Link einrichten, nachdem du den Bot eingeladen hast</span>
+        </a>
+        <a class="card" href="terms-of-service.html">
+          <strong>Nutzungsbedingungen</strong>
+          <span>Regeln zur Nutzung des Bots</span>
+        </a>
+        <a class="card" href="privacy-policy.html">
+          <strong>Datenschutzerklärung</strong>
+          <span>Welche Daten gespeichert werden</span>
+        </a>
+      </div>
+      <footer>Betreiber: motti_tv · Stand: 16. August 2026</footer>
+    </article>
+
+    <article class="lang-block" data-lang="pl" data-title="WG-Link">
+      <h1>WG-Link</h1>
+      <p class="lead">
+        Bot Discord do łączenia kont World of Warships / Wargaming.
+        Konfiguracja dla administratorów serwera oraz dokumenty prawne.
+      </p>
+      <div class="cards">
+        <a class="card" href="setup.html">
+          <strong>Konfiguracja</strong>
+          <span>Skonfiguruj WG-Link po zaproszeniu bota</span>
+        </a>
+        <a class="card" href="terms-of-service.html">
+          <strong>Warunki korzystania</strong>
+          <span>Zasady korzystania z bota</span>
+        </a>
+        <a class="card" href="privacy-policy.html">
+          <strong>Polityka prywatności</strong>
+          <span>Jakie dane są przechowywane</span>
+        </a>
+      </div>
+      <footer>Prowadzący: motti_tv · Stan: 16 sierpnia 2026</footer>
+    </article>
   </main>
+  <script src="lang.js?v=1"></script>
 </body>
 </html>
