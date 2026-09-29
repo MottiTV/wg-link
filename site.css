@@ -107,3 +107,11 @@ footer { margin-top: 2.5rem; color: var(--muted); font-size: 0.85rem; }
 @media (max-width: 640px) {
   table { display: block; overflow-x: auto; }
 }
+
+/* Startseite: Funktionen + Screenshot */
+.features { margin-top: 2.2rem; }
+.features ul { padding-left: 1.2rem; line-height: 1.55; }
+.features li { margin: 0.35rem 0; }
+.shot { margin: 1.2rem 0 0; }
+.shot img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.12); }
+.shot figcaption { margin-top: 0.45rem; color: var(--muted); font-size: 0.85rem; }

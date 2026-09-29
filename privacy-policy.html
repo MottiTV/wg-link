@@ -50,7 +50,7 @@
       <p class="meta">
         <strong>Service:</strong> WG-Link (Discord bot / Discord application)<br />
         <strong>Controller:</strong> motti_tv<br />
-        <strong>Updated:</strong> 16 August 2026
+        <strong>Updated:</strong> 30 September 2026
       </p>
       <p>
         This Privacy Policy explains which personal data is processed when you use
@@ -177,7 +177,22 @@
         After that the token is gone, or it is used up and deleted.
       </p>
 
-      <h3>3.5 Technically necessary data</h3>
+      <h3>3.5 Optional: PR roles (only if the server switches them on)</h3>
+      <p>
+        Server admins can switch on <strong>PR roles</strong> in the admin panel. They are <strong>off by default</strong>.
+        Only then, for members linked <strong>on that server</strong>, the bot reads the <strong>public</strong> random-battle
+        statistics per ship of the linked World of Warships account from the Wargaming API (battles, wins, kills, damage)
+        and calculates the <strong>Personal Rating</strong> with the formula and daily ship averages of wows-numbers.com.
+        The member then gets the matching Discord role (for example “PR · Unicum”).
+      </p>
+      <p>
+        The statistics and the PR number are <strong>not stored</strong>. The bot only keeps the role on Discord and, per server,
+        how many members were in each level at the last update. Hidden profiles get no PR role. Updates happen on linking,
+        on <code>/link refresh</code> and once a day. Switching it off stops the updates; admins can also delete the roles.
+        After <code>/link unlink</code> the PR role is removed.
+      </p>
+
+      <h3>3.6 Technically necessary data</h3>
       <p>
         When the bot’s login or callback page is opened, ordinary server logs can be created
         (for example time, IP address, user agent — depending on hosting, ngrok, or a proxy).
@@ -188,13 +203,13 @@
         They are for operation, not for marketing.
       </p>
 
-      <h3>3.6 What is <strong>not</strong> stored</h3>
+      <h3>3.7 What is <strong>not</strong> stored</h3>
       <ul>
         <li><strong>No</strong> Wargaming or Discord passwords</li>
         <li><strong>No</strong> payment details</li>
         <li><strong>No</strong> private message contents for the purpose of linking (except the interactions needed for commands)</li>
         <li><strong>No</strong> lasting Wargaming access token in the link database (a login token is used only for the callback and is not stored permanently)</li>
-        <li><strong>No</strong> campaign, ship, or battle statistics beyond the public profile (name + clan)</li>
+        <li><strong>No</strong> stored campaign, ship, or battle statistics beyond the public profile (name + clan) – with PR roles switched on, public random-battle statistics are only read to work out the level (see 3.5)</li>
         <li><strong>No</strong> profiling for advertising</li>
       </ul>
 
@@ -209,6 +224,7 @@
       <ol>
         <li>Carry out the account link</li>
         <li>Set and keep current the nickname (including clan tag) and the verified role</li>
+        <li>Optional, only if the server switches it on: a role for the Personal Rating level (PR roles)</li>
         <li>Show link status (<code>/link status</code> and similar)</li>
         <li>User refresh (<code>/link refresh</code>) and unlink (<code>/link unlink</code>)</li>
         <li>Admin/mod functions: set up the server, check, list, scan, set nick style, resync nick/clan, remove a link, compare roles</li>
@@ -236,7 +252,11 @@
           </tr>
           <tr>
             <td><strong>Wargaming</strong></td>
-            <td>OpenID login and retrieval of <strong>public</strong> account information (nickname, clan tag/clan ID) — on the first login <strong>and</strong> later on refresh/resync</td>
+            <td>OpenID login and retrieval of <strong>public</strong> account information (nickname, clan tag/clan ID) — on the first login <strong>and</strong> later on refresh/resync; with PR roles switched on also the public random-battle statistics per ship</td>
+          </tr>
+          <tr>
+            <td><strong>wows-numbers.com</strong></td>
+            <td>Only with PR roles: download of the daily ship averages for the PR formula — <strong>no</strong> personal data is sent</td>
           </tr>
           <tr>
             <td><strong>Hosting / tunnel</strong></td>
@@ -299,7 +319,7 @@
         <li>using the official Wargaming login flow,</li>
         <li>short-lived state parameters for the callback,</li>
         <li>access to stored links only for operation and for authorised admins/moderators (through bot commands),</li>
-        <li>resync only manually and with a cooldown, so the public APIs are not loaded without need.</li>
+        <li>resync only manually and with a cooldown, so the public APIs are not loaded without need (PR roles, if switched on: once a day, with pauses between requests).</li>
       </ul>
       <p>Absolute security on the internet cannot be guaranteed.</p>
 
@@ -310,7 +330,9 @@
       <p>
         As part of linking, the bot sets a role and a nickname. A later refresh/resync changes only the
         stored record and the server nick when the <strong>public</strong> WoWS name or clan has changed.
-        There is no scoring, rating, or advertising analysis.
+        Optional PR roles (only if a server switches them on) put members into a level of the public Personal Rating,
+        a community measure from wows-numbers.com. This only decides which Discord role is shown and has no legal or
+        similarly significant effect. There is no other scoring and no advertising analysis.
       </p>
 
       <h2>12. Changes to this policy</h2>
@@ -350,7 +372,7 @@
       <p class="meta">
         <strong>Dienst:</strong> WG-Link (Discord-Bot / Discord-Anwendung)<br />
         <strong>Verantwortlicher:</strong> motti_tv<br />
-        <strong>Stand:</strong> 16. August 2026
+        <strong>Stand:</strong> 30. September 2026
       </p>
       <p>
         Diese Datenschutzerklärung informiert darüber, welche personenbezogenen Daten bei der Nutzung von
@@ -478,7 +500,22 @@
         Danach entfällt der Token bzw. er wird verbraucht/gelöscht.
       </p>
 
-      <h3>3.5 Technisch notwendige Daten</h3>
+      <h3>3.5 Optional: PR-Rollen (nur wenn der Server sie einschaltet)</h3>
+      <p>
+        Server-Admins können im Admin-Panel <strong>PR-Rollen</strong> einschalten. Sie sind <strong>standardmäßig aus</strong>.
+        Nur dann liest der Bot für die <strong>auf diesem Server</strong> verknüpften Mitglieder die <strong>öffentlichen</strong>
+        Random-Gefechts-Statistiken pro Schiff des verknüpften World-of-Warships-Kontos über die Wargaming-API (Gefechte,
+        Siege, Kills, Schaden) und berechnet das <strong>Personal Rating</strong> mit der Formel und den täglichen
+        Schiffs-Durchschnitten von wows-numbers.com. Das Mitglied erhält die passende Discord-Rolle (z. B. „PR · Unicum“).
+      </p>
+      <p>
+        Die Statistiken und die PR-Zahl werden <strong>nicht gespeichert</strong>. Der Bot behält nur die Rolle auf Discord und
+        pro Server, wie viele Mitglieder beim letzten Abgleich in jeder Stufe waren. Versteckte Profile bekommen keine
+        PR-Rolle. Aktualisiert wird bei der Verknüpfung, bei <code>/link refresh</code> und einmal am Tag. Ausschalten beendet
+        die Aktualisierung; Admins können die Rollen auch löschen. Nach <code>/link unlink</code> wird die PR-Rolle entfernt.
+      </p>
+
+      <h3>3.6 Technisch notwendige Daten</h3>
       <p>
         Beim Aufruf der Login-/Callback-Webseite des Bots können übliche Server-Logs anfallen
         (z. B. Zeitpunkt, IP-Adresse, User-Agent – abhängig von Hosting/ngrok/Proxy).
@@ -489,13 +526,13 @@
         Sie dienen dem Betrieb, nicht dem Marketing.
       </p>
 
-      <h3>3.6 Was wird <strong>nicht</strong> gespeichert</h3>
+      <h3>3.7 Was wird <strong>nicht</strong> gespeichert</h3>
       <ul>
         <li><strong>Keine</strong> Wargaming- oder Discord-Passwörter</li>
         <li><strong>Keine</strong> Zahlungsmitteldaten</li>
         <li><strong>Keine</strong> privaten Nachrichten-Inhalte zum Zweck der Verknüpfung (außer den für Befehle nötigen Interaktionen)</li>
         <li><strong>Kein</strong> dauerhafter Wargaming-Access-Token in der Verknüpfungsdatenbank (ein Login-Token dient nur dem Callback und wird nicht dauerhaft gespeichert)</li>
-        <li><strong>Keine</strong> Kampagnen-, Schiffs- oder Kampfstatistiken über das öffentliche Profil (Name + Klan) hinaus</li>
+        <li><strong>Keine</strong> gespeicherten Kampagnen-, Schiffs- oder Kampfstatistiken über das öffentliche Profil (Name + Klan) hinaus – bei eingeschalteten PR-Rollen werden öffentliche Random-Statistiken nur gelesen, um die Stufe zu bestimmen (siehe 3.5)</li>
         <li><strong>Kein</strong> Profiling zu Werbezwecken</li>
       </ul>
 
@@ -510,6 +547,7 @@
       <ol>
         <li>Durchführen der Account-Verknüpfung</li>
         <li>Setzen und aktuell halten von Nickname (inkl. Klan-Tag) und Verifizierungs-Rolle</li>
+        <li>Optional, nur wenn der Server es einschaltet: eine Rolle für die Personal-Rating-Stufe (PR-Rollen)</li>
         <li>Anzeige des Verknüpfungsstatus (<code>/link status</code> u. ä.)</li>
         <li>Nutzer-Aktualisierung (<code>/link refresh</code>) und Trennen (<code>/link unlink</code>)</li>
         <li>Admin-/Mod-Funktionen: Server einrichten, prüfen, listen, scannen, Nick-Stil setzen, Nick/Klan resyncen, Verknüpfung entfernen, Rollen abgleichen</li>
@@ -537,7 +575,11 @@
           </tr>
           <tr>
             <td><strong>Wargaming</strong></td>
-            <td>OpenID-Login und Abruf <strong>öffentlicher</strong> Account-Infos (Nickname, Klan-Tag/Klan-ID) – beim ersten Login <strong>und</strong> später bei Refresh/Resync</td>
+            <td>OpenID-Login und Abruf <strong>öffentlicher</strong> Account-Infos (Nickname, Klan-Tag/Klan-ID) – beim ersten Login <strong>und</strong> später bei Refresh/Resync; bei eingeschalteten PR-Rollen auch die öffentlichen Random-Statistiken pro Schiff</td>
+          </tr>
+          <tr>
+            <td><strong>wows-numbers.com</strong></td>
+            <td>Nur bei PR-Rollen: Abruf der täglichen Schiffs-Durchschnitte für die PR-Formel – es werden <strong>keine</strong> personenbezogenen Daten übermittelt</td>
           </tr>
           <tr>
             <td><strong>Hosting / Tunnel</strong></td>
@@ -600,7 +642,7 @@
         <li>Nutzung des offiziellen Wargaming-Login-Flows,</li>
         <li>kurzlebige State-Parameter für den Callback,</li>
         <li>Zugriff auf gespeicherte Verknüpfungen nur für den Betrieb und berechtigte Admins/Moderatoren (über Bot-Befehle),</li>
-        <li>Resync nur manuell und mit Cooldown, damit die öffentlichen APIs nicht unnötig belastet werden.</li>
+        <li>Resync nur manuell und mit Cooldown, damit die öffentlichen APIs nicht unnötig belastet werden (PR-Rollen, wenn eingeschaltet: einmal am Tag, mit Pausen zwischen den Abfragen).</li>
       </ul>
       <p>Eine absolute Sicherheit im Internet kann nicht garantiert werden.</p>
 
@@ -609,7 +651,9 @@
       <p>
         Der Bot setzt im Rahmen der Verknüpfung Rolle und Nickname. Ein späterer Refresh/Resync ändert nur den
         gespeicherten Stand und den Server-Nick, wenn sich der <strong>öffentliche</strong> WoWS-Name oder Klan geändert hat.
-        Es gibt keine Bewertung, Scoring oder werbliche Auswertung.
+        Optionale PR-Rollen (nur wenn ein Server sie einschaltet) ordnen Mitglieder einer Stufe des öffentlichen Personal
+        Ratings zu, einer Community-Kennzahl von wows-numbers.com. Das entscheidet nur, welche Discord-Rolle angezeigt wird,
+        und hat keine rechtliche oder ähnlich erhebliche Wirkung. Ein weiteres Scoring oder eine werbliche Auswertung gibt es nicht.
       </p>
 
       <h2>12. Änderungen dieser Erklärung</h2>
@@ -647,7 +691,7 @@
       <p class="meta">
         <strong>Usługa:</strong> WG-Link (bot Discord / aplikacja Discord)<br />
         <strong>Administrator danych:</strong> motti_tv<br />
-        <strong>Stan:</strong> 16 sierpnia 2026
+        <strong>Stan:</strong> 30 września 2026
       </p>
       <p>
         Ta polityka prywatności informuje, jakie dane osobowe są przetwarzane przy korzystaniu z
@@ -774,7 +818,22 @@
         Potem token odpada albo zostaje zużyty i usunięty.
       </p>
 
-      <h3>3.5 Dane technicznie konieczne</h3>
+      <h3>3.5 Opcjonalnie: role PR (tylko gdy serwer je włączy)</h3>
+      <p>
+        Admini serwera mogą włączyć <strong>role PR</strong> w panelu administracyjnym. Są <strong>domyślnie wyłączone</strong>.
+        Tylko wtedy bot odczytuje dla członków połączonych <strong>na tym serwerze</strong> <strong>publiczne</strong> statystyki
+        bitew losowych dla każdego okrętu połączonego konta World of Warships z API Wargaming (bitwy, zwycięstwa, zniszczenia,
+        obrażenia) i oblicza <strong>Personal Rating</strong> według wzoru i dziennych średnich okrętów z wows-numbers.com.
+        Członek otrzymuje odpowiednią rolę Discord (na przykład „PR · Unikum”).
+      </p>
+      <p>
+        Statystyki i liczba PR <strong>nie są zapisywane</strong>. Bot zachowuje tylko rolę na Discordzie oraz, dla każdego
+        serwera, ilu członków było na każdym poziomie przy ostatniej aktualizacji. Ukryte profile nie dostają roli PR.
+        Aktualizacja następuje przy połączeniu, przy <code>/link refresh</code> i raz dziennie. Wyłączenie zatrzymuje
+        aktualizacje; admini mogą też usunąć role. Po <code>/link unlink</code> rola PR jest usuwana.
+      </p>
+
+      <h3>3.6 Dane technicznie konieczne</h3>
       <p>
         Przy otwarciu strony logowania albo callbacku bota mogą powstać zwykłe logi serwera
         (na przykład czas, adres IP, user agent — zależnie od hostingu, ngrok albo proxy).
@@ -785,13 +844,13 @@
         Służą działaniu, nie marketingowi.
       </p>
 
-      <h3>3.6 Czego <strong>nie</strong> zapisujemy</h3>
+      <h3>3.7 Czego <strong>nie</strong> zapisujemy</h3>
       <ul>
         <li><strong>Żadnych</strong> haseł Wargaming ani Discord</li>
         <li><strong>Żadnych</strong> danych płatniczych</li>
         <li><strong>Żadnej</strong> treści prywatnych wiadomości w celu łączenia (poza interakcjami potrzebnymi do komend)</li>
         <li><strong>Żadnego</strong> trwałego tokenu dostępu Wargaming w bazie połączeń (token logowania służy tylko callbackowi i nie jest przechowywany na stałe)</li>
-        <li><strong>Żadnych</strong> statystyk kampanii, okrętów ani bitew poza publicznym profilem (nazwa + klan)</li>
+        <li><strong>Żadnych</strong> zapisanych statystyk kampanii, okrętów ani bitew poza publicznym profilem (nazwa + klan) – przy włączonych rolach PR publiczne statystyki bitew losowych są tylko odczytywane, aby ustalić poziom (zob. 3.5)</li>
         <li><strong>Żadnego</strong> profilowania do celów reklamowych</li>
       </ul>
 
@@ -806,6 +865,7 @@
       <ol>
         <li>Wykonanie połączenia kont</li>
         <li>Ustawienie i utrzymanie aktualnego nicku (w tym tagu klanu) oraz roli weryfikacji</li>
+        <li>Opcjonalnie, tylko gdy serwer to włączy: rola za poziom Personal Rating (role PR)</li>
         <li>Pokazanie statusu połączenia (<code>/link status</code> i podobne)</li>
         <li>Aktualizacja przez użytkownika (<code>/link refresh</code>) i rozłączenie (<code>/link unlink</code>)</li>
         <li>Funkcje admina/moderatora: konfiguracja serwera, sprawdzanie, listy, skan, styl nicku, resync nicku/klanu, usunięcie połączenia, porównanie ról</li>
@@ -833,7 +893,11 @@
           </tr>
           <tr>
             <td><strong>Wargaming</strong></td>
-            <td>Logowanie OpenID i pobranie <strong>publicznych</strong> informacji o koncie (nick, tag klanu/ID klanu) — przy pierwszym logowaniu <strong>i</strong> później przy refresh/resync</td>
+            <td>Logowanie OpenID i pobranie <strong>publicznych</strong> informacji o koncie (nick, tag klanu/ID klanu) — przy pierwszym logowaniu <strong>i</strong> później przy refresh/resync; przy włączonych rolach PR także publiczne statystyki bitew losowych dla okrętów</td>
+          </tr>
+          <tr>
+            <td><strong>wows-numbers.com</strong></td>
+            <td>Tylko przy rolach PR: pobranie dziennych średnich okrętów do wzoru PR — <strong>nie</strong> są przesyłane żadne dane osobowe</td>
           </tr>
           <tr>
             <td><strong>Hosting / tunel</strong></td>
@@ -896,7 +960,7 @@
         <li>użycie oficjalnego przepływu logowania Wargaming,</li>
         <li>krótkotrwałe parametry state dla callbacku,</li>
         <li>dostęp do zapisanych połączeń tylko dla działania oraz uprawnionych adminów/moderatorów (przez komendy bota),</li>
-        <li>resync tylko ręcznie i z cooldownem, żeby publiczne API nie były obciążane bez potrzeby.</li>
+        <li>resync tylko ręcznie i z cooldownem, żeby publiczne API nie były obciążane bez potrzeby (role PR, jeśli włączone: raz dziennie, z przerwami między zapytaniami).</li>
       </ul>
       <p>Bezwzględnego bezpieczeństwa w internecie nie da się zagwarantować.</p>
 
@@ -907,7 +971,9 @@
       <p>
         W ramach łączenia bot ustawia rolę i nick. Późniejszy refresh/resync zmienia tylko
         zapisany stan i nick na serwerze, gdy zmieniła się <strong>publiczna</strong> nazwa WoWS albo klan.
-        Nie ma oceny, scoringu ani analizy reklamowej.
+        Opcjonalne role PR (tylko gdy serwer je włączy) przypisują członków do poziomu publicznego Personal Rating,
+        miary społeczności z wows-numbers.com. Decyduje to tylko o tym, jaka rola Discord jest widoczna, i nie ma skutku
+        prawnego ani podobnie istotnego. Nie ma innego scoringu ani analizy reklamowej.
       </p>
 
       <h2>12. Zmiany tej polityki</h2>
