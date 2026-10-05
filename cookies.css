@@ -1,0 +1,60 @@
+/* Cookie-Info-Fenster (Motti_TV-Projekte). Farben je Projekt über die Variablen im :root-Block oben. */
+:root {
+  --ck-bg: var(--card, #1a1d24);
+  --ck-card: var(--bg, #0f1115);
+  --ck-fg: var(--text, #e8eaed);
+  --ck-muted: var(--muted, #9aa0a6);
+  --ck-border: var(--border, #2a2f3a);
+  --ck-accent: var(--accent, #5865f2);
+  --ck-on-accent: #fff;
+  --ck-code: rgba(255,255,255,.07);
+  --ck-off: #3a3f4a;
+}
+.ck-dialog {
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 22px 24px 20px;
+  border: 1px solid var(--ck-border);
+  border-radius: 16px;
+  background: var(--ck-bg);
+  color: var(--ck-fg);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, .45);
+}
+.ck-dialog:focus { outline: none; }
+.ck-dialog::backdrop { background: rgba(0, 0, 0, .6); }
+.ck-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.ck-top h2 { margin: 0; font-size: 1.35em; }
+.ck-x { background: none; border: 0; color: var(--ck-muted); font-size: 26px; line-height: 1; cursor: pointer; padding: 2px 6px; }
+.ck-x:hover { color: var(--ck-fg); }
+.ck-lead { margin: 10px 0 14px; color: var(--ck-muted); }
+.ck-section { margin: 0 0 12px; padding: 14px 16px; border: 1px solid var(--ck-border); border-radius: 12px; background: var(--ck-card); }
+.ck-section-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.ck-section h3 { margin: 0 0 2px; font-size: 1em; }
+.ck-note { margin: 0; color: var(--ck-muted); font-size: .92em; }
+.ck-list { list-style: none; margin: 10px 0 0; padding: 0; }
+.ck-item { padding: 8px 0 0; margin-top: 8px; border-top: 1px solid var(--ck-border); }
+.ck-item-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ck-name { font-size: .88em; padding: 1px 6px; border-radius: 6px; background: var(--ck-code); color: var(--ck-fg); }
+.ck-kind { font-size: .8em; color: var(--ck-muted); text-transform: uppercase; letter-spacing: .04em; }
+.ck-what { margin: 4px 0 0; font-size: .92em; }
+.ck-keep { margin: 2px 0 0; font-size: .85em; color: var(--ck-muted); }
+.ck-switch { display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0; cursor: pointer; font-size: .85em; color: var(--ck-muted); }
+.ck-switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.ck-switch-track { position: relative; width: 42px; height: 24px; border-radius: 12px; background: var(--ck-off); transition: background .15s; }
+.ck-switch-track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .15s; }
+.ck-switch input:checked + .ck-switch-track { background: var(--ck-accent); }
+.ck-switch input:checked + .ck-switch-track::after { transform: translateX(18px); }
+.ck-switch input:focus-visible + .ck-switch-track { outline: 2px solid var(--ck-accent); outline-offset: 2px; }
+.ck-switch-locked { cursor: default; }
+.ck-switch-locked .ck-switch-track { opacity: .55; }
+.ck-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+.ck-privacy { color: var(--ck-accent); }
+.ck-close { border: 0; border-radius: 10px; padding: 9px 20px; background: var(--ck-accent); color: var(--ck-on-accent); font: inherit; font-weight: 600; cursor: pointer; }
+.ck-close:hover { filter: brightness(1.1); }
+[data-cookie-info] { cursor: pointer; }
+.cookie-line { margin: 32px 0 8px; text-align: center; font-size: .9em; }
+.cookie-line a { color: var(--ck-muted); }
