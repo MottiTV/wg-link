@@ -51,7 +51,7 @@
       <p class="meta">
         <strong>Service:</strong> WG-Link (Discord bot / Discord application)<br />
         <strong>Controller:</strong> motti_tv<br />
-        <strong>Updated:</strong> 1 October 2026
+        <strong>Updated:</strong> 15 November 2026
       </p>
       <p>
         This Privacy Policy explains which personal data is processed when you use
@@ -178,7 +178,7 @@
         After that the token is gone, or it is used up and deleted.
       </p>
 
-      <h3>3.5 Optional: PR roles (only if the server switches them on)</h3>
+      <h3>3.5 Optional: PR, clan rank and Ranked roles (only if the server switches them on)</h3>
       <p>
         Server admins can switch on <strong>PR roles</strong> in the admin panel. They are <strong>off by default</strong>.
         Only then, for members linked <strong>on that server</strong>, the bot reads the <strong>public</strong> random-battle
@@ -192,6 +192,14 @@
         how many members were in each level at the last update. Hidden profiles get no PR role. Updates happen on linking,
         on <code>/link refresh</code> and once a day. Switching it off stops the updates; admins can also delete the roles.
         After <code>/link unlink</code> the PR role is removed.
+      </p>
+      <p>
+        <strong>Clan rank and Ranked league roles</strong> work the same way and are also <strong>off by default</strong> (each switched
+        on separately). If switched on, the bot reads from the Wargaming API the member’s <strong>rank in their clan</strong>
+        (for example Commander or Private) and the <strong>public Ranked results</strong> (league and rank per season) and gives the
+        matching Discord role. Admins can limit clan rank roles to certain clan tags. Only the role on Discord and, per server, the
+        number of members per role at the last update are kept; the Ranked results are <strong>not stored</strong>. Updates, switching
+        off and <code>/link unlink</code> work as for PR roles.
       </p>
 
       <h3>3.6 Technically necessary data</h3>
@@ -227,7 +235,7 @@
         <li><strong>No</strong> payment details</li>
         <li><strong>No</strong> private message contents for the purpose of linking (except the interactions needed for commands)</li>
         <li><strong>No</strong> lasting Wargaming access token in the link database (a login token is used only for the callback and is not stored permanently)</li>
-        <li><strong>No</strong> stored campaign, ship, or battle statistics beyond the public profile (name + clan) – with PR roles switched on, public random-battle statistics are only read to work out the level (see 3.5)</li>
+        <li><strong>No</strong> stored campaign, ship, or battle statistics beyond the public profile (name + clan) – with PR, clan rank or Ranked roles switched on, the public statistics, clan rank and Ranked results are only read to work out the role (see 3.5)</li>
         <li><strong>No</strong> profiling for advertising</li>
       </ul>
 
@@ -243,6 +251,7 @@
         <li>Carry out the account link</li>
         <li>Set and keep current the nickname (including clan tag) and the verified role</li>
         <li>Optional, only if the server switches it on: a role for the Personal Rating level (PR roles)</li>
+        <li>Optional, only if the server switches it on: a role for the clan rank and for the Ranked league of the current season</li>
         <li>Show link status (<code>/link status</code> and similar)</li>
         <li>User refresh (<code>/link refresh</code>) and unlink (<code>/link unlink</code>)</li>
         <li>Admin/mod functions: set up the server, check, list, scan, set nick style, resync nick/clan, remove a link, compare roles</li>
@@ -270,7 +279,7 @@
           </tr>
           <tr>
             <td><strong>Wargaming</strong></td>
-            <td>OpenID login and retrieval of <strong>public</strong> account information (nickname, clan tag/clan ID) — on the first login <strong>and</strong> later on refresh/resync; with PR roles switched on also the public random-battle statistics per ship</td>
+            <td>OpenID login and retrieval of <strong>public</strong> account information (nickname, clan tag/clan ID) — on the first login <strong>and</strong> later on refresh/resync; with PR roles switched on also the public random-battle statistics per ship; with clan rank / Ranked roles switched on also the clan rank and the public Ranked results</td>
           </tr>
           <tr>
             <td><strong>wows-numbers.com</strong></td>
@@ -349,7 +358,8 @@
         As part of linking, the bot sets a role and a nickname. A later refresh/resync changes only the
         stored record and the server nick when the <strong>public</strong> WoWS name or clan has changed.
         Optional PR roles (only if a server switches them on) put members into a level of the public Personal Rating,
-        a community measure from wows-numbers.com. This only decides which Discord role is shown and has no legal or
+        a community measure from wows-numbers.com. Optional clan rank and Ranked roles only mirror the in-game clan rank and
+        Ranked league. This only decides which Discord role is shown and has no legal or
         similarly significant effect. There is no other scoring and no advertising analysis.
       </p>
 
@@ -390,7 +400,7 @@
       <p class="meta">
         <strong>Dienst:</strong> WG-Link (Discord-Bot / Discord-Anwendung)<br />
         <strong>Verantwortlicher:</strong> motti_tv<br />
-        <strong>Stand:</strong> 1. Oktober 2026
+        <strong>Stand:</strong> 15. November 2026
       </p>
       <p>
         Diese Datenschutzerklärung informiert darüber, welche personenbezogenen Daten bei der Nutzung von
@@ -518,7 +528,7 @@
         Danach entfällt der Token bzw. er wird verbraucht/gelöscht.
       </p>
 
-      <h3>3.5 Optional: PR-Rollen (nur wenn der Server sie einschaltet)</h3>
+      <h3>3.5 Optional: PR-, Clan-Rang- und Ranked-Rollen (nur wenn der Server sie einschaltet)</h3>
       <p>
         Server-Admins können im Admin-Panel <strong>PR-Rollen</strong> einschalten. Sie sind <strong>standardmäßig aus</strong>.
         Nur dann liest der Bot für die <strong>auf diesem Server</strong> verknüpften Mitglieder die <strong>öffentlichen</strong>
@@ -533,6 +543,14 @@
         pro Server, wie viele Mitglieder beim letzten Abgleich in jeder Stufe waren. Versteckte Profile bekommen keine
         PR-Rolle. Aktualisiert wird bei der Verknüpfung, bei <code>/link refresh</code> und einmal am Tag. Ausschalten beendet
         die Aktualisierung; Admins können die Rollen auch löschen. Nach <code>/link unlink</code> wird die PR-Rolle entfernt.
+      </p>
+      <p>
+        <strong>Clan-Rang- und Ranked-Liga-Rollen</strong> funktionieren genauso und sind ebenfalls <strong>standardmäßig aus</strong>
+        (jede Art einzeln einschaltbar). Wenn eingeschaltet, liest der Bot über die Wargaming-API den <strong>Rang des Mitglieds in
+        seinem Clan</strong> (z. B. Kommandant oder Gefreiter) und die <strong>öffentlichen Ranked-Ergebnisse</strong> (Liga und Rang je
+        Saison) und vergibt die passende Discord-Rolle. Admins können Clan-Rang-Rollen auf bestimmte Clan-Tags beschränken. Gespeichert
+        werden nur die Rolle auf Discord und pro Server die Anzahl der Mitglieder je Rolle beim letzten Abgleich; die Ranked-Ergebnisse
+        werden <strong>nicht gespeichert</strong>. Aktualisierung, Ausschalten und <code>/link unlink</code> wie bei den PR-Rollen.
       </p>
 
       <h3>3.6 Technisch notwendige Daten</h3>
@@ -569,7 +587,7 @@
         <li><strong>Keine</strong> Zahlungsmitteldaten</li>
         <li><strong>Keine</strong> privaten Nachrichten-Inhalte zum Zweck der Verknüpfung (außer den für Befehle nötigen Interaktionen)</li>
         <li><strong>Kein</strong> dauerhafter Wargaming-Access-Token in der Verknüpfungsdatenbank (ein Login-Token dient nur dem Callback und wird nicht dauerhaft gespeichert)</li>
-        <li><strong>Keine</strong> gespeicherten Kampagnen-, Schiffs- oder Kampfstatistiken über das öffentliche Profil (Name + Klan) hinaus – bei eingeschalteten PR-Rollen werden öffentliche Random-Statistiken nur gelesen, um die Stufe zu bestimmen (siehe 3.5)</li>
+        <li><strong>Keine</strong> gespeicherten Kampagnen-, Schiffs- oder Kampfstatistiken über das öffentliche Profil (Name + Klan) hinaus – bei eingeschalteten PR-, Clan-Rang- oder Ranked-Rollen werden öffentliche Statistiken, Clan-Rang und Ranked-Ergebnisse nur gelesen, um die Rolle zu bestimmen (siehe 3.5)</li>
         <li><strong>Kein</strong> Profiling zu Werbezwecken</li>
       </ul>
 
@@ -585,6 +603,7 @@
         <li>Durchführen der Account-Verknüpfung</li>
         <li>Setzen und aktuell halten von Nickname (inkl. Klan-Tag) und Verifizierungs-Rolle</li>
         <li>Optional, nur wenn der Server es einschaltet: eine Rolle für die Personal-Rating-Stufe (PR-Rollen)</li>
+        <li>Optional, nur wenn der Server es einschaltet: eine Rolle für den Clan-Rang und für die Ranked-Liga der aktuellen Saison</li>
         <li>Anzeige des Verknüpfungsstatus (<code>/link status</code> u. ä.)</li>
         <li>Nutzer-Aktualisierung (<code>/link refresh</code>) und Trennen (<code>/link unlink</code>)</li>
         <li>Admin-/Mod-Funktionen: Server einrichten, prüfen, listen, scannen, Nick-Stil setzen, Nick/Klan resyncen, Verknüpfung entfernen, Rollen abgleichen</li>
@@ -612,7 +631,7 @@
           </tr>
           <tr>
             <td><strong>Wargaming</strong></td>
-            <td>OpenID-Login und Abruf <strong>öffentlicher</strong> Account-Infos (Nickname, Klan-Tag/Klan-ID) – beim ersten Login <strong>und</strong> später bei Refresh/Resync; bei eingeschalteten PR-Rollen auch die öffentlichen Random-Statistiken pro Schiff</td>
+            <td>OpenID-Login und Abruf <strong>öffentlicher</strong> Account-Infos (Nickname, Klan-Tag/Klan-ID) – beim ersten Login <strong>und</strong> später bei Refresh/Resync; bei eingeschalteten PR-Rollen auch die öffentlichen Random-Statistiken pro Schiff; bei eingeschalteten Clan-Rang-/Ranked-Rollen auch der Clan-Rang und die öffentlichen Ranked-Ergebnisse</td>
           </tr>
           <tr>
             <td><strong>wows-numbers.com</strong></td>
@@ -689,7 +708,8 @@
         Der Bot setzt im Rahmen der Verknüpfung Rolle und Nickname. Ein späterer Refresh/Resync ändert nur den
         gespeicherten Stand und den Server-Nick, wenn sich der <strong>öffentliche</strong> WoWS-Name oder Klan geändert hat.
         Optionale PR-Rollen (nur wenn ein Server sie einschaltet) ordnen Mitglieder einer Stufe des öffentlichen Personal
-        Ratings zu, einer Community-Kennzahl von wows-numbers.com. Das entscheidet nur, welche Discord-Rolle angezeigt wird,
+        Ratings zu, einer Community-Kennzahl von wows-numbers.com. Optionale Clan-Rang- und Ranked-Rollen spiegeln nur den Rang
+        im Clan und die Ranked-Liga aus dem Spiel. Das entscheidet nur, welche Discord-Rolle angezeigt wird,
         und hat keine rechtliche oder ähnlich erhebliche Wirkung. Ein weiteres Scoring oder eine werbliche Auswertung gibt es nicht.
       </p>
 
@@ -728,7 +748,7 @@
       <p class="meta">
         <strong>Usługa:</strong> WG-Link (bot Discord / aplikacja Discord)<br />
         <strong>Administrator danych:</strong> motti_tv<br />
-        <strong>Stan:</strong> 1 października 2026
+        <strong>Stan:</strong> 15 listopada 2026
       </p>
       <p>
         Ta polityka prywatności informuje, jakie dane osobowe są przetwarzane przy korzystaniu z
@@ -855,7 +875,7 @@
         Potem token odpada albo zostaje zużyty i usunięty.
       </p>
 
-      <h3>3.5 Opcjonalnie: role PR (tylko gdy serwer je włączy)</h3>
+      <h3>3.5 Opcjonalnie: role PR, rangi w klanie i rankingowe (tylko gdy serwer je włączy)</h3>
       <p>
         Admini serwera mogą włączyć <strong>role PR</strong> w panelu administracyjnym. Są <strong>domyślnie wyłączone</strong>.
         Tylko wtedy bot odczytuje dla członków połączonych <strong>na tym serwerze</strong> <strong>publiczne</strong> statystyki
@@ -869,6 +889,14 @@
         serwera, ilu członków było na każdym poziomie przy ostatniej aktualizacji. Ukryte profile nie dostają roli PR.
         Aktualizacja następuje przy połączeniu, przy <code>/link refresh</code> i raz dziennie. Wyłączenie zatrzymuje
         aktualizacje; admini mogą też usunąć role. Po <code>/link unlink</code> rola PR jest usuwana.
+      </p>
+      <p>
+        <strong>Role rangi w klanie i lig rankingowych</strong> działają tak samo i również są <strong>domyślnie wyłączone</strong>
+        (każdą włącza się osobno). Po włączeniu bot odczytuje z API Wargaming <strong>rangę członka w jego klanie</strong>
+        (np. Dowódca lub Szeregowy) oraz <strong>publiczne wyniki rankingowe</strong> (liga i ranga w sezonie) i nadaje odpowiednią rolę
+        Discord. Admini mogą ograniczyć role rangi w klanie do wybranych tagów klanów. Zapisywana jest tylko rola na Discordzie oraz, dla
+        każdego serwera, liczba członków w każdej roli przy ostatniej aktualizacji; wyniki rankingowe <strong>nie są zapisywane</strong>.
+        Aktualizacja, wyłączanie i <code>/link unlink</code> działają jak przy rolach PR.
       </p>
 
       <h3>3.6 Dane technicznie konieczne</h3>
@@ -904,7 +932,7 @@
         <li><strong>Żadnych</strong> danych płatniczych</li>
         <li><strong>Żadnej</strong> treści prywatnych wiadomości w celu łączenia (poza interakcjami potrzebnymi do komend)</li>
         <li><strong>Żadnego</strong> trwałego tokenu dostępu Wargaming w bazie połączeń (token logowania służy tylko callbackowi i nie jest przechowywany na stałe)</li>
-        <li><strong>Żadnych</strong> zapisanych statystyk kampanii, okrętów ani bitew poza publicznym profilem (nazwa + klan) – przy włączonych rolach PR publiczne statystyki bitew losowych są tylko odczytywane, aby ustalić poziom (zob. 3.5)</li>
+        <li><strong>Żadnych</strong> zapisanych statystyk kampanii, okrętów ani bitew poza publicznym profilem (nazwa + klan) – przy włączonych rolach PR, rangi w klanie lub rankingowych publiczne statystyki, ranga w klanie i wyniki rankingowe są tylko odczytywane, aby ustalić rolę (zob. 3.5)</li>
         <li><strong>Żadnego</strong> profilowania do celów reklamowych</li>
       </ul>
 
@@ -920,6 +948,7 @@
         <li>Wykonanie połączenia kont</li>
         <li>Ustawienie i utrzymanie aktualnego nicku (w tym tagu klanu) oraz roli weryfikacji</li>
         <li>Opcjonalnie, tylko gdy serwer to włączy: rola za poziom Personal Rating (role PR)</li>
+        <li>Opcjonalnie, tylko gdy serwer to włączy: rola za rangę w klanie i za ligę rankingową bieżącego sezonu</li>
         <li>Pokazanie statusu połączenia (<code>/link status</code> i podobne)</li>
         <li>Aktualizacja przez użytkownika (<code>/link refresh</code>) i rozłączenie (<code>/link unlink</code>)</li>
         <li>Funkcje admina/moderatora: konfiguracja serwera, sprawdzanie, listy, skan, styl nicku, resync nicku/klanu, usunięcie połączenia, porównanie ról</li>
@@ -947,7 +976,7 @@
           </tr>
           <tr>
             <td><strong>Wargaming</strong></td>
-            <td>Logowanie OpenID i pobranie <strong>publicznych</strong> informacji o koncie (nick, tag klanu/ID klanu) — przy pierwszym logowaniu <strong>i</strong> później przy refresh/resync; przy włączonych rolach PR także publiczne statystyki bitew losowych dla okrętów</td>
+            <td>Logowanie OpenID i pobranie <strong>publicznych</strong> informacji o koncie (nick, tag klanu/ID klanu) — przy pierwszym logowaniu <strong>i</strong> później przy refresh/resync; przy włączonych rolach PR także publiczne statystyki bitew losowych dla okrętów; przy włączonych rolach rangi w klanie / rankingowych także ranga w klanie i publiczne wyniki rankingowe</td>
           </tr>
           <tr>
             <td><strong>wows-numbers.com</strong></td>
@@ -1026,7 +1055,8 @@
         W ramach łączenia bot ustawia rolę i nick. Późniejszy refresh/resync zmienia tylko
         zapisany stan i nick na serwerze, gdy zmieniła się <strong>publiczna</strong> nazwa WoWS albo klan.
         Opcjonalne role PR (tylko gdy serwer je włączy) przypisują członków do poziomu publicznego Personal Rating,
-        miary społeczności z wows-numbers.com. Decyduje to tylko o tym, jaka rola Discord jest widoczna, i nie ma skutku
+        miary społeczności z wows-numbers.com. Opcjonalne role rangi w klanie i rankingowe tylko odzwierciedlają rangę w klanie
+        i ligę rankingową z gry. Decyduje to tylko o tym, jaka rola Discord jest widoczna, i nie ma skutku
         prawnego ani podobnie istotnego. Nie ma innego scoringu ani analizy reklamowej.
       </p>
 
