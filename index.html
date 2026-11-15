@@ -3,10 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WG-Link</title>
+  <title>WG-Link – World of Warships account linking for Discord</title>
+  <meta name="description" content="WG-Link links Discord members to their World of Warships / Wargaming account with the official login and keeps nickname, clan tag, region and roles up to date." />
+  <meta property="og:title" content="WG-Link – World of Warships account linking for Discord" />
+  <meta property="og:description" content="Know who is who on your WoWS server: official Wargaming login, clan-tag nicknames, PR, clan rank and Ranked roles." />
+  <meta property="og:image" content="https://mottitv.github.io/wg-link/img/banner.jpg" />
+  <link rel="icon" href="img/logo-128.png" />
   <script>
     (function () {
-      var titles = { en: "WG-Link", de: "WG-Link", pl: "WG-Link" };
+      var titles = { en: 'WG-Link – World of Warships account linking for Discord', de: 'WG-Link – World-of-Warships-Konten mit Discord verknüpfen', pl: 'WG-Link – łączenie kont World of Warships z Discordem' };
       var q = new URLSearchParams(location.search).get("lang");
       var stored = "";
       try { stored = localStorage.getItem("wg_lang") || ""; } catch (e) {}
@@ -20,170 +25,300 @@
       if (titles[pick]) document.title = titles[pick];
     })();
   </script>
-  <link rel="stylesheet" href="site.css?v=2" />
+  <link rel="stylesheet" href="site.css?v=3" />
   <link rel="stylesheet" href="cookies.css?v=1" />
 </head>
 <body class="home">
-  <main>
-    <div class="topbar">
-      <div class="lang-wrap">
-        <span class="lang-kicker" data-lang="en">Language</span>
-        <span class="lang-kicker" data-lang="de">Sprache</span>
-        <span class="lang-kicker" data-lang="pl">Język</span>
-        <select class="lang-select" id="lang" aria-label="Language">
-          <option value="en">English</option>
-          <option value="de">Deutsch</option>
-          <option value="pl">Polski</option>
-        </select>
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/logo-128.png" alt="" width="38" height="38">WG-Link</a>
+    <span class="nav-links" data-lang="en"><a href="#how-en">How it works</a><a href="#features-en">Features</a><a href="#panel-en">Command Center</a><a href="#faq-en">FAQ</a></span><span class="nav-links" data-lang="de"><a href="#how-de">So geht's</a><a href="#features-de">Funktionen</a><a href="#panel-de">Command Center</a><a href="#faq-de">FAQ</a></span><span class="nav-links" data-lang="pl"><a href="#how-pl">Jak to działa</a><a href="#features-pl">Funkcje</a><a href="#panel-pl">Command Center</a><a href="#faq-pl">FAQ</a></span>
+    <div class="nav-right">
+      <select class="lang-select" id="lang" aria-label="Language">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="pl">Polski</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="https://discord.com/oauth2/authorize?client_id=1534748705679216780&amp;permissions=402738176&amp;scope=bot%20applications.commands" rel="noopener"><span class="lang-inline" data-lang="en">Add to Discord</span><span class="lang-inline" data-lang="de">Zu Discord hinzufügen</span><span class="lang-inline" data-lang="pl">Dodaj do Discorda</span></a>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="lang-block" data-lang="en" data-title="WG-Link – World of Warships account linking for Discord">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>New: clan rank &amp; Ranked league roles</span>
+        <h1>Know <span class="grad">who is who</span> on your World of Warships server.</h1>
+        <p class="lead">WG-Link connects Discord members to their Wargaming account with the official login – and keeps nickname, clan tag, region and roles up to date automatically.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1534748705679216780&amp;permissions=402738176&amp;scope=bot%20applications.commands" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9-.3 13.5.1 18a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>Add to Discord</a>
+          <a class="btn btn-ghost" href="setup.html">Setup guide →</a>
+        </div>
+        <div class="trust"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Official Wargaming login</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>No passwords stored</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Free · EU / NA / ASIA</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>5 languages</span></div>
+      </div>
+      <div class="glow">
+        <div class="discord" aria-hidden="true">
+          <div class="d-head"><span class="hash">#</span>verify</div>
+          <div class="d-body">
+            <div class="d-chat">
+              <div class="msg"><div class="av av-bot"><img src="img/logo-128.png" alt=""></div>
+                <div><span class="name" style="color:#ff6d87">WG-Link</span><span class="time">BOT · today</span>
+                  <div class="embed"><b>Link your Wargaming account</b><br>Choose your region – you log in on the official Wargaming page.
+                    <div class="btns"><span class="on">EU</span><span>NA</span><span>ASIA</span></div></div></div></div>
+              <div class="msg"><div class="av" style="background:#3b82f6">S</div>
+                <div><span class="name" style="color:#3498db">[XMPL] SeaWolf_42 (EU)</span><span class="time">today</span>
+                  <div class="txt">linked in 10 seconds 🔥</div></div></div>
+            </div>
+            <div class="d-members">
+              <div class="grp">Commander — 1</div>
+              <div class="mem" style="color:#e67e22"><div class="av" style="background:#e67e22">A</div>[XMPL] AnchorAndy (EU)</div>
+              <div class="grp">Deputy Commander — 2</div>
+              <div class="mem" style="color:#e91e63"><div class="av" style="background:#e91e63">T</div>[XMPL] TorpedoTina (EU)</div>
+              <div class="mem" style="color:#e91e63"><div class="av" style="background:#ad1457">R</div>[XMPL] RadarRick (EU)</div>
+              <div class="grp">Commissioned Officer — 3</div>
+              <div class="mem new" style="color:#3498db"><div class="av" style="background:#3b82f6">S</div>[XMPL] SeaWolf_42 (EU)</div>
+              <div class="mem" style="color:#3498db"><div class="av" style="background:#2563eb">B</div>[XMPL] BroadsideBob (EU)</div>
+              <div class="grp">Private — 4</div>
+              <div class="mem" style="color:#aab2b8"><div class="av" style="background:#64748b">D</div>[XMPL] DD_Rusher (EU)</div>
+              <div class="mem" style="color:#aab2b8"><div class="av" style="background:#475569">K</div>[XMPL] Kraken (NA)</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <article class="lang-block" data-lang="en" data-title="WG-Link">
-      <h1>WG-Link</h1>
-      <p class="lead">
-        Discord bot that links World of Warships / Wargaming accounts.
-        Setup for server admins, plus the legal documents.
-      </p>
-      <div class="cards">
-        <a class="card" href="setup.html">
-          <strong>Setup</strong>
-          <span>Set up WG-Link after you invite the bot</span>
-        </a>
-        <a class="card" href="terms-of-service.html">
-          <strong>Terms of Service</strong>
-          <span>Rules for using the bot</span>
-        </a>
-        <a class="card" href="privacy-policy.html">
-          <strong>Privacy Policy</strong>
-          <span>Which data is stored</span>
-        </a>
-      </div>
-      <section class="features" id="features">
-        <h2>Features</h2>
-        <ul>
-          <li><strong>Link accounts:</strong> members link their Wargaming account with the official login – on each server separately.</li>
-          <li><strong>Nick, clan and region:</strong> the member list shows the in-game name, clan tag and WoWS region.</li>
-          <li><strong>Verified role</strong> and <strong>welcome message</strong> for new members.</li>
-          <li><strong>Web admin panel:</strong> links, nick style, roles, sync and history – or with Discord commands.</li>
-          <li><strong>New – PR roles (optional):</strong> a role for each member’s Personal Rating level, in the colours of
-            wows-numbers.com. <strong>Off by default</strong> – nothing changes on a server until an admin switches it on.
-            Meant for <strong>World of Warships clan servers</strong> – not recommended for WoWS community servers. Clan and
-            community on one server? PR roles can be limited to your clan role.</li>
-          <li><strong>New – clan rank &amp; Ranked roles (optional):</strong> a role for each member’s <strong>rank in their clan</strong>
-            (Commander, Deputy Commander, Recruitment Officer, Commissioned Officer, Line Officer, Private) and for the
-            <strong>Ranked league</strong> they reached in the current season (Gold, Silver, Bronze). Both are <strong>off by default</strong>
-            and switched on separately. Clan rank roles can be limited to your clan tag.</li>
-        </ul>
-        <figure class="shot">
-          <img src="img/pr-roles-en.jpg" alt="WG-Link admin panel: PR roles page" loading="lazy" width="1000" height="966" />
-          <figcaption>Admin panel: PR roles after switching them on (example server).</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="img/game-roles-en.jpg" alt="WG-Link admin panel: Clan &amp; Ranked page" loading="lazy" width="1000" height="1510" />
-          <figcaption>Admin panel: clan rank and Ranked league roles after switching them on (example server).</figcaption>
-        </figure>
-      </section>
-      <footer>Operator: motti_tv · Updated: 15 November 2026</footer>
-    </article>
+  <section id="how-en" class="anchor-how">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">How it works</div><h2>Ready in three steps</h2><p class="sub">No config files, no hosting – invite the bot and you are done.</p></div>
+      <div class="steps"><div class="step"><h3>Invite WG-Link</h3><p>Add the bot to your server and pick the verified role with <code>/link-setup role</code>.</p></div><div class="step"><h3>Post the link panel</h3><p>Run <code>/link-panel</code> in a #verify channel – members get one-click buttons for EU, NA and ASIA.</p></div><div class="step"><h3>Members link themselves</h3><p>They log in on the official Wargaming page. Nickname, clan tag, region and roles are set automatically.</p></div></div>
+    </div>
+  </section>
 
-    <article class="lang-block" data-lang="de" data-title="WG-Link">
-      <h1>WG-Link</h1>
-      <p class="lead">
-        Discord-Bot zur Verknüpfung mit World of Warships / Wargaming.
-        Einrichtung für Server-Admins, plus rechtliche Dokumente.
-      </p>
-      <div class="cards">
-        <a class="card" href="setup.html">
-          <strong>Einrichtung</strong>
-          <span>WG-Link einrichten, nachdem du den Bot eingeladen hast</span>
-        </a>
-        <a class="card" href="terms-of-service.html">
-          <strong>Nutzungsbedingungen</strong>
-          <span>Regeln zur Nutzung des Bots</span>
-        </a>
-        <a class="card" href="privacy-policy.html">
-          <strong>Datenschutzerklärung</strong>
-          <span>Welche Daten gespeichert werden</span>
-        </a>
-      </div>
-      <section class="features" id="features">
-        <h2>Funktionen</h2>
-        <ul>
-          <li><strong>Konten verknüpfen:</strong> Mitglieder verknüpfen ihr Wargaming-Konto über den offiziellen Login – auf jedem Server einzeln.</li>
-          <li><strong>Nick, Clan und Region:</strong> Die Mitgliederliste zeigt Ingame-Name, Clan-Tag und WoWS-Region.</li>
-          <li><strong>Verifizierungs-Rolle</strong> und <strong>Willkommensnachricht</strong> für neue Mitglieder.</li>
-          <li><strong>Web-Admin-Panel:</strong> Verknüpfungen, Nick-Stil, Rollen, Abgleich und Verlauf – oder per Discord-Befehl.</li>
-          <li><strong>Neu – PR-Rollen (optional):</strong> eine Rolle für die Personal-Rating-Stufe jedes Mitglieds, in den Farben
-            von wows-numbers.com. <strong>Standardmäßig aus</strong> – auf einem Server ändert sich nichts, bis ein Admin es einschaltet.
-            Gedacht für <strong>World-of-Warships-Clan-Server</strong> – für WoWS-Community-Server nicht empfohlen. Clan und
-            Community auf einem Server? PR-Rollen lassen sich auf deine Clan-Rolle beschränken.</li>
-          <li><strong>Neu – Clan-Rang- &amp; Ranked-Rollen (optional):</strong> eine Rolle für den <strong>Rang im Clan</strong>
-            (Kommandant, Stellv. Kommandant, Rekrutierungsoffizier, Stabsoffizier, Linienoffizier, Gefreiter) und für die
-            <strong>Ranked-Liga</strong> der aktuellen Saison (Gold, Silber, Bronze). Beides ist <strong>standardmäßig aus</strong>
-            und wird einzeln eingeschaltet. Clan-Rang-Rollen lassen sich auf deinen Clan-Tag beschränken.</li>
-        </ul>
-        <figure class="shot">
-          <img src="img/pr-roles-de.jpg" alt="WG-Link Admin-Panel: Seite PR-Rollen" loading="lazy" width="1000" height="966" />
-          <figcaption>Admin-Panel: PR-Rollen nach dem Einschalten (Beispiel-Server).</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="img/game-roles-de.jpg" alt="WG-Link Admin-Panel: Seite Clan &amp; Ranked" loading="lazy" width="1000" height="1510" />
-          <figcaption>Admin-Panel: Clan-Rang- und Ranked-Liga-Rollen nach dem Einschalten (Beispiel-Server).</figcaption>
-        </figure>
-      </section>
-      <footer>Betreiber: motti_tv · Stand: 15. November 2026</footer>
-    </article>
+  <section id="features-en" class="anchor-features">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">Features</div><h2>Everything a WoWS clan server needs</h2><p class="sub">All optional extras are off by default – nothing changes until an admin switches them on.</p></div>
+      <div class="grid"><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div><h3>Account linking</h3><p>Official Wargaming OpenID login – per server, one WG account per Discord account.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div><h3>Nick, clan &amp; region</h3><p>The member list shows <code>[CLAN] Name (EU)</code> – choose your style, it stays current.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg></div><h3>Verified role &amp; welcome</h3><p>Automatic role after linking, plus optional welcome and DM messages.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M6 16v-5M11 16V7M16 16v-8M21 16V4"/></svg></div><h3>PR roles</h3><p>A role per Personal Rating level in wows-numbers colours – limit it to your clan role if you like.</p><div class="chips"><span class="chip" style="color:#d042f3;border-color:#d042f355">Unicum</span><span class="chip" style="color:#02c9b3;border-color:#02c9b355">Great</span><span class="chip" style="color:#44b300;border-color:#44b30055">Good</span><span class="chip" style="color:#ffc71f;border-color:#ffc71f55">Average</span></div></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3>Clan rank &amp; Ranked <span class="tag">NEW</span></h3><p>Mirror in-game clan ranks and the current Ranked league as Discord roles.</p><div class="chips"><span class="chip" style="color:#e67e22;border-color:#e67e2255">Commander</span><span class="chip" style="color:#e91e63;border-color:#e91e6355">Deputy</span><span class="chip" style="color:#f5c542;border-color:#f5c54255">Gold League</span></div></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><h3>Web Command Center</h3><p>Links, nick style, roles, sync and history in your browser – or with slash commands.</p></div></div>
+    </div>
+  </section>
 
-    <article class="lang-block" data-lang="pl" data-title="WG-Link">
-      <h1>WG-Link</h1>
-      <p class="lead">
-        Bot Discord do łączenia kont World of Warships / Wargaming.
-        Konfiguracja dla administratorów serwera oraz dokumenty prawne.
-      </p>
-      <div class="cards">
-        <a class="card" href="setup.html">
-          <strong>Konfiguracja</strong>
-          <span>Skonfiguruj WG-Link po zaproszeniu bota</span>
-        </a>
-        <a class="card" href="terms-of-service.html">
-          <strong>Warunki korzystania</strong>
-          <span>Zasady korzystania z bota</span>
-        </a>
-        <a class="card" href="privacy-policy.html">
-          <strong>Polityka prywatności</strong>
-          <span>Jakie dane są przechowywane</span>
-        </a>
+  <section id="panel-en" class="anchor-panel">
+    <div class="wrap show">
+      <div>
+        <div class="kicker">Command Center</div><h2>Manage your server in the browser</h2>
+        <p class="sub" style="margin-bottom:22px">Sign in with Discord at <a href="https://wglink.mottitv.com/admin">wglink.mottitv.com/admin</a> or open it with <code>/admin</code> – only admins with “Manage Server” get in.</p>
+        <div class="tabs"><button class="tab on" type="button" data-i="0"><b>Clan &amp; Ranked</b><span>Clan ranks and league roles, limited to your clan tag.</span></button><button class="tab" type="button" data-i="1"><b>PR roles</b><span>Rating roles with live member counts.</span></button></div>
       </div>
-      <section class="features" id="features">
-        <h2>Funkcje</h2>
-        <ul>
-          <li><strong>Łączenie kont:</strong> członkowie łączą konto Wargaming przez oficjalne logowanie – na każdym serwerze osobno.</li>
-          <li><strong>Nick, klan i region:</strong> lista członków pokazuje nick z gry, tag klanu i region WoWS.</li>
-          <li><strong>Rola weryfikacji</strong> i <strong>wiadomość powitalna</strong> dla nowych członków.</li>
-          <li><strong>Panel www dla adminów:</strong> połączenia, styl nicku, role, synchronizacja i historia – albo komendami Discorda.</li>
-          <li><strong>Nowość – role PR (opcjonalnie):</strong> rola za poziom Personal Rating każdego członka, w kolorach
-            wows-numbers.com. <strong>Domyślnie wyłączone</strong> – na serwerze nic się nie zmienia, dopóki admin tego nie włączy.
-            Przeznaczone dla <strong>serwerów klanów World of Warships</strong> – niezalecane dla serwerów społeczności WoWS. Klan
-            i społeczność na jednym serwerze? Role PR można ograniczyć do roli klanu.</li>
-          <li><strong>Nowość – role rangi w klanie i rankingowe (opcjonalnie):</strong> rola za <strong>rangę w klanie</strong>
-            (Dowódca, Zastępca dowódcy, Oficer rekrutacyjny, Oficer sztabowy, Oficer liniowy, Szeregowy) oraz za
-            <strong>ligę rankingową</strong> bieżącego sezonu (Złota, Srebrna, Brązowa). Obie są <strong>domyślnie wyłączone</strong>
-            i włączane osobno. Role rangi w klanie można ograniczyć do tagu twojego klanu.</li>
-        </ul>
-        <figure class="shot">
-          <img src="img/pr-roles-pl.jpg" alt="Panel admina WG-Link: strona Role PR" loading="lazy" width="1000" height="966" />
-          <figcaption>Panel admina: role PR po włączeniu (przykładowy serwer).</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="img/game-roles-pl.jpg" alt="Panel admina WG-Link: strona Klan i Rankingowe" loading="lazy" width="1000" height="1510" />
-          <figcaption>Panel admina: role rangi w klanie i lig rankingowych po włączeniu (przykładowy serwer).</figcaption>
-        </figure>
-      </section>
-      <footer>Prowadzący: motti_tv · Stan: 15 listopada 2026</footer>
-    </article>
-    <p class="cookie-line"><a href="#cookies" data-cookie-info>Cookies</a></p>
-  </main>
-  <script src="lang.js?v=1"></script>
-  <script src="cookies.js?v=1" defer></script>
+      <div class="shot"><img class="on" src="img/game-roles-en.jpg" alt="WG-Link admin panel: Clan &amp; Ranked page" loading="lazy" width="1000" height="1510"><img src="img/pr-roles-en.jpg" alt="WG-Link admin panel: PR roles page" loading="lazy" width="1000" height="966"></div>
+    </div>
+  </section>
+
+  <section id="faq-en" class="anchor-faq">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">FAQ</div><h2>Questions</h2></div>
+      <div class="faq"><details open><summary>Is WG-Link official?</summary><p>No. WG-Link is an unofficial community bot and not affiliated with Wargaming. It only uses the official public login and API.</p></details><details><summary>Does the bot see my password?</summary><p>Never. You log in on Wargaming's own page; WG-Link only receives your public account ID and nickname.</p></details><details><summary>Will it change anything on my server by itself?</summary><p>Only what you set up: verified role and nickname. PR, clan rank and Ranked roles stay off until you switch them on.</p></details><details><summary>Is it meant for community servers too?</summary><p>Linking and nicknames work everywhere. PR roles are meant for clan servers – on mixed servers limit them to your clan role or clan tag.</p></details><details><summary>Does it cost anything?</summary><p>No – WG-Link is a free, private, non-commercial project.</p></details></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="band">
+        <h2>Bring order to your clan server</h2>
+        <p class="sub">Add WG-Link and let your members link in seconds.</p>
+        <div class="cta"><a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1534748705679216780&amp;permissions=402738176&amp;scope=bot%20applications.commands" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9-.3 13.5.1 18a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>Add to Discord</a><a class="btn btn-ghost" href="setup.html">Read the setup guide</a></div>
+      </div>
+    </div>
+  </section>
+  </div>
+  <div class="lang-block" data-lang="de" data-title="WG-Link – World-of-Warships-Konten mit Discord verknüpfen">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Neu: Clan-Rang- &amp; Ranked-Liga-Rollen</span>
+        <h1>Wisse, <span class="grad">wer wer ist</span> auf deinem World-of-Warships-Server.</h1>
+        <p class="lead">WG-Link verknüpft Discord-Mitglieder über den offiziellen Login mit ihrem Wargaming-Konto – und hält Nickname, Clan-Tag, Region und Rollen automatisch aktuell.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1534748705679216780&amp;permissions=402738176&amp;scope=bot%20applications.commands" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9-.3 13.5.1 18a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>Zu Discord hinzufügen</a>
+          <a class="btn btn-ghost" href="setup.html">Zur Anleitung →</a>
+        </div>
+        <div class="trust"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Offizieller Wargaming-Login</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Keine Passwörter gespeichert</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Kostenlos · EU / NA / ASIA</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>5 Sprachen</span></div>
+      </div>
+      <div class="glow">
+        <div class="discord" aria-hidden="true">
+          <div class="d-head"><span class="hash">#</span>verify</div>
+          <div class="d-body">
+            <div class="d-chat">
+              <div class="msg"><div class="av av-bot"><img src="img/logo-128.png" alt=""></div>
+                <div><span class="name" style="color:#ff6d87">WG-Link</span><span class="time">BOT · heute</span>
+                  <div class="embed"><b>Verknüpfe dein Wargaming-Konto</b><br>Wähle deine Region – du meldest dich auf der offiziellen Wargaming-Seite an.
+                    <div class="btns"><span class="on">EU</span><span>NA</span><span>ASIA</span></div></div></div></div>
+              <div class="msg"><div class="av" style="background:#3b82f6">S</div>
+                <div><span class="name" style="color:#3498db">[XMPL] SeaWolf_42 (EU)</span><span class="time">heute</span>
+                  <div class="txt">in 10 Sekunden verknüpft 🔥</div></div></div>
+            </div>
+            <div class="d-members">
+              <div class="grp">Kommandant — 1</div>
+              <div class="mem" style="color:#e67e22"><div class="av" style="background:#e67e22">A</div>[XMPL] AnchorAndy (EU)</div>
+              <div class="grp">Stellv. Kommandant — 2</div>
+              <div class="mem" style="color:#e91e63"><div class="av" style="background:#e91e63">T</div>[XMPL] TorpedoTina (EU)</div>
+              <div class="mem" style="color:#e91e63"><div class="av" style="background:#ad1457">R</div>[XMPL] RadarRick (EU)</div>
+              <div class="grp">Stabsoffizier — 3</div>
+              <div class="mem new" style="color:#3498db"><div class="av" style="background:#3b82f6">S</div>[XMPL] SeaWolf_42 (EU)</div>
+              <div class="mem" style="color:#3498db"><div class="av" style="background:#2563eb">B</div>[XMPL] BroadsideBob (EU)</div>
+              <div class="grp">Gefreiter — 4</div>
+              <div class="mem" style="color:#aab2b8"><div class="av" style="background:#64748b">D</div>[XMPL] DD_Rusher (EU)</div>
+              <div class="mem" style="color:#aab2b8"><div class="av" style="background:#475569">K</div>[XMPL] Kraken (NA)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-de" class="anchor-how">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">So geht's</div><h2>In drei Schritten fertig</h2><p class="sub">Keine Konfigurationsdateien, kein Hosting – Bot einladen, fertig.</p></div>
+      <div class="steps"><div class="step"><h3>WG-Link einladen</h3><p>Füge den Bot deinem Server hinzu und wähle mit <code>/link-setup role</code> die Verifiziert-Rolle.</p></div><div class="step"><h3>Link-Panel posten</h3><p>Führe <code>/link-panel</code> in einem #verify-Kanal aus – Mitglieder bekommen Buttons für EU, NA und ASIA.</p></div><div class="step"><h3>Mitglieder verknüpfen sich selbst</h3><p>Sie melden sich auf der offiziellen Wargaming-Seite an. Nickname, Clan-Tag, Region und Rollen werden automatisch gesetzt.</p></div></div>
+    </div>
+  </section>
+
+  <section id="features-de" class="anchor-features">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">Funktionen</div><h2>Alles, was ein WoWS-Clan-Server braucht</h2><p class="sub">Alle optionalen Extras sind standardmäßig aus – nichts ändert sich, bis ein Admin sie einschaltet.</p></div>
+      <div class="grid"><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div><h3>Konten verknüpfen</h3><p>Offizieller Wargaming-OpenID-Login – pro Server, ein WG-Konto pro Discord-Konto.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div><h3>Nick, Clan &amp; Region</h3><p>Die Mitgliederliste zeigt <code>[CLAN] Name (EU)</code> – Stil wählbar, bleibt aktuell.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg></div><h3>Verifiziert-Rolle &amp; Willkommen</h3><p>Automatische Rolle nach dem Verknüpfen, dazu optionale Willkommens- und DM-Nachrichten.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M6 16v-5M11 16V7M16 16v-8M21 16V4"/></svg></div><h3>PR-Rollen</h3><p>Eine Rolle pro Personal-Rating-Stufe in wows-numbers-Farben – auf Wunsch nur für deine Clan-Rolle.</p><div class="chips"><span class="chip" style="color:#d042f3;border-color:#d042f355">Unicum</span><span class="chip" style="color:#02c9b3;border-color:#02c9b355">Sehr gut</span><span class="chip" style="color:#44b300;border-color:#44b30055">Gut</span><span class="chip" style="color:#ffc71f;border-color:#ffc71f55">Durchschnitt</span></div></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3>Clan-Rang &amp; Ranked <span class="tag">NEU</span></h3><p>Clan-Ränge aus dem Spiel und die aktuelle Ranked-Liga als Discord-Rollen.</p><div class="chips"><span class="chip" style="color:#e67e22;border-color:#e67e2255">Kommandant</span><span class="chip" style="color:#e91e63;border-color:#e91e6355">Stellvertreter</span><span class="chip" style="color:#f5c542;border-color:#f5c54255">Gold-Liga</span></div></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><h3>Web-Command-Center</h3><p>Verknüpfungen, Nick-Stil, Rollen, Abgleich und Verlauf im Browser – oder per Slash-Befehl.</p></div></div>
+    </div>
+  </section>
+
+  <section id="panel-de" class="anchor-panel">
+    <div class="wrap show">
+      <div>
+        <div class="kicker">Command Center</div><h2>Verwalte deinen Server im Browser</h2>
+        <p class="sub" style="margin-bottom:22px">Mit Discord anmelden unter <a href="https://wglink.mottitv.com/admin">wglink.mottitv.com/admin</a> oder mit <code>/admin</code> öffnen – nur Admins mit „Server verwalten“ kommen rein.</p>
+        <div class="tabs"><button class="tab on" type="button" data-i="0"><b>Clan &amp; Ranked</b><span>Clan-Ränge und Liga-Rollen, auf deinen Clan-Tag begrenzt.</span></button><button class="tab" type="button" data-i="1"><b>PR-Rollen</b><span>Rating-Rollen mit aktuellen Mitgliederzahlen.</span></button></div>
+      </div>
+      <div class="shot"><img class="on" src="img/game-roles-de.jpg" alt="WG-Link Admin-Panel: Seite Clan &amp; Ranked" loading="lazy" width="1000" height="1510"><img src="img/pr-roles-de.jpg" alt="WG-Link Admin-Panel: Seite PR-Rollen" loading="lazy" width="1000" height="966"></div>
+    </div>
+  </section>
+
+  <section id="faq-de" class="anchor-faq">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">FAQ</div><h2>Fragen</h2></div>
+      <div class="faq"><details open><summary>Ist WG-Link offiziell?</summary><p>Nein. WG-Link ist ein inoffizieller Community-Bot und gehört nicht zu Wargaming. Er nutzt nur den offiziellen öffentlichen Login und die API.</p></details><details><summary>Sieht der Bot mein Passwort?</summary><p>Nie. Du meldest dich auf der Seite von Wargaming an; WG-Link bekommt nur deine öffentliche Konto-ID und deinen Nickname.</p></details><details><summary>Ändert er von selbst etwas auf meinem Server?</summary><p>Nur, was du einrichtest: Verifiziert-Rolle und Nickname. PR-, Clan-Rang- und Ranked-Rollen bleiben aus, bis du sie einschaltest.</p></details><details><summary>Ist er auch für Community-Server gedacht?</summary><p>Verknüpfen und Nicknames funktionieren überall. PR-Rollen sind für Clan-Server gedacht – auf gemischten Servern auf Clan-Rolle oder Clan-Tag begrenzen.</p></details><details><summary>Kostet das etwas?</summary><p>Nein – WG-Link ist ein kostenloses, privates, nicht-kommerzielles Projekt.</p></details></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="band">
+        <h2>Bring Ordnung auf deinen Clan-Server</h2>
+        <p class="sub">Füge WG-Link hinzu und lass deine Mitglieder sich in Sekunden verknüpfen.</p>
+        <div class="cta"><a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1534748705679216780&amp;permissions=402738176&amp;scope=bot%20applications.commands" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9-.3 13.5.1 18a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>Zu Discord hinzufügen</a><a class="btn btn-ghost" href="setup.html">Zur Einrichtungs-Anleitung</a></div>
+      </div>
+    </div>
+  </section>
+  </div>
+  <div class="lang-block" data-lang="pl" data-title="WG-Link – łączenie kont World of Warships z Discordem">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow"><span class="dot"></span>Nowość: role rangi w klanie i lig rankingowych</span>
+        <h1>Wiedz, <span class="grad">kto jest kim</span> na twoim serwerze World of Warships.</h1>
+        <p class="lead">WG-Link łączy członków Discorda z ich kontem Wargaming przez oficjalne logowanie – i automatycznie aktualizuje nick, tag klanu, region i role.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1534748705679216780&amp;permissions=402738176&amp;scope=bot%20applications.commands" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9-.3 13.5.1 18a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>Dodaj do Discorda</a>
+          <a class="btn btn-ghost" href="setup.html">Instrukcja →</a>
+        </div>
+        <div class="trust"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Oficjalne logowanie Wargaming</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Żadnych zapisanych haseł</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>Za darmo · EU / NA / ASIA</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg>5 języków</span></div>
+      </div>
+      <div class="glow">
+        <div class="discord" aria-hidden="true">
+          <div class="d-head"><span class="hash">#</span>verify</div>
+          <div class="d-body">
+            <div class="d-chat">
+              <div class="msg"><div class="av av-bot"><img src="img/logo-128.png" alt=""></div>
+                <div><span class="name" style="color:#ff6d87">WG-Link</span><span class="time">BOT · dziś</span>
+                  <div class="embed"><b>Połącz konto Wargaming</b><br>Wybierz region – logujesz się na oficjalnej stronie Wargaming.
+                    <div class="btns"><span class="on">EU</span><span>NA</span><span>ASIA</span></div></div></div></div>
+              <div class="msg"><div class="av" style="background:#3b82f6">S</div>
+                <div><span class="name" style="color:#3498db">[XMPL] SeaWolf_42 (EU)</span><span class="time">dziś</span>
+                  <div class="txt">połączone w 10 sekund 🔥</div></div></div>
+            </div>
+            <div class="d-members">
+              <div class="grp">Dowódca — 1</div>
+              <div class="mem" style="color:#e67e22"><div class="av" style="background:#e67e22">A</div>[XMPL] AnchorAndy (EU)</div>
+              <div class="grp">Zastępca dowódcy — 2</div>
+              <div class="mem" style="color:#e91e63"><div class="av" style="background:#e91e63">T</div>[XMPL] TorpedoTina (EU)</div>
+              <div class="mem" style="color:#e91e63"><div class="av" style="background:#ad1457">R</div>[XMPL] RadarRick (EU)</div>
+              <div class="grp">Oficer sztabowy — 3</div>
+              <div class="mem new" style="color:#3498db"><div class="av" style="background:#3b82f6">S</div>[XMPL] SeaWolf_42 (EU)</div>
+              <div class="mem" style="color:#3498db"><div class="av" style="background:#2563eb">B</div>[XMPL] BroadsideBob (EU)</div>
+              <div class="grp">Szeregowy — 4</div>
+              <div class="mem" style="color:#aab2b8"><div class="av" style="background:#64748b">D</div>[XMPL] DD_Rusher (EU)</div>
+              <div class="mem" style="color:#aab2b8"><div class="av" style="background:#475569">K</div>[XMPL] Kraken (NA)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-pl" class="anchor-how">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">Jak to działa</div><h2>Gotowe w trzech krokach</h2><p class="sub">Bez plików konfiguracyjnych, bez hostingu – zaproś bota i gotowe.</p></div>
+      <div class="steps"><div class="step"><h3>Zaproś WG-Link</h3><p>Dodaj bota do serwera i wybierz rolę weryfikacji komendą <code>/link-setup role</code>.</p></div><div class="step"><h3>Opublikuj panel</h3><p>Uruchom <code>/link-panel</code> na kanale #verify – członkowie dostaną przyciski EU, NA i ASIA.</p></div><div class="step"><h3>Członkowie łączą się sami</h3><p>Logują się na oficjalnej stronie Wargaming. Nick, tag klanu, region i role ustawiają się automatycznie.</p></div></div>
+    </div>
+  </section>
+
+  <section id="features-pl" class="anchor-features">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">Funkcje</div><h2>Wszystko, czego potrzebuje serwer klanu WoWS</h2><p class="sub">Wszystkie opcjonalne dodatki są domyślnie wyłączone – nic się nie zmienia, dopóki admin ich nie włączy.</p></div>
+      <div class="grid"><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div><h3>Łączenie kont</h3><p>Oficjalne logowanie OpenID Wargaming – na każdym serwerze, jedno konto WG na konto Discord.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div><h3>Nick, klan i region</h3><p>Lista członków pokazuje <code>[CLAN] Name (EU)</code> – styl do wyboru, zawsze aktualny.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg></div><h3>Rola weryfikacji i powitanie</h3><p>Automatyczna rola po połączeniu oraz opcjonalne wiadomości powitalne i DM.</p></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 20h18M6 16v-5M11 16V7M16 16v-8M21 16V4"/></svg></div><h3>Role PR</h3><p>Rola za poziom Personal Rating w kolorach wows-numbers – opcjonalnie tylko dla roli klanu.</p><div class="chips"><span class="chip" style="color:#d042f3;border-color:#d042f355">Unikum</span><span class="chip" style="color:#02c9b3;border-color:#02c9b355">Świetny</span><span class="chip" style="color:#44b300;border-color:#44b30055">Dobry</span><span class="chip" style="color:#ffc71f;border-color:#ffc71f55">Średni</span></div></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3>Ranga w klanie i rankingowe <span class="tag">NOWE</span></h3><p>Rangi klanowe z gry i bieżąca liga rankingowa jako role Discord.</p><div class="chips"><span class="chip" style="color:#e67e22;border-color:#e67e2255">Dowódca</span><span class="chip" style="color:#e91e63;border-color:#e91e6355">Zastępca</span><span class="chip" style="color:#f5c542;border-color:#f5c54255">Liga Złota</span></div></div><div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div><h3>Command Center w przeglądarce</h3><p>Połączenia, styl nicku, role, synchronizacja i historia w przeglądarce – albo komendami.</p></div></div>
+    </div>
+  </section>
+
+  <section id="panel-pl" class="anchor-panel">
+    <div class="wrap show">
+      <div>
+        <div class="kicker">Command Center</div><h2>Zarządzaj serwerem w przeglądarce</h2>
+        <p class="sub" style="margin-bottom:22px">Zaloguj się przez Discord na <a href="https://wglink.mottitv.com/admin">wglink.mottitv.com/admin</a> albo otwórz komendą <code>/admin</code> – wejdą tylko admini z uprawnieniem „Zarządzanie serwerem”.</p>
+        <div class="tabs"><button class="tab on" type="button" data-i="0"><b>Klan i Rankingowe</b><span>Rangi klanowe i role lig, ograniczone do tagu klanu.</span></button><button class="tab" type="button" data-i="1"><b>Role PR</b><span>Role ratingu z aktualną liczbą członków.</span></button></div>
+      </div>
+      <div class="shot"><img class="on" src="img/game-roles-pl.jpg" alt="Panel admina WG-Link: strona Klan i Rankingowe" loading="lazy" width="1000" height="1510"><img src="img/pr-roles-pl.jpg" alt="Panel admina WG-Link: strona Role PR" loading="lazy" width="1000" height="966"></div>
+    </div>
+  </section>
+
+  <section id="faq-pl" class="anchor-faq">
+    <div class="wrap">
+      <div class="sec-head"><div class="kicker">FAQ</div><h2>Pytania</h2></div>
+      <div class="faq"><details open><summary>Czy WG-Link jest oficjalny?</summary><p>Nie. WG-Link to nieoficjalny bot społeczności, niezwiązany z Wargaming. Korzysta tylko z oficjalnego publicznego logowania i API.</p></details><details><summary>Czy bot widzi moje hasło?</summary><p>Nigdy. Logujesz się na stronie Wargaming; WG-Link dostaje tylko publiczne ID konta i nick.</p></details><details><summary>Czy sam coś zmieni na moim serwerze?</summary><p>Tylko to, co ustawisz: rolę weryfikacji i nick. Role PR, rangi w klanie i rankingowe są wyłączone, dopóki ich nie włączysz.</p></details><details><summary>Czy nadaje się też na serwery społeczności?</summary><p>Łączenie i nicki działają wszędzie. Role PR są dla serwerów klanów – na mieszanych serwerach ogranicz je do roli lub tagu klanu.</p></details><details><summary>Czy to coś kosztuje?</summary><p>Nie – WG-Link to darmowy, prywatny, niekomercyjny projekt.</p></details></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="band">
+        <h2>Zaprowadź porządek na serwerze klanu</h2>
+        <p class="sub">Dodaj WG-Link, a członkowie połączą się w kilka sekund.</p>
+        <div class="cta"><a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1534748705679216780&amp;permissions=402738176&amp;scope=bot%20applications.commands" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.4C.6 9-.3 13.5.1 18a19.9 19.9 0 0 0 6 3l1.3-2a12.9 12.9 0 0 1-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.7-3.6-13.6ZM8.5 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm7 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>Dodaj do Discorda</a><a class="btn btn-ghost" href="setup.html">Przeczytaj instrukcję</a></div>
+      </div>
+    </div>
+  </section>
+  </div>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Motti_TV · <span class="lang-inline" data-lang="en">Unofficial – not affiliated with Wargaming</span><span class="lang-inline" data-lang="de">Inoffiziell – nicht mit Wargaming verbunden</span><span class="lang-inline" data-lang="pl">Nieoficjalny – niezwiązany z Wargaming</span> · <span class="lang-inline" data-lang="en">Updated: 16 November 2026</span><span class="lang-inline" data-lang="de">Stand: 16. November 2026</span><span class="lang-inline" data-lang="pl">Stan: 16 listopada 2026</span></span>
+    <nav>
+      <a href="setup.html"><span class="lang-inline" data-lang="en">Setup</span><span class="lang-inline" data-lang="de">Einrichtung</span><span class="lang-inline" data-lang="pl">Konfiguracja</span></a>
+      <a href="terms-of-service.html"><span class="lang-inline" data-lang="en">Terms</span><span class="lang-inline" data-lang="de">Nutzungsbedingungen</span><span class="lang-inline" data-lang="pl">Regulamin</span></a>
+      <a href="privacy-policy.html"><span class="lang-inline" data-lang="en">Privacy</span><span class="lang-inline" data-lang="de">Datenschutz</span><span class="lang-inline" data-lang="pl">Prywatność</span></a>
+      <a href="#cookies" data-cookie-info>Cookies</a>
+    </nav>
+  </div>
+</footer>
+<script src="lang.js?v=1"></script>
+<script src="home.js?v=1"></script>
+<script src="cookies.js?v=1" defer></script>
 </body>
 </html>

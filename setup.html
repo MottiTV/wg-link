@@ -24,25 +24,26 @@
       if (titles[pick]) document.title = titles[pick];
     })();
   </script>
-  <link rel="stylesheet" href="site.css?v=1" />
+  <link rel="icon" href="img/logo-128.png" />
+  <link rel="stylesheet" href="site.css?v=3" />
   <link rel="stylesheet" href="cookies.css?v=1" />
 </head>
 <body>
-  <main>
-    <div class="topbar">
-      <div class="lang-wrap">
-        <span class="lang-kicker" data-lang="en">Language</span>
-        <span class="lang-kicker" data-lang="de">Sprache</span>
-        <span class="lang-kicker" data-lang="pl">Język</span>
-        <select class="lang-select" id="lang" aria-label="Language">
-          <option value="en">English</option>
-          <option value="de">Deutsch</option>
-          <option value="pl">Polski</option>
-        </select>
-      </div>
+<header class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="img/logo-128.png" alt="" width="38" height="38">WG-Link</a>
+    <div class="nav-right">
+      <select class="lang-select" id="lang" aria-label="Language">
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+        <option value="pl">Polski</option>
+      </select>
+      <a class="btn btn-primary btn-sm" href="https://discord.com/oauth2/authorize?client_id=1534748705679216780&amp;permissions=402738176&amp;scope=bot%20applications.commands" rel="noopener"><span class="lang-inline" data-lang="en">Add to Discord</span><span class="lang-inline" data-lang="de">Zu Discord hinzufügen</span><span class="lang-inline" data-lang="pl">Dodaj do Discorda</span></a>
     </div>
-
-    <article class="lang-block" data-lang="en" data-title="Set up WG-Link">
+  </div>
+</header>
+<main>
+<article class="lang-block" data-lang="en" data-title="Set up WG-Link">
       <nav class="crumbs">
         <a href="index.html">← Overview</a> ·
         <a href="terms-of-service.html">Terms of Service</a> ·
@@ -543,8 +544,19 @@
       </p>
       <p>Dopóki członek tego nie zrobi, zostaje niepołączony i nie dostaje roli.</p>
     </article>
-    <p class="cookie-line"><a href="#cookies" data-cookie-info>Cookies</a></p>
-  </main>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <span>© 2026 Motti_TV · <span class="lang-inline" data-lang="en">Unofficial – not affiliated with Wargaming</span><span class="lang-inline" data-lang="de">Inoffiziell – nicht mit Wargaming verbunden</span><span class="lang-inline" data-lang="pl">Nieoficjalny – niezwiązany z Wargaming</span></span>
+    <nav>
+      <a href="index.html"><span class="lang-inline" data-lang="en">Home</span><span class="lang-inline" data-lang="de">Startseite</span><span class="lang-inline" data-lang="pl">Strona główna</span></a>
+      <a href="setup.html"><span class="lang-inline" data-lang="en">Setup</span><span class="lang-inline" data-lang="de">Einrichtung</span><span class="lang-inline" data-lang="pl">Konfiguracja</span></a>
+      <a href="terms-of-service.html"><span class="lang-inline" data-lang="en">Terms</span><span class="lang-inline" data-lang="de">Nutzungsbedingungen</span><span class="lang-inline" data-lang="pl">Regulamin</span></a>
+      <a href="privacy-policy.html"><span class="lang-inline" data-lang="en">Privacy</span><span class="lang-inline" data-lang="de">Datenschutz</span><span class="lang-inline" data-lang="pl">Prywatność</span></a>
+      <a href="#cookies" data-cookie-info>Cookies</a>
+    </nav>
+  </div>
+</footer>
   <script src="lang.js?v=1"></script>
   <script src="cookies.js?v=1" defer></script>
 </body>
